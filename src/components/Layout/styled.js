@@ -10,6 +10,8 @@ export const ContentContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
 `;
 
 export const CustomContents = styled.div`
