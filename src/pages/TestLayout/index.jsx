@@ -1,11 +1,15 @@
 import React from 'react';
 import CommonLayout from '../../components/Layout';
 
+import Text from '../../components/Text';
+
 const TestLayout = () => {
   return (
     <CommonLayout>
-      <h1>Hello, World!</h1>
-      <p>This is a test page using the CommonLayout component.</p>
+      <Text theme="title">Title</Text>
+      <Text theme="content">Content</Text>
+      <Text theme="subtext">SubText</Text>
+      <Text theme="graytext">GrayText</Text>
     </CommonLayout>
   );
 };
