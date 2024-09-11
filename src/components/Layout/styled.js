@@ -17,5 +17,4 @@ export const CustomContents = styled.div`
   width: auto;
   justify-content: center;
   align-items: center;
-  overflow: auto;
 `;
