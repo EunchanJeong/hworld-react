@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Main from './pages/Main';
 import NotFound from './pages/NotFound';
 import TestLayout from './pages/TestLayout';
+import TestCoordinationPost from './pages/TestCoordinationPost';
 
 const Router = () => {
   return (
@@ -13,6 +14,7 @@ const Router = () => {
         <Route path="/" element={<Main />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/test" element={<TestLayout />} />
+        <Route path="/TestCoordinationPost" element={<TestCoordinationPost />} />
 
         {/*로그인한 사용자만 접근 가능*/}
         {/* <Route path="/list" element={<ProtectedRoute element={<List />} />} /> */}
