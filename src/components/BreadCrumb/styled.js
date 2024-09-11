@@ -2,16 +2,16 @@ import styled from 'styled-components';
 
 export const WhiteBox = styled.div`
   width: 90vw;
-  height: 10vh;
+  height: 7vh;
   position: absolute;
-  top: 40%;
+  top: 35%;
   left: 0;
   left: 50%;
   transform: translate(-50%, 0%);
 `;
 
 export const TitleDiv = styled.div`
-  font-size: 35px;
+  font-size: 30px;
   color: #284180;
   font-weight: bold;
 `;

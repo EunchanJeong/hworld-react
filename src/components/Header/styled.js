@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export const WhiteBox = styled.div`
   width: 100vw;
-  height: 40vh;
+  height: 30vh;
   background-color: #ffffff;
   position: absolute;
   top: 0;
@@ -12,8 +12,8 @@ export const WhiteBox = styled.div`
 `;
 
 export const LogoWrapper = styled.div`
-  width: 60vh;
-  height: 30vh;
+  width: 45vh;
+  height: 20vh;
   background-color: white;
   position: absolute;
   top: 40%;
@@ -32,12 +32,12 @@ export const Image = styled.img`
 
 export const NavGroup = styled.div`
   width: 25vw;
-  height: 10vh;
+  height: 5vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: absolute;
-  top: 85%;
+  top: 88%;
   left: 50%;
   transform: translate(-50%, -50%);
 `;
@@ -59,7 +59,7 @@ export const TopNavGroup = styled.div`
   justify-content: space-between;
   align-items: center;
   position: absolute;
-  top: 12%;
-  left: 90%;
+  top: 15%;
+  left: 87%;
   transform: translate(-50%, -50%);
 `;
