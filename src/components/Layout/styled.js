@@ -6,14 +6,16 @@ export const Container = styled.div`
 `;
 
 export const ContentContainer = styled.div`
-  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 5vh;
-  margin-bottom: 5vh;
+  margin-top: 40vh;
+  margin-bottom: 20vh;
 `;
 
 export const CustomContents = styled.div`
-  width: 100%;
+  width: auto;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
 `;
