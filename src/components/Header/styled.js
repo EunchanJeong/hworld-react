@@ -5,7 +5,7 @@ export const WhiteBox = styled.div`
   width: 100vw;
   height: 40vh;
   background-color: #ffffff;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   z-index: 10;

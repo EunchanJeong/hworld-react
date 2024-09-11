@@ -1,0 +1,25 @@
+import styled from 'styled-components';
+
+export const WhiteBox = styled.div`
+  width: 90vw;
+  height: 10vh;
+  position: absolute;
+  top: 40%;
+  left: 0;
+  left: 50%;
+  transform: translate(-50%, 0%);
+`;
+
+export const TitleDiv = styled.div`
+  font-size: 35px;
+  color: #284180;
+  font-weight: bold;
+`;
+
+export const HorizonLine = styled.div`
+  background-color: #284180;
+  width: 100%;
+  height: 3px;
+  position: absolute;
+  bottom: 0;
+`;
