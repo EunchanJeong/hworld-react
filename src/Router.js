@@ -5,6 +5,7 @@ import Main from './pages/Main';
 import NotFound from './pages/NotFound';
 import TestLayout from './pages/TestLayout';
 import SignUp from './pages/SignUp';
+import TestCoordinationPost from './pages/TestCoordinationPost';
 
 const Router = () => {
   return (
@@ -15,6 +16,7 @@ const Router = () => {
         <Route path="*" element={<NotFound />} />
         <Route path="/test" element={<TestLayout />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/TestCoordinationPost" element={<TestCoordinationPost />} />
 
         {/*로그인한 사용자만 접근 가능*/}
         {/* <Route path="/list" element={<ProtectedRoute element={<List />} />} /> */}
