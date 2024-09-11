@@ -1,6 +1,15 @@
 import React, { useState } from 'react';
 import { axiosInstance } from '../../apis';
-import { PostContainer, CoordinationImage, Content, RecommendButton, CommentSection, RecommendSection, CommentIcon, HeartIcon } from './styled';
+import {
+  PostContainer,
+  CoordinationImage,
+  Content,
+  RecommendButton,
+  CommentSection,
+  RecommendSection,
+  CommentIcon,
+  HeartIcon,
+} from './styled';
 import Comment from '../../assets/images/comment_icon.svg';
 import HeartEmpty from '../../assets/images/heart-empty-icon.svg';
 import HeartFull from '../../assets/images/heart-full-icon.svg';
@@ -16,20 +25,15 @@ const CoordinationPost = ({ post }) => {
       const newRecommendState = !isRecommended;
       setIsRecommended(newRecommendState);
 
-      setRecommendCount((prevCount) =>
-        newRecommendState ? prevCount + 1 : prevCount - 1
-      );
-      
-      if(newRecommendState == false) {
+      setRecommendCount((prevCount) => (newRecommendState ? prevCount + 1 : prevCount - 1));
+
+      if (newRecommendState == false) {
         const response = await axiosInstance.delete(`/contest/recommend/${post.postId}`);
         console.log(response);
-      }
-      else {
+      } else {
         const response = await axiosInstance.post(`/contest/recommend/${post.postId}`);
         console.log(response);
-
       }
-
     } catch (error) {
       console.error('추천 처리 중 오류 발생:', error);
     }
@@ -45,7 +49,7 @@ const CoordinationPost = ({ post }) => {
           </RecommendButton>
           <Text theme="content">{recommendCount}</Text>
         </RecommendSection>
-        
+
         <CommentSection>
           <CommentIcon src={Comment} alt="댓글 아이콘" />
           <Text theme="content">{post.replyCount}</Text>

@@ -69,5 +69,3 @@ export const CommentIcon = styled.img`
   width: 2vw;
   height: auto;
 `;
-
-
