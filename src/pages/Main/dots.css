@@ -1,0 +1,7 @@
+.custom-dots li {
+  list-style: none;
+  cursor: pointer;
+  display: inline-block;
+  width: 100%;
+  height: 50px;
+}
