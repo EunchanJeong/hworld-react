@@ -1,37 +1,22 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const WhiteBox = styled.div`
   width: 100vw;
-  height: 20vh;
-  background-color: white;
-  position: fixed;
+  height: 30vh;
+  background-color: #ffffff;
+  position: absolute;
   top: 0;
   left: 0;
   z-index: 10;
 `;
 
-export const Container = styled.div`
-  width: 80vw;
-  height: 15vh;
-  position: fixed;
-  z-index: 10;
-  border-top: 3px solid black;
-  border-bottom: 3px solid black;
-  top: 5vh;
-  left: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 10vw;
-  background-color: white;
-`;
-
 export const LogoWrapper = styled.div`
-  width: 20vh;
+  width: 45vh;
   height: 20vh;
   background-color: white;
   position: absolute;
-  top: 30%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
 `;
@@ -46,18 +31,35 @@ export const Image = styled.img`
 `;
 
 export const NavGroup = styled.div`
-  width: 20vw;
-  height: 10vh;
-  padding-left: 3vw;
+  width: 25vw;
+  height: 5vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: absolute;
+  top: 88%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
-export const ButtonGroup = styled.div`
-  width: 15vw;
-  padding-right: 3vw;
+export const NavMenu = styled.div`
+  font-size: 20px;
+  color: black;
+  font-weight: bold;
+`;
+
+export const NavLink = styled(Link)`
+  text-decoration: none;
+`;
+
+export const TopNavGroup = styled.div`
+  width: 14vw;
+  height: 10vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: absolute;
+  top: 15%;
+  left: 87%;
+  transform: translate(-50%, -50%);
 `;
