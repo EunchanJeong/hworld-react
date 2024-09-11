@@ -15,5 +15,7 @@ export const ContentContainer = styled.div`
 `;
 
 export const CustomContents = styled.div`
-  width: 100%;
+  width: auto;
+  justify-content: center;
+  align-items: center;
 `;

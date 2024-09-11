@@ -21,8 +21,14 @@ const textStyles = {
     fontSize: '18px',
     color: 'gray',
   },
+  navytext: {
+    fontWeight: 'bold',
+    fontSize: '30px',
+    color: '#284180',
+  },
 };
 
 export const StyledText = styled.p`
   ${(props) => textStyles[props.theme]}
+  width: ${({ width }) => width || 'auto'};
 `;
