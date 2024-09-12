@@ -14,7 +14,7 @@ import {
   CheckButton,
 } from './styled';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { axiosInstance } from '../../apis';
 
 import success from '../../assets/images/success.svg';
