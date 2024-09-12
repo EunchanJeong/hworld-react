@@ -34,6 +34,7 @@ export const SortButton = styled.button`
   color: #284180;
   font-weight: ${(props) => (props.isactive ? 700 : 100)};
   font-size: 25px;
+  margin-right: 1vw;
 
   &:hover {
     cursor: pointer;
@@ -59,11 +60,11 @@ export const SelectWinnerButton = styled.button`
 
 export const PostContainer = styled.div`
   border-radius: 15px;
-  border: 1px solid #ddd;
   display: flex;
   flex-direction: column;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
   align-items: center;
-  width: 20vw;
+  width: 15vw;
   height: 40vh;
   overflow: hidden;
   box-sizing: border-box;
@@ -125,4 +126,37 @@ export const CommentIcon = styled.img`
   display: flex;
   width: 2vw;
   height: auto;
+`;
+
+export const PostListContainer = styled.div`
+  width: 75vw;
+  height: wrap-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 5vh;
+`;
+
+export const PaginationContainer = styled.div`
+  width: 20vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 5vh;
+`;
+
+export const PaginationImageButton = styled.img`
+  width: wrap-content;
+  height: wrap-content;
+  cursor: pointer;
+`;
+
+export const PageButton = styled.span`
+  cursor: pointer;
+  margin: 0 5px;
+  font-size: 25px;
+  font-weight: ${(props) => (props.isactive ? 700 : 300)};
+  color: black;
 `;

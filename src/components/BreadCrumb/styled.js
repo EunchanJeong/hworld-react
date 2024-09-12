@@ -14,7 +14,7 @@ export const TitleDiv = styled.div`
   font-size: 30px;
   color: #284180;
   font-weight: bold;
-  margin-left: 2%;
+  margin-left: 0.5%;
 `;
 
 export const HorizonLine = styled.div`
