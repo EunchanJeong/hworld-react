@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import CommonLayout from '../../components/Layout';
 import ContestBreadCrumb from '../../components/ContestBreadCrumb';
 import Button from '../../components/Button';
@@ -13,26 +13,30 @@ const POSTS_PER_PAGE = 8; // 한 페이지에 8개의 게시글 표시
 const ContestBoard = () => {
   const [activeTab, setActiveTab] = useState('latest'); // 정렬 기준 (최신순/추천순)
   const [contestStatus, setContestStatus] = useState('ongoing'); // 콘테스트 상태 (진행중/완료)
-  // const [postList, setPostList] = useState([]); // 게시글 목록
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
 
   // API 호출을 통해 게시글 목록을 가져오는 함수
+  const fetchPosts = async () => {
+    try {
+      const response = await GetContestPostListAPI(contestStatus, activeTab);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.error('게시글 목록 가져오기 오류:', error);
+    }
+  };
+
   const {
     data: postList = [],
     isLoading,
     isError,
   } = useQuery(
-    ['posts', contestStatus, activeTab, currentPage], // queryKey로 contestStatus, activeTab, currentPage 사용
-    () => GetContestPostListAPI(contestStatus, activeTab, currentPage, POSTS_PER_PAGE), // 데이터를 가져오는 함수
+    ['postList', contestStatus, activeTab], // queryKey로 contestStatus, activeTab 사용
+    fetchPosts, // 데이터를 가져오는 함수
     {
       keepPreviousData: true, // 페이지 전환 시 이전 데이터를 유지
     },
   );
-
-  // // activeTab 또는 contestStatus가 변경될 때마다 API 호출
-  // useEffect(() => {
-  //   fetchPosts();
-  // }, [activeTab, contestStatus]);
 
   if (isLoading) {
     return <Spinner />;
