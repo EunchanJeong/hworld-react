@@ -32,6 +32,8 @@ export const PostListContainer = styled.div`
   grid-template-columns: repeat(4, 1fr); /* 한 줄에 4개씩 배치 */
   grid-gap: 20px; /* 게시글 간의 간격 */
   margin-top: 20px;
+  justify-items: center; /* 수평 가운데 정렬 */
+  align-items: center; /* 수직 가운데 정렬 */
 `;
 
 // 이미지 버튼 스타일 정의
