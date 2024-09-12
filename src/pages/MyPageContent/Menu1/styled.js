@@ -100,7 +100,7 @@ export const RecommendButton = styled.button`
   border: none;
   padding: 0;
   cursor: pointer;
-  width: 45%;
+  width: wrap-content;
   height: auto;
   justify-content: center;
   align-items: center;
@@ -119,7 +119,6 @@ export const CommentSection = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 3.8vw;
-  /* border: 1px solid red; */
 `;
 
 export const CommentIcon = styled.img`
