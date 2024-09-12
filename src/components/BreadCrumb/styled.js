@@ -14,7 +14,7 @@ import styled from 'styled-components';
  */
 
 export const WhiteBox = styled.div`
-  width: 90vw;
+  width: 80vw;
   height: 7vh;
   position: absolute;
   top: 35%;
@@ -27,6 +27,7 @@ export const TitleDiv = styled.div`
   font-size: 30px;
   color: #284180;
   font-weight: bold;
+  margin-left: 2%;
 `;
 
 export const HorizonLine = styled.div`
