@@ -6,11 +6,12 @@ export const PostContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 15vw;
-  height: 40vh;
+  width: 18vw;
+  height: 50vh;
   overflow: hidden;
   box-sizing: border-box;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+  position: relative; /* 자식 요소의 절대 위치를 설정하기 위해 relative 추가 */
 `;
 
 export const CoordinationImage = styled.img`
@@ -18,6 +19,15 @@ export const CoordinationImage = styled.img`
   height: 85%;
   border-radius: 10px 10px 0 0;
   box-sizing: border-box;
+`;
+
+/* 새로운 MedalImage 스타일링 추가 */
+export const MedalImage = styled.img`
+  position: absolute; /* 절대 위치를 사용하여 부모(PostContainer) 안에서 배치 */
+  top: 10px; /* 상단에서 10px 떨어진 위치 */
+  right: 10px; /* 우측에서 10px 떨어진 위치 */
+  width: 4vw; /* 원하는 크기로 조정 */
+  height: auto;
 `;
 
 export const Content = styled.div`
@@ -62,7 +72,6 @@ export const CommentSection = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 3.8vw;
-  /* border: 1px solid red; */
 `;
 
 export const CommentIcon = styled.img`

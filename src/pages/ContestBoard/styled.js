@@ -5,7 +5,8 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 80vw;
-  margin: 20px 0;
+  height: 10vh;
+  margin: 15px 0 20px 0;
 `;
 
 export const FilterDiv = styled.div`
@@ -30,10 +31,21 @@ export const StatusText = styled.p`
 export const PostListContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* 한 줄에 4개씩 배치 */
+  grid-gap: 80px; /* 게시글 간의 간격 */
+  margin-top: 20px;
+  justify-items: center; /* 수평 가운데 정렬 */
+  align-items: center; /* 수직 가운데 정렬 */
+`;
+
+export const PostListAwardContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 한 줄에 3개씩 배치 */
   grid-gap: 20px; /* 게시글 간의 간격 */
   margin-top: 20px;
   justify-items: center; /* 수평 가운데 정렬 */
   align-items: center; /* 수직 가운데 정렬 */
+
+  border: 1px solid red;
 `;
 
 // 이미지 버튼 스타일 정의
