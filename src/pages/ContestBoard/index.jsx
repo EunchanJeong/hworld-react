@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import CommonLayout from '../../components/Layout';
 import ContestBreadCrumb from '../../components/ContestBreadCrumb';
 import Button from '../../components/Button';
-import { axiosInstance } from '../../apis'; // API 요청에 사용할 axiosInstance
 import CoordinationPost from '../../components/CoordinationPost'; // 게시글 목록에 사용할 CoordinationPost 컴포넌트
 import { Container, FilterDiv, ButtonWrapper, PostListContainer, PaginationButton, StatusText } from './styled'; // 스타일 임포트
+import { GetContestPostListAPI } from '../../apis/Contest/ContestAPI';
 
 const POSTS_PER_PAGE = 8; // 한 페이지에 8개의 게시글 표시
 
@@ -17,9 +17,7 @@ const ContestBoard = () => {
   // API 호출을 통해 게시글 목록을 가져오는 함수
   const fetchPosts = async () => {
     try {
-      const response = await axiosInstance.get('/contest/posts', {
-        params: { status: contestStatus, sortBy: activeTab },
-      });
+      const response = await GetContestPostListAPI(contestStatus, activeTab);
       console.log(response.data);
       setPostList(response.data); // 게시글 목록 상태 업데이트
     } catch (error) {
