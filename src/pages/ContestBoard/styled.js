@@ -34,16 +34,30 @@ export const PostListContainer = styled.div`
   margin-top: 20px;
 `;
 
-export const PaginationButton = styled.button`
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  margin: 10px;
+// 이미지 버튼 스타일 정의
+export const PaginationImageButton = styled.img`
+  width: 0.7vw;
+  height: auto;
   cursor: pointer;
-  border-radius: 5px;
-  &:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
+  opacity: ${(props) => (props.disabled ? 0.5 : 1)};
+  &:hover {
+    opacity: ${(props) => (props.disabled ? 0.5 : 0.8)};
+  }
+`;
+
+export const PageinationContainer = styled.div`
+  text-align: center;
+  margin-top: 50px;
+`;
+
+// 페이지 번호 스타일 정의
+export const PageNumber = styled.span`
+  cursor: pointer;
+  margin: 0 5px;
+  font-size: 25px;
+  font-weight: ${(props) => (props.active ? 'bold' : 'medium')};
+  color: ${(props) => (props.active ? 'black' : '#A9A9A9')};
+  &:hover {
+    color: #4caf50;
   }
 `;
