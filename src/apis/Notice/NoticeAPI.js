@@ -14,11 +14,11 @@ import { axiosInstance } from '..';
  */
 
 // 공지사항 목록 조회 API
-const GetNoticeListAPI = (page, amount, category) => {
+export const GetNoticeListAPI = (page, amount, category) => {
   return axiosInstance.get(`/notices?page=${page}&amount=${amount}&category=${category}`);
 };
 
 // 공지사항 상세 조회 API
-const GetNoticeDetailAPI = (noticeId) => {
+export const GetNoticeDetailAPI = (noticeId) => {
   return axiosInstance.get(`/notices/${noticeId}`);
 };

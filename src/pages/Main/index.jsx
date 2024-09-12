@@ -13,6 +13,7 @@ import {
   CustomSlider,
   NoticeWrapper,
 } from './styled';
+import Spinner from '../../components/Spinner';
 import CommonLayout from '../../components/Layout';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
@@ -22,6 +23,8 @@ import BannerPrada from '../../assets/images/BannerPrada.png';
 import './dots.css';
 import BestCoordination from '../../components/BestCoordination';
 import NoticeSummary from '../../components/NoticeSummary';
+import { GetNoticeListAPI } from '../../apis/Notice/NoticeAPI';
+import { useQuery } from 'react-query';
 
 /**
  * 메인 페이지
@@ -36,7 +39,21 @@ import NoticeSummary from '../../components/NoticeSummary';
  * </pre>
  */
 
+const fetchNoticeList = async () => {
+  const response = await GetNoticeListAPI(1, 10, 0);
+  return response.data;
+};
+
 const Main = () => {
+  const { data: noticeList, isLoading, isError } = useQuery('noticeList', fetchNoticeList);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+  if (isError) {
+    return <div>오류가 발생했습니다.</div>;
+  }
+
   const postList = [
     {
       postId: 4,
@@ -179,9 +196,18 @@ const Main = () => {
             <NoticeContainer>
               <Title>공지</Title>
               <NoticeWrapper>
-                <NoticeSummary categoryName="공지사항" noticeList={[{ category: 1 }]} />
-                <NoticeSummary categoryName="이벤트" noticeList={[{ category: 1 }]} />
-                <NoticeSummary categoryName="수상작 안내" noticeList={[{ category: 1 }]} />
+                <NoticeSummary
+                  categoryName="공지사항"
+                  noticeList={noticeList.filter((notice) => notice.category === 2)}
+                />
+                <NoticeSummary
+                  categoryName="이벤트"
+                  noticeList={noticeList.filter((notice) => notice.category === 3)}
+                />
+                <NoticeSummary
+                  categoryName="수상작 안내"
+                  noticeList={noticeList.filter((notice) => notice.category === 1)}
+                />
               </NoticeWrapper>
             </NoticeContainer>
           </CoordiNoticeContainer>
