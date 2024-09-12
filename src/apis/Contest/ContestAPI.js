@@ -12,6 +12,7 @@ import { axiosInstance } from '../../apis';
  * 2024.09.12  	정은찬        최초 생성
  * </pre>
  */
+
 // 콘테스트 게시글 목록 조회 API
 const GetContestPostListAPI = (currentPage, POSTS_PER_PAGE, contestStatus, activeTab, selectedMonth) => {
   return axiosInstance.get('/contest/posts', {
@@ -34,12 +35,12 @@ const GetContestPostAwardListAPI = (selectedMonth) => {
   });
 };
 
-// 추천하기 API
+// 게시글 추천하기 API
 const AddRecommendAPI = (postId) => {
   return axiosInstance.post(`/contest/recommend/${postId}`);
 };
 
-// 추천취소 API
+// 게시글 추천취소하기 API
 const RemoveRecommendAPI = (postId) => {
   return axiosInstance.delete(`/contest/recommend/${postId}`);
 };

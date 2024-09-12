@@ -22,6 +22,19 @@ import BronzeMedalIcon from '../../assets/images/bronze-medal.svg';
 
 import { AddRecommendAPI, RemoveRecommendAPI } from '../../apis/Contest/ContestAPI';
 
+/**
+ * 게시글 수상작 카드 컴포넌트
+ * @author 정은찬
+ * @since 2024.09.12
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일       수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.12  	정은찬        최초 생성
+ * </pre>
+ */
+
 const CoordinationAwardPost = ({ post, MedalIcon }) => {
   const [isRecommended, setIsRecommended] = useState(post.isRecommended);
   const [recommendCount, setRecommendCount] = useState(post.recommendCount);

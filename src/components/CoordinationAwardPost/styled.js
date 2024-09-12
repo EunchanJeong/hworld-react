@@ -1,5 +1,18 @@
 import styled from 'styled-components';
 
+/**
+ * 게시글 수상작 카드 styled components
+ * @author 정은찬
+ * @since 2024.09.12
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일       수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.12  	정은찬        최초 생성
+ * </pre>
+ */
+
 export const PostContainer = styled.div`
   border-radius: 15px;
   border: 1px solid #ddd;
