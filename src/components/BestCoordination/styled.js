@@ -1,22 +1,20 @@
 import styled from 'styled-components';
 
 export const PostContainer = styled.div`
-  border-radius: 15px;
-  border: 1px solid #ddd;
+  border-radius: 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 15vw;
-  height: 40vh;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   box-sizing: border-box;
+  position: absolute;
 `;
 
 export const CoordinationImage = styled.img`
   width: 100%;
   height: 85%;
-  border-radius: 10px 10px 0 0;
-  box-sizing: border-box;
 `;
 
 export const Content = styled.div`

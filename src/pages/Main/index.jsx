@@ -9,6 +9,8 @@ import {
   NoticeContainer,
   Title,
   CoordiContainer,
+  BestCoordinationContainer,
+  CustomSlider,
 } from './styled';
 import CommonLayout from '../../components/Layout';
 import { Link } from 'react-router-dom';
@@ -17,8 +19,35 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import BannerPrada from '../../assets/images/BannerPrada.png';
 import './dots.css';
+import BestCoordination from '../../components/BestCoordination';
 
 const Main = () => {
+  const postList = [
+    {
+      postId: 4,
+      imageUrl:
+        'http://thumbnail.10x10.co.kr/webimage/image/basic600/515/B005159997.jpg?cmd=thumb&w=500&h=500&fit=true&ws=false', // 코디 이미지 URL (대체 이미지)
+      recommendCount: 10, // 추천 수
+      replyCount: 5, // 댓글 수
+      isRecommended: true, // 추천 여부
+    },
+    {
+      postId: 5,
+      imageUrl:
+        'http://thumbnail.10x10.co.kr/webimage/image/basic600/515/B005159997.jpg?cmd=thumb&w=500&h=500&fit=true&ws=false', // 코디 이미지 URL (대체 이미지)
+      recommendCount: 20, // 추천 수
+      replyCount: 23, // 댓글 수
+      isRecommended: false, // 추천 여부
+    },
+    {
+      postId: 6,
+      imageUrl:
+        'http://thumbnail.10x10.co.kr/webimage/image/basic600/515/B005159997.jpg?cmd=thumb&w=500&h=500&fit=true&ws=false', // 코디 이미지 URL (대체 이미지)
+      recommendCount: 15, // 추천 수
+      replyCount: 17, // 댓글 수
+      isRecommended: true, // 추천 여부
+    },
+  ];
   const bannerList = [
     { title: 'H-WORLD X PRADA', image: BannerPrada, id: 1 },
     { title: '출석 이벤트', image: BannerPrada, id: 2 },
@@ -26,7 +55,7 @@ const Main = () => {
     { title: '썸머 포인트 SHOP', image: BannerPrada, id: 4 },
     { title: '신규 이벤트', image: BannerPrada, id: 5 },
   ];
-  const settings = {
+  const bannerSettings = {
     dots: true, // 개수 표시 점,
     dotsClass: 'custom-dots',
     infinite: true, // 무한 캐러셀
@@ -90,6 +119,21 @@ const Main = () => {
       </div>
     ),
   };
+  const bestCoordinationSettings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1, // 화면에 보이는 컨텐츠 수
+    slidesToScroll: 1, // 스크롤 시 넘어가는 컨텐츠 수
+    // centerMode: true, // 현재 컨텐츠 가운데 정렬
+    // centerPadding: '10px', // 중앙 컨텐츠 padding 값
+    autoplay: true, // 자동 캐러셀
+    autoplaySpeed: 4000, // 자동 캐러셀 속도
+    arrows: true, // 좌,우 버튼
+    pauseOnFocus: false, // focus시 정지
+    pauseOnHover: false, // hover시 정지
+  };
+
   return (
     <>
       <CommonLayout>
@@ -98,7 +142,7 @@ const Main = () => {
         </Link>
         <Container>
           <BannerContainer>
-            <Slider {...settings}>
+            <Slider {...bannerSettings}>
               {bannerList.map((banner, index) => (
                 <Banner key={index}>
                   <BannerImage src={banner.image} />
@@ -109,6 +153,13 @@ const Main = () => {
           <CoordiNoticeContainer>
             <CoordiContainer>
               <Title>베스트 코디</Title>
+              <BestCoordinationContainer>
+                <CustomSlider {...bestCoordinationSettings}>
+                  {postList.map((post, index) => (
+                    <BestCoordination post={postList[index]} />
+                  ))}
+                </CustomSlider>
+              </BestCoordinationContainer>
             </CoordiContainer>
             <NoticeContainer>
               <Title>공지</Title>
