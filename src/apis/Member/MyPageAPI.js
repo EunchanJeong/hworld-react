@@ -17,5 +17,9 @@ const MyPageAPI = {
   getMemberCoordinationItem: (coordinationId) => {
     return axiosInstance.get(`/members/my-coordinations/${coordinationId}`);
   },
+  // 포인트 사용 내역 가져오기
+  getMemberPointHistory: (page, size) => {
+    return axiosInstance.get(`/members/my-points?page=${page}&size=${size}`);
+  },
 };
 export default MyPageAPI;
