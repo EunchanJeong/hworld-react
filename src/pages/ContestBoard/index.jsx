@@ -12,6 +12,8 @@ import {
   StatusText,
   PaginationImageButton,
   PageNumber,
+  DropdownWrapper,
+  Dropdown,
 } from './styled'; // 스타일 임포트
 import { GetContestPostListAPI } from '../../apis/Contest/ContestAPI';
 import { useQuery } from 'react-query';
@@ -26,12 +28,19 @@ const ContestBoard = () => {
   const [activeTab, setActiveTab] = useState('latest'); // 정렬 기준 (최신순/추천순)
   const [contestStatus, setContestStatus] = useState('ongoing'); // 콘테스트 상태 (진행중/완료)
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
+  const [selectedMonth, setSelectedMonth] = useState('2024-08'); // 선택된 월
 
   // API 호출을 통해 게시글 목록을 가져오는 함수
   const fetchPosts = async () => {
     try {
       console.log(currentPage);
-      const response = await GetContestPostListAPI(currentPage, POSTS_PER_PAGE, contestStatus, activeTab);
+      const response = await GetContestPostListAPI(
+        currentPage,
+        POSTS_PER_PAGE,
+        contestStatus,
+        activeTab,
+        selectedMonth,
+      );
       console.log(response.data);
       return response.data;
     } catch (error) {
@@ -40,7 +49,7 @@ const ContestBoard = () => {
   };
 
   const { data, isLoading, isError } = useQuery(
-    ['postList', contestStatus, activeTab, currentPage], // queryKey로 contestStatus, activeTab, currentPage 사용
+    ['postList', contestStatus, activeTab, currentPage, selectedMonth], // queryKey로 contestStatus, activeTab, currentPage 사용
     fetchPosts, // 데이터를 가져오는 함수
     {
       keepPreviousData: true, // 페이지 전환 시 이전 데이터를 유지
@@ -61,6 +70,10 @@ const ContestBoard = () => {
 
   const handlePageClick = (pageNumber) => {
     setCurrentPage(pageNumber); // 페이지 번호 클릭 시 현재 페이지 변경
+  };
+
+  const handleMonthChange = (event) => {
+    setSelectedMonth(event.target.value); // 선택된 월 상태 업데이트
   };
 
   return (
@@ -87,9 +100,26 @@ const ContestBoard = () => {
           </StatusText>
         </FilterDiv>
 
-        {/* 참가하기 버튼 */}
+        {/* 참가하기 버튼 또는 월별 드롭다운 */}
         <ButtonWrapper>
-          <Button fontSize="24px">참가하기</Button>
+          {contestStatus === 'ongoing' ? (
+            <Button fontSize="24px">참가하기</Button>
+          ) : (
+            <DropdownWrapper>
+              <Dropdown value={selectedMonth} onChange={handleMonthChange}>
+                <option value="2024-08">8월 코디</option>
+                <option value="2024-07">7월 코디</option>
+                <option value="2024-06">6월 코디</option>
+                <option value="2024-05">5월 코디</option>
+                <option value="2024-04">4월 코디</option>
+                <option value="2024-03">3월 코디</option>
+                <option value="2024-02">2월 코디</option>
+                <option value="2024-01">1월 코디</option>
+
+                {/* 추가적으로 필요한 월을 추가할 수 있음 */}
+              </Dropdown>
+            </DropdownWrapper>
+          )}
         </ButtonWrapper>
       </Container>
 
@@ -100,7 +130,6 @@ const ContestBoard = () => {
         ))}
       </PostListContainer>
 
-      {/* 페이지네이션 버튼 */}
       {/* 페이지네이션 버튼 */}
       <PageinationContainer>
         <PaginationImageButton

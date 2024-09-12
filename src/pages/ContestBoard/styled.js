@@ -63,3 +63,16 @@ export const PageNumber = styled.span`
     color: #4caf50;
   }
 `;
+
+// 드롭다운 스타일 정의
+export const DropdownWrapper = styled.div`
+  align-items: center;
+`;
+
+export const Dropdown = styled.select`
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+`;
