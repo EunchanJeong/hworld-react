@@ -72,7 +72,7 @@ export const TopNavGroup = styled.div`
   justify-content: space-between;
   align-items: center;
   position: absolute;
-  top: 15%;
-  left: 87%;
+  top: 17%;
+  left: 82.5%;
   transform: translate(-50%, -50%);
 `;
