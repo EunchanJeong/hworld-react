@@ -2,6 +2,19 @@ import styled from 'styled-components';
 import { StyledButton } from '../../components/Button/styled';
 import Slider from 'react-slick';
 
+/**
+ * 메인 페이지 styled components
+ * @author 조영욱
+ * @since 2024.09.11
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        	수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.11  	조영욱        최초 생성
+ * </pre>
+ */
+
 export const Container = styled.div`
   width: 100vw;
   height: 125vh;
@@ -56,7 +69,7 @@ export const BannerImage = styled.img`
 `;
 
 export const CoordiNoticeContainer = styled.div`
-  width: 95vw;
+  width: 93vw;
   height: 50vh;
   position: relative;
 `;
@@ -104,6 +117,20 @@ export const Title = styled.div`
   display: flex;
   font-weight: bold;
   padding-left: 25px;
+`;
+
+export const NoticeWrapper = styled.div`
+  border-radius: 0px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 83%;
+  top: 17%;
+  box-sizing: border-box;
+  position: relative;
+  justify-content: space-around;
+  padding-left: 2%;
+  padding-right: 2%;
 `;
 
 export const CustomSlider = styled(Slider)`

@@ -11,6 +11,7 @@ import {
   CoordiContainer,
   BestCoordinationContainer,
   CustomSlider,
+  NoticeWrapper,
 } from './styled';
 import CommonLayout from '../../components/Layout';
 import { Link } from 'react-router-dom';
@@ -20,6 +21,20 @@ import 'slick-carousel/slick/slick-theme.css';
 import BannerPrada from '../../assets/images/BannerPrada.png';
 import './dots.css';
 import BestCoordination from '../../components/BestCoordination';
+import NoticeSummary from '../../components/NoticeSummary';
+
+/**
+ * 메인 페이지
+ * @author 조영욱
+ * @since 2024.09.11
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        	수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.11  	조영욱        최초 생성
+ * </pre>
+ */
 
 const Main = () => {
   const postList = [
@@ -163,6 +178,11 @@ const Main = () => {
             </CoordiContainer>
             <NoticeContainer>
               <Title>공지</Title>
+              <NoticeWrapper>
+                <NoticeSummary type="공지사항" />
+                <NoticeSummary type="이벤트" />
+                <NoticeSummary type="수상작 안내" />
+              </NoticeWrapper>
             </NoticeContainer>
           </CoordiNoticeContainer>
         </Container>

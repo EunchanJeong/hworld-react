@@ -1,5 +1,18 @@
 import styled from 'styled-components';
 
+/**
+ * 베스트 코디 styled components
+ * @author 조영욱
+ * @since 2024.09.11
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        	수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.11  	조영욱        최초 생성
+ * </pre>
+ */
+
 export const PostContainer = styled.div`
   border-radius: 0px;
   display: flex;
