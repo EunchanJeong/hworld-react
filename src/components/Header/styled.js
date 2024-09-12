@@ -1,6 +1,19 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+/**
+ * 헤더 styled components
+ * @author 조영욱
+ * @since 2024.09.11
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        	수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.11  	조영욱        최초 생성
+ * </pre>
+ */
+
 export const WhiteBox = styled.div`
   width: 100vw;
   height: 30vh;

@@ -15,6 +15,19 @@ import HeartEmpty from '../../assets/images/heart-empty-icon.svg';
 import HeartFull from '../../assets/images/heart-full-icon.svg';
 import Text from '../../components/Text';
 
+/**
+ * 베스트 코디 컴포넌트
+ * @author 조영욱
+ * @since 2024.09.11
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        	수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.11  	조영욱        최초 생성
+ * </pre>
+ */
+
 const CoordinationPost = ({ post }) => {
   const [isRecommended, setIsRecommended] = useState(post.isRecommended);
   const [recommendCount, setRecommendCount] = useState(post.recommendCount);

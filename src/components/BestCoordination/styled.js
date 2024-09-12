@@ -1,22 +1,33 @@
 import styled from 'styled-components';
 
+/**
+ * 베스트 코디 styled components
+ * @author 조영욱
+ * @since 2024.09.11
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        	수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.11  	조영욱        최초 생성
+ * </pre>
+ */
+
 export const PostContainer = styled.div`
-  border-radius: 15px;
-  border: 1px solid #ddd;
+  border-radius: 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 15vw;
-  height: 40vh;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   box-sizing: border-box;
+  position: absolute;
 `;
 
 export const CoordinationImage = styled.img`
   width: 100%;
   height: 85%;
-  border-radius: 10px 10px 0 0;
-  box-sizing: border-box;
 `;
 
 export const Content = styled.div`
