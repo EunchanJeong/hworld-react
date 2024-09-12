@@ -10,13 +10,13 @@ import {
 import gray_plus from '../../assets/images/gray_plus.svg';
 import { Link } from 'react-router-dom';
 
-const NoticeSummary = ({ type, noticeList }) => {
+const NoticeSummary = ({ categoryName, noticeList }) => {
   return (
     <>
       <NoticeSummaryContainer>
         <NoticeTitleContainer>
-          <Title>{type}</Title>
-          <Link to={`/notice?category=${type}`}>
+          <Title>{categoryName}</Title>
+          <Link to={`/notice?category=${noticeList[0]?.category || 0}`}>
             <GrayPlus>
               <img src={gray_plus} alt="더보기" />
             </GrayPlus>

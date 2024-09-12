@@ -179,9 +179,9 @@ const Main = () => {
             <NoticeContainer>
               <Title>공지</Title>
               <NoticeWrapper>
-                <NoticeSummary type="공지사항" />
-                <NoticeSummary type="이벤트" />
-                <NoticeSummary type="수상작 안내" />
+                <NoticeSummary categoryName="공지사항" noticeList={[{ category: 1 }]} />
+                <NoticeSummary categoryName="이벤트" noticeList={[{ category: 1 }]} />
+                <NoticeSummary categoryName="수상작 안내" noticeList={[{ category: 1 }]} />
               </NoticeWrapper>
             </NoticeContainer>
           </CoordiNoticeContainer>
