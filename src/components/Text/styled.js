@@ -26,6 +26,16 @@ const textStyles = {
     fontSize: '30px',
     color: '#284180',
   },
+  whitetext: {
+    fontWeight: 'bold',
+    fontSize: '20px',
+    color: 'white',
+  },
+  navytext2: {
+    fontWeight: 'bold',
+    fontSize: '20px',
+    color: '#284180',
+  },
 };
 
 export const StyledText = styled.p`
