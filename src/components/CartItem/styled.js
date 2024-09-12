@@ -17,7 +17,7 @@ export const Container = styled.div`
   width: 80vw;
   height: 20vh;
   position: relative;
-  margin-top: 2%;
+  margin-top: 1%;
   display: flex;
   align-items: center;
 `;

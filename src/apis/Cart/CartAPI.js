@@ -17,3 +17,13 @@ import { axiosInstance } from '..';
 export const GetCartAPI = () => {
   return axiosInstance.get(`/carts`);
 };
+
+// 장바구니 상품 개수 변경
+export const ChangeCartItemCountAPI = (request) => {
+  return axiosInstance.put('/carts/count', request);
+};
+
+// 장바구니에서 상품 삭제
+export const DeleteCartItemAPI = (cartId) => {
+  return axiosInstance.delete(`/carts/${cartId}`);
+};

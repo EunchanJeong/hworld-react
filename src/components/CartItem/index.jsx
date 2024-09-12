@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ChangeCount,
   CheckButton,
@@ -19,6 +19,7 @@ import white_check from '../../assets/images/white_check.svg';
 import gray_check from '../../assets/images/gray_check.svg';
 import Text from '../Text';
 import black_x from '../../assets/images/black_x.svg';
+import { ChangeCartItemCountAPI, DeleteCartItemAPI } from '../../apis/Cart/CartAPI';
 
 /**
  * 장바구니 상품 컴포넌트
@@ -33,13 +34,45 @@ import black_x from '../../assets/images/black_x.svg';
  * </pre>
  */
 
-const CartItem = ({ cart }) => {
-  // 체크 상태를 위한 useState 훅
+const CartItem = ({ cart, onDelete }) => {
+  // 체크 상태
   const [isChecked, setIsChecked] = useState(true);
+  // 아이템 개수 상태
+  const [itemCount, setItemCount] = useState(cart?.itemCount || 1);
 
   // 클릭 시 상태 토글
   const handleCheck = () => {
     setIsChecked((prev) => !prev);
+  };
+
+  // 아이템 개수 감소
+  const decreaseCount = () => {
+    setItemCount((prevCount) => Math.max(1, prevCount - 1)); // 최소 1
+  };
+
+  // 아이템 개수 증가
+  const increaseCount = () => {
+    setItemCount((prevCount) => Math.min(99, prevCount + 1)); // 최대 99
+  };
+
+  // itemCount가 변경될 때 API 호출
+  useEffect(() => {
+    const updateItemCount = async () => {
+      const requestBody = {
+        cartId: cart.cartId,
+        itemCount: itemCount,
+      };
+
+      await ChangeCartItemCountAPI(requestBody);
+    };
+
+    updateItemCount();
+  }, [itemCount]);
+
+  // 아이템 삭제
+  const handleDelete = async () => {
+    await DeleteCartItemAPI(cart.cartId);
+    onDelete(cart.cartId); // 성공하면 부모 컴포넌트에 삭제된 cartId 전달
   };
 
   return (
@@ -70,12 +103,12 @@ const CartItem = ({ cart }) => {
         <PriceContainer>
           <PriceText>{cart?.subtotalPrice.toLocaleString()}원</PriceText>
           <CountContainer>
-            <ChangeCount>-</ChangeCount>
-            <ItemCount>{cart?.itemCount}</ItemCount>
-            <ChangeCount>+</ChangeCount>
+            <ChangeCount onClick={decreaseCount}>-</ChangeCount>
+            <ItemCount>{itemCount}</ItemCount>
+            <ChangeCount onClick={increaseCount}>+</ChangeCount>
           </CountContainer>
         </PriceContainer>
-        <DeleteContainer>
+        <DeleteContainer onClick={handleDelete}>
           <Image src={black_x} />
         </DeleteContainer>
         <HorizonLine />
