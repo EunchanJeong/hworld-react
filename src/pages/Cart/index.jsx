@@ -81,7 +81,7 @@ const Cart = () => {
     }
   };
 
-  // 구매 버튼 클릭 시 호출되는 함수
+  // 구매 버튼 클릭 시 호출
   const handlePurchase = () => {
     const checkedItems = cartList.map((cart) => cart.cartId).filter((cartId) => !(cartId in uncheckedItems));
     navigate('/order', { state: { checkedItems } }); // 체크된 아이템만 주문서 페이지로 이동

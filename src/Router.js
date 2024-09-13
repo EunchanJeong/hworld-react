@@ -10,6 +10,8 @@ import MyPage from './pages/MyPage';
 import Cart from './pages/Cart';
 import Order from './pages/Order';
 import ContestBoard from './pages/ContestBoard';
+import Checkout from './pages/Checkout';
+import CheckoutSuccess from './pages/CheckoutSuccess';
 
 const Router = () => {
   return (
@@ -25,6 +27,8 @@ const Router = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/order" element={<Order />} />
         <Route path="/contest" element={<ContestBoard />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/checkout-success" element={<CheckoutSuccess />} />
 
         {/*로그인한 사용자만 접근 가능*/}
         {/* <Route path="/list" element={<ProtectedRoute element={<List />} />} /> */}

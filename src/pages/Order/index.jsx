@@ -5,9 +5,10 @@ import { useQuery } from 'react-query';
 import Spinner from '../../components/Spinner';
 import { useLocation } from 'react-router-dom';
 import { GetCartAPI } from '../../apis/Cart/CartAPI';
-import { GetDeliveryAddressAPI } from '../../apis/Order/OrderAPI';
+import { GetDeliveryAddressAPI, CreateOrderAPI } from '../../apis/Order/OrderAPI';
 import MyPageAPI from '../../apis/Member/MyPageAPI';
 import OrderItem from '../../components/OrderItem';
+import { useNavigate } from 'react-router-dom';
 import {
   ContentContainer,
   DeliveryAddressChangeButton,
@@ -65,6 +66,7 @@ const fetchMemberInfo = async () => {
 };
 
 const Order = () => {
+  const navigate = useNavigate();
   const { data: getCartResponse, isLoading, isError } = useQuery('cartList', fetchCartList);
 
   const {
@@ -83,6 +85,8 @@ const Order = () => {
     location: '배송지가 존재하지 않습니다.',
     name: '',
     phone: '',
+    email: '',
+    deliveryAddressId: 0,
   };
 
   const location = useLocation();
@@ -121,6 +125,24 @@ const Order = () => {
       }
     }
   };
+
+  // 결제 버튼 클릭 시 호출
+
+  const handleCheckout = async () => {
+    const response = await CreateOrderAPI({
+      deliveryAddressId: currentDeliveryAddress.deliveryAddressId,
+      cartIdList: [...checkedCartIdSet],
+      pointUsage: pointUsage,
+    });
+
+    const order = {
+      orderId: response.data.orderId,
+      orderName: response.data.orderName,
+      amount: response.data.amount,
+    };
+    navigate('/checkout', { state: { order, deliveryAddress: currentDeliveryAddress } });
+  };
+
   return (
     <CommonLayout>
       <BreadCrumb title="주문서 "></BreadCrumb>
@@ -180,7 +202,7 @@ const Order = () => {
             </PriceGuiedContainer>
           </RightContainer>
         </OrderContainer>
-        <PayButton>{finalPrice.toLocaleString()}원 결제하기</PayButton>
+        <PayButton onClick={handleCheckout}>{finalPrice.toLocaleString()}원 결제하기</PayButton>
       </ContentContainer>
     </CommonLayout>
   );

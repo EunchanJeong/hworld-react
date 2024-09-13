@@ -93,7 +93,7 @@ export const DeliveryAddressChangeButton = styled.button`
 
 export const DeliveryAddressContentContainer = styled.div`
   width: 100%;
-  height: 20%;
+  height: 15%;
   display: flex;
   align-items: center;
   font-size: 20px;
@@ -108,6 +108,7 @@ export const DeliveryAddressRequestTextarea = styled.textarea`
   padding: 3%;
   box-sizing: border-box;
   resize: none;
+  margin-top: 5%;
 `;
 
 export const RightContainer = styled.div`
