@@ -8,6 +8,9 @@ import ItemAPI from '../../apis/Item/ItemAPI';
 import CloseButtonImg from '../../assets/images/close_button.svg';
 import DropDownImg from '../../assets/images/dropdown.svg';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import {
   ModalOverlay,
   ModalContent,
@@ -51,11 +54,13 @@ const ItemDetailModal = ({ itemId, onClose }) => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState('옵션');
+  const [selectedOptionId, setSelectedOptionId] = useState(null);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
-  const handleOptionClick = (option) => {
+  const handleOptionClick = (option, optionId) => {
     setSelectedOption(option);
+    setSelectedOptionId(optionId);
     setIsOpen(false);
   };
 
@@ -67,8 +72,42 @@ const ItemDetailModal = ({ itemId, onClose }) => {
     return <div>오류가 발생했습니다.</div>;
   }
 
+  const handleAddToCart = () => {
+    if (selectedOptionId) {
+      ItemAPI.addCart({ itemOptionId: selectedOptionId })
+        .then((response) => {
+          const { success, message } = response.data;
+          if (success) {
+            console.log(message);
+            toast.success(message);
+          }
+        })
+        .catch((error) => {
+          if (error.response) {
+            const { message } = error.response.data;
+            console.error(message);
+            toast.error(message);
+          } else {
+            console.error(error);
+            toast.error(error);
+          }
+        });
+    } else {
+      toast.info('옵션을 선택해주세요.');
+    }
+  };
+
   return (
     <ModalOverlay onClick={onClose}>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={2000}
+        hideProgressBar={true}
+        closeOnClick={true}
+        pauseOnHover={false}
+        limit={1}
+        style={{ fontSize: '16px', textAlign: 'center' }}
+      />
       <ModalContent onClick={(e) => e.stopPropagation()}>
         <CloseButton src={CloseButtonImg} onClick={onClose} />
         <ModalScrollView>
@@ -94,7 +133,7 @@ const ItemDetailModal = ({ itemId, onClose }) => {
                       {itemDetail.itemOptionList.map((option) => (
                         <DropdownListItem
                           key={option.itemOptionId}
-                          onClick={() => handleOptionClick(option.itemOption)}
+                          onClick={() => handleOptionClick(option.itemOption, option.itemOptionId)}
                         >
                           {option.itemOption}
                         </DropdownListItem>
@@ -102,7 +141,7 @@ const ItemDetailModal = ({ itemId, onClose }) => {
                     </DropdownList>
                   )}
                 </DropdownContainer>
-                <StyledButton>장바구니 담기</StyledButton>
+                <StyledButton onClick={handleAddToCart}>장바구니 담기</StyledButton>
               </CartContainer>
             </RightHeader>
           </ModalHeader>

@@ -22,7 +22,7 @@ export const ModalContent = styled.div`
   justify-content: flex-start;
   padding: 20px;
   box-sizing: border-box;
-  overflow: hidden; /* 스크롤을 자식에게 넘김 */
+  overflow: hidden;
 `;
 
 export const ModalScrollView = styled.div`

@@ -5,5 +5,9 @@ const ItemAPI = {
   getItemDetail: (itemId) => {
     return axiosInstance.get(`/shop/item/${itemId}`);
   },
+  // 아이템 장바구니에 담기
+  addCart: (cartItemOption) => {
+    return axiosInstance.post(`/carts`, cartItemOption);
+  },
 };
 export default ItemAPI;
