@@ -7,6 +7,8 @@ import TestLayout from './pages/TestLayout';
 import SignUp from './pages/SignUp';
 import TestCoordinationPost from './pages/TestCoordinationPost';
 import MyPage from './pages/MyPage';
+import Cart from './pages/Cart';
+import Order from './pages/Order';
 import ContestBoard from './pages/ContestBoard';
 import ContestPostDetail from './pages/ContestPostDetail';
 
@@ -21,6 +23,8 @@ const Router = () => {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/TestCoordinationPost" element={<TestCoordinationPost />} />
         <Route path="/mypage" element={<MyPage />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/order" element={<Order />} />
         <Route path="/contest" element={<ContestBoard />} />
         <Route path="/contest/:postId" element={<ContestPostDetail />} />
 

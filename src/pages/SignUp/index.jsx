@@ -1,8 +1,11 @@
 import React from 'react';
 import CommonLayout from '../../components/Layout';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Text from '../../components/Text';
 import Button from '../../components/Button';
+import AlertModal from '../../components/AlertModal';
 
 import {
   SignUpLayout,
@@ -26,11 +29,14 @@ const SignUp = () => {
   const [passwordValidation, setPasswordValidation] = useState('');
   const [nickname, setNickname] = useState('');
   const [gender, setGender] = useState('');
+  const [clickedGender, setClickedGender] = useState(null);
   const [birthdate, setBirthdate] = useState('');
 
   const [isIdAvailable, setIsIdAvailable] = useState(null);
   const [isPasswordAvailable, setIsPasswordAvailable] = useState(null);
   const [isNicknameAvailable, setIsNicknameAvailable] = useState(null);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleLoginIdChange = (loginId) => {
     setLoginId(loginId);
@@ -57,6 +63,7 @@ const SignUp = () => {
 
   const handleGenderChange = (gender) => {
     setGender(gender);
+    setClickedGender(gender);
     console.log('성별 입력 -> ' + gender);
   };
 
@@ -123,12 +130,25 @@ const SignUp = () => {
       })
       .then((response) => {
         console.log(response.data);
+        toast.success('회원가입이 완료되었습니다!');
       })
-      .catch((error) => {});
+      .catch((error) => {
+        console.log(error);
+        toast.error('회원가입에 실패했습니다.');
+      });
   };
 
   return (
     <CommonLayout>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={200000}
+        hideProgressBar={true}
+        closeOnClick={true}
+        pauseOnHover={false}
+        limit={1}
+        style={{ fontSize: '20px', textAlign: 'center' }}
+      />
       <SignUpLayout>
         <Text theme="navytext">회원가입</Text>
         <StyledHr />
@@ -194,8 +214,12 @@ const SignUp = () => {
             <Text theme="content" width="10vw">
               성별
             </Text>
-            <GenderButton onClick={(e) => handleGenderChange('m')}>남성</GenderButton>
-            <GenderButton onClick={(e) => handleGenderChange('f')}>여성</GenderButton>
+            <GenderButton onClick={(e) => handleGenderChange('m')} isGenderClicked={clickedGender === 'm'}>
+              남성
+            </GenderButton>
+            <GenderButton onClick={(e) => handleGenderChange('f')} isGenderClicked={clickedGender === 'f'}>
+              여성
+            </GenderButton>
           </InputDetailLayout>
           <InputDetailLayout>
             <Text theme="content" width="10vw">
@@ -209,7 +233,18 @@ const SignUp = () => {
             />
           </InputDetailLayout>
         </InputLayout>
-        <Button onClick={handleSignUp}>완료</Button>
+        <Button onClick={() => setIsModalOpen(true)}>완료</Button>
+        {isModalOpen && (
+          <AlertModal
+            onClose={() => setIsModalOpen(false)}
+            onConfirm={() => {
+              handleSignUp();
+              setIsModalOpen(false);
+            }}
+            title="회원가입 완료"
+            content="회원가입을 하시겠습니까?"
+          />
+        )}
       </SignUpLayout>
     </CommonLayout>
   );

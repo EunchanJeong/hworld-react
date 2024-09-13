@@ -188,7 +188,7 @@ const Main = () => {
               <BestCoordinationContainer>
                 <CustomSlider {...bestCoordinationSettings}>
                   {postList.map((post, index) => (
-                    <BestCoordination post={postList[index]} />
+                    <BestCoordination post={post} />
                   ))}
                 </CustomSlider>
               </BestCoordinationContainer>
