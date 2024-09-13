@@ -15,8 +15,9 @@ import Comment from '../../assets/images/comment_icon.svg';
 import HeartEmpty from '../../assets/images/heart-empty-icon.svg';
 import HeartFull from '../../assets/images/heart-full-icon.svg';
 import Text from '../../components/Text';
+import ContestListtButton from '../../components/ContestListButton';
 
-const CoordinationPost = ({ post }) => {
+const DetailCoordinationPost = ({ post }) => {
   const navigate = useNavigate(); // useNavigate 훅 사용
 
   const handleClick = () => {
@@ -59,12 +60,11 @@ const CoordinationPost = ({ post }) => {
         </RecommendSection>
 
         <CommentSection>
-          <CommentIcon src={Comment} alt="댓글 아이콘" />
-          <Text theme="content">{post.replyCount}</Text>
+          <ContestListtButton fontSize="20px">추천하기</ContestListtButton>
         </CommentSection>
       </Content>
     </PostContainer>
   );
 };
 
-export default CoordinationPost;
+export default DetailCoordinationPost;

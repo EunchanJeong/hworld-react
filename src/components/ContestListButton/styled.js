@@ -7,9 +7,11 @@ export const StyledButton = styled.button`
   color: white;
   font-size: ${({ fontSize }) => fontSize || '20px'};
   font-weight: bold;
-  padding: 10px 20px;
+  padding: 0.5px 7px 0.5px 7px;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
   transition: background-color 0.3s, transform 0.3s;
+  height: 6vh;
+  width: 8vw;
 
   &:active,
   &:focus {
