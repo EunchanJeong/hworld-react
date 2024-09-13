@@ -142,12 +142,12 @@ const SignUp = () => {
     <CommonLayout>
       <ToastContainer
         position="bottom-center"
-        autoClose={2000}
+        autoClose={200000}
         hideProgressBar={true}
         closeOnClick={true}
         pauseOnHover={false}
         limit={1}
-        style={{ textAlign: 'center' }}
+        style={{ fontSize: '20px', textAlign: 'center' }}
       />
       <SignUpLayout>
         <Text theme="navytext">회원가입</Text>
