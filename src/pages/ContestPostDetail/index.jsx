@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import ContestDetailBreadCrumb from '../../components/ContestDetailBreadCrumb';
 import CommonLayout from '../../components/Layout';
 import { useParams } from 'react-router-dom';
@@ -15,10 +16,15 @@ import {
   ItemDiv,
 } from './styled';
 import DetailCoordinationPost from '../../components/DetailCoordinationPost';
-import Item from '../../components/Item'; // Item 컴포넌트 추가
+import ContestItem from '../../components/ContestItem'; // Item 컴포넌트 추가
 
 const ContestPostDetail = () => {
   const { postId } = useParams();
+
+  // useState 훅은 항상 컴포넌트 최상단에서 호출
+  const [isDragging, setIsDragging] = useState(false);
+  const [startY, setStartY] = useState(0);
+  const [scrollTop, setScrollTop] = useState(0);
 
   const fetchPostDetail = async () => {
     try {
@@ -52,6 +58,24 @@ const ContestPostDetail = () => {
     replyCount: data.replyCount,
   };
 
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    setStartY(e.pageY - e.currentTarget.offsetTop);
+    setScrollTop(e.currentTarget.scrollTop);
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+    const element = e.currentTarget;
+    const y = e.pageY - element.offsetTop;
+    const walk = (y - startY) * 1.5; // 드래그 이동 속도
+    element.scrollTop = scrollTop - walk;
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
   return (
     <>
       <CommonLayout>
@@ -76,10 +100,15 @@ const ContestPostDetail = () => {
             <DetailCoordinationPost key={post.postId} post={post} />
           </div>
 
-          <ItemDiv>
+          <ItemDiv
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp} // 마우스가 요소를 벗어날 때 드래그 중지
+          >
             {/* itemList를 순회하여 Item 컴포넌트를 렌더링 */}
             {itemList && itemList.length > 0 ? (
-              itemList.map((item) => <Item key={item.itemId} item={item} />)
+              itemList.map((item) => <ContestItem key={item.itemId} item={item} />)
             ) : (
               <p>등록된 아이템이 없습니다.</p>
             )}

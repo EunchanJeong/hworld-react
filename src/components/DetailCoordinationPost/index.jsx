@@ -5,17 +5,15 @@ import {
   PostContainer,
   CoordinationImage,
   Content,
-  RecommendButton,
   CommentSection,
-  RecommendSection,
-  CommentIcon,
+  RecommendHeart,
   HeartIcon,
+  RecommendSection,
 } from './styled';
-import Comment from '../../assets/images/comment_icon.svg';
 import HeartEmpty from '../../assets/images/heart-empty-icon.svg';
 import HeartFull from '../../assets/images/heart-full-icon.svg';
 import Text from '../../components/Text';
-import ContestListtButton from '../../components/ContestListButton';
+import RecommendButton from '../../components/RecommendButton';
 
 const DetailCoordinationPost = ({ post }) => {
   const navigate = useNavigate(); // useNavigate 훅 사용
@@ -23,6 +21,7 @@ const DetailCoordinationPost = ({ post }) => {
   const handleClick = () => {
     navigate(`/contest/${post.postId}`); // postId를 포함한 경로로 이동
   };
+
   const [isRecommended, setIsRecommended] = useState(post.isRecommended);
   const [recommendCount, setRecommendCount] = useState(post.recommendCount);
 
@@ -48,19 +47,20 @@ const DetailCoordinationPost = ({ post }) => {
 
   return (
     <PostContainer onClick={handleClick}>
-      {' '}
-      {/* PostContainer에 onClick 이벤트 설정 */}
       <CoordinationImage src={post.imageUrl} alt="코디 이미지" />
       <Content>
         <RecommendSection>
-          <RecommendButton onClick={handleRecommend}>
+          <RecommendHeart>
             <HeartIcon src={isRecommended ? HeartFull : HeartEmpty} alt="하트 아이콘" />
-          </RecommendButton>
+          </RecommendHeart>
           <Text theme="content">{recommendCount}</Text>
         </RecommendSection>
 
         <CommentSection>
-          <ContestListtButton fontSize="20px">추천하기</ContestListtButton>
+          {/* 버튼 클릭 시 부모의 onClick 이벤트가 실행되지 않도록 stopPropagation 추가 */}
+          <RecommendButton fontSize="20px" onClick={handleRecommend}>
+            추천하기
+          </RecommendButton>
         </CommentSection>
       </Content>
     </PostContainer>

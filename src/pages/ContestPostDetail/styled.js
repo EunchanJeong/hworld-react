@@ -29,7 +29,6 @@ export const HorizontalLine = styled.hr`
   height: 1px;
   background-color: #ccc;
   margin: 0;
-  /* border: 1px solid green; */
 `;
 
 export const TitleNumber = styled.span`
@@ -44,16 +43,28 @@ export const TitleName = styled.span`
 export const ContentDiv = styled.div`
   display: flex;
   justify-content: space-between;
-  border: 1px solid purple;
   height: 60vh;
 `;
 
 export const ItemDiv = styled.div`
-  border: 1px solid red;
+  border: 1px solid #eee;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: center; /* 자식 요소를 부모의 왼쪽에 정렬 */
+  justify-content: center-start; /* 자식 요소를 부모의 위쪽에 정렬 */
   height: 100%;
-  width: 45vw;
+  width: 47vw;
+  overflow-y: auto; /* 세로 스크롤 활성화 */
+  overflow-x: hidden; /* 가로 스크롤을 막음 */
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+
+  /* 스크롤바 숨김 */
+  scrollbar-width: none; /* Firefox용 */
+  -ms-overflow-style: none; /* IE 및 Edge용 */
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari 및 Opera용 */
+  }
+
+  cursor: grab; /* 드래그 가능 커서 */
 `;

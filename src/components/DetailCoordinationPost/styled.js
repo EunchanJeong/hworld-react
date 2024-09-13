@@ -52,7 +52,7 @@ export const RecommendSection = styled.div`
   align-items: center;
 `;
 
-export const RecommendButton = styled.button`
+export const RecommendHeart = styled.button`
   display: inline-flex;
   background: none;
   border: none;
