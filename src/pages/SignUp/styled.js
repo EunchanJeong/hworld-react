@@ -75,13 +75,10 @@ export const GenderButton = styled.button`
   margin-right: 1vw;
   border: 3px solid #284180;
 
-  &:focus {
-    background-color: #284180;
-    color: white;
-  }
+  background-color: ${({ isGenderClicked }) => (isGenderClicked ? '#284180' : 'white')};
+  color: ${({ isGenderClicked }) => (isGenderClicked ? 'white' : '#284180')};
+
   &:hover {
-    background-color: #284180;
-    color: white;
     cursor: pointer;
   }
 `;
