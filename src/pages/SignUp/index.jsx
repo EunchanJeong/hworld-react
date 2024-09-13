@@ -1,5 +1,7 @@
 import React from 'react';
 import CommonLayout from '../../components/Layout';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Text from '../../components/Text';
 import Button from '../../components/Button';
@@ -128,12 +130,25 @@ const SignUp = () => {
       })
       .then((response) => {
         console.log(response.data);
+        toast.success('회원가입이 완료되었습니다!');
       })
-      .catch((error) => {});
+      .catch((error) => {
+        console.log(error);
+        toast.error('회원가입에 실패했습니다.');
+      });
   };
 
   return (
     <CommonLayout>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={2000}
+        hideProgressBar={true}
+        closeOnClick={true}
+        pauseOnHover={false}
+        limit={1}
+        style={{ textAlign: 'center' }}
+      />
       <SignUpLayout>
         <Text theme="navytext">회원가입</Text>
         <StyledHr />
