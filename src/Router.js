@@ -8,6 +8,7 @@ import SignUp from './pages/SignUp';
 import TestCoordinationPost from './pages/TestCoordinationPost';
 import MyPage from './pages/MyPage';
 import Cart from './pages/Cart';
+import Order from './pages/Order';
 
 const Router = () => {
   return (
@@ -21,6 +22,7 @@ const Router = () => {
         <Route path="/TestCoordinationPost" element={<TestCoordinationPost />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/order" element={<Order />} />
 
         {/*로그인한 사용자만 접근 가능*/}
         {/* <Route path="/list" element={<ProtectedRoute element={<List />} />} /> */}
