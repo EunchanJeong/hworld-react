@@ -69,11 +69,15 @@ const Order = () => {
 
   const {
     data: getDeliveryAddressResponse,
-    isLoadingDA,
-    isErrorDA,
+    isLoading: isLoadingDA,
+    isError: isErrorDA,
   } = useQuery('deliveryAddressList', fetchGetDeliveryAddress);
 
-  const { data: getMemberResponse, isLoadingMember, isErrorMember } = useQuery('memberInfo', fetchMemberInfo);
+  const {
+    data: getMemberResponse,
+    isLoading: isLoadingMember,
+    isError: isErrorMember,
+  } = useQuery('memberInfo', fetchMemberInfo);
 
   const currentDeliveryAddress = getDeliveryAddressResponse?.[0] || {
     location: '배송지가 존재하지 않습니다.',
