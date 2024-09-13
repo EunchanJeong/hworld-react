@@ -21,5 +21,13 @@ const MyPageAPI = {
   getMemberPointHistory: (page, size) => {
     return axiosInstance.get(`/members/my-points?page=${page}&size=${size}`);
   },
+  // 회원 주문 내역 가져오기
+  getMemberOrder: (page, size) => {
+    return axiosInstance.get(`/members/my-orders?page=${page}&size=${size}`);
+  },
+  // 회원 주문 상세 내역 가져오기
+  getMemberOrderDetail: (orderId) => {
+    return axiosInstance.get(`/members/my-orders/${orderId}`);
+  },
 };
 export default MyPageAPI;
