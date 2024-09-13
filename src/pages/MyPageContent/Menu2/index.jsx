@@ -20,6 +20,7 @@ import { useQuery } from 'react-query';
 import MyPageAPI from '../../../apis/Member/MyPageAPI';
 import Spinner from '../../../components/Spinner';
 import Text from '../../../components/Text';
+import ItemDetailModal from '../../../components/ItemDetailModal';
 
 const fetchMemberCoordination = async () => {
   const response = await MyPageAPI.getMemberCoordination();
@@ -38,6 +39,19 @@ const Coordination = React.memo(({ coordination, onClick, isSelected }) => (
 ));
 
 const Item = ({ item }) => {
+  const [selectedItemId, setSelectedItemId] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleItemClick = (itemId) => {
+    setSelectedItemId(itemId);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedItemId(null);
+  };
+
   const getCategoryName = (categoryId) => {
     switch (categoryId) {
       case 1:
@@ -55,7 +69,8 @@ const Item = ({ item }) => {
 
   return (
     <ItemContainer>
-      <ItemImage src={item.imageUrl} alt="아이템 이미지" />
+      <ItemImage src={item.imageUrl} alt="아이템 이미지" onClick={() => handleItemClick(item.itemId)} />
+      {isModalOpen && selectedItemId && <ItemDetailModal itemId={selectedItemId} onClose={handleCloseModal} />}
       <ItemText>{getCategoryName(item.categoryId)}</ItemText>
     </ItemContainer>
   );

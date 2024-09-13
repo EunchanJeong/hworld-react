@@ -142,7 +142,7 @@ const SignUp = () => {
     <CommonLayout>
       <ToastContainer
         position="bottom-center"
-        autoClose={200000}
+        autoClose={2000}
         hideProgressBar={true}
         closeOnClick={true}
         pauseOnHover={false}
