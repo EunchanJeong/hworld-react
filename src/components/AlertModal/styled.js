@@ -50,3 +50,17 @@ export const ButtonLayout = styled.div`
   align-items: center;
   justify-content: space-around;
 `;
+
+export const StyledButton = styled.button`
+  border-radius: 50px;
+  background-color: ${(props) => (props.buttonType === 'confirm' ? '#284180' : '#CECECE')};
+  border: none;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 20px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+  &:hover {
+    cursor: pointer;
+  }
+`;
