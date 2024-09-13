@@ -36,6 +36,11 @@ const textStyles = {
     fontSize: '20px',
     color: '#284180',
   },
+  graytext2: {
+    fontWeight: 'medium',
+    fontSize: '20px',
+    color: '#636363',
+  },
 };
 
 export const StyledText = styled.p`
