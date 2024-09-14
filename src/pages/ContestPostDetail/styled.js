@@ -188,3 +188,10 @@ export const PageNumber = styled.span`
     color: #4caf50;
   }
 `;
+
+// 페이지 번호 스타일 정의
+export const ReplyTop = styled.p`
+  font-size: 25px;
+  font-weight: bold;
+  border-bottom: 2px solid #eee;
+`;

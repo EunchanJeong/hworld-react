@@ -34,6 +34,7 @@ const ContestBoard = () => {
   const [contestStatus, setContestStatus] = useState('ongoing'); // 콘테스트 상태 (진행중/완료)
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
   const [selectedMonth, setSelectedMonth] = useState('2024-08'); // 선택된 월
+
   const navigate = useNavigate(); // useNavigate 선언
 
   const fetchPosts = async () => {
@@ -103,6 +104,10 @@ const ContestBoard = () => {
     setSelectedMonth(event.target.value); // 선택된 월 상태 업데이트
   };
 
+  const handleRegisterClick = () => {
+    navigate('/contest/register');
+  };
+
   return (
     <CommonLayout>
       <ContestBreadCrumb title={'코디 대회'} contestStatus={contestStatus} onStatusChange={setContestStatus} />
@@ -118,7 +123,9 @@ const ContestBoard = () => {
             </StatusText>
           </FilterDiv>
           <ButtonWrapper>
-            <Button fontSize="24px">참가하기</Button>
+            <Button fontSize="24px" onClick={handleRegisterClick}>
+              참가하기
+            </Button>
           </ButtonWrapper>
         </Container>
       ) : (
@@ -126,17 +133,13 @@ const ContestBoard = () => {
           <Container>
             <Text theme="content">수상작</Text>
             <ButtonWrapper>
-              {contestStatus === 'ongoing' ? (
-                <Button fontSize="24px">참가하기</Button>
-              ) : (
-                <DropdownWrapper>
-                  <Dropdown value={selectedMonth} onChange={handleMonthChange}>
-                    <option value="2024-08">8월 코디</option>
-                    <option value="2024-07">7월 코디</option>
-                    <option value="2024-06">6월 코디</option>
-                  </Dropdown>
-                </DropdownWrapper>
-              )}
+              <DropdownWrapper>
+                <Dropdown value={selectedMonth} onChange={handleMonthChange}>
+                  <option value="2024-08">8월 코디</option>
+                  <option value="2024-07">7월 코디</option>
+                  <option value="2024-06">6월 코디</option>
+                </Dropdown>
+              </DropdownWrapper>
             </ButtonWrapper>
           </Container>
 

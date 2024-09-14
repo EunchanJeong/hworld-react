@@ -13,6 +13,7 @@ import ContestBoard from './pages/ContestBoard';
 import Checkout from './pages/Checkout';
 import CheckoutSuccess from './pages/CheckoutSuccess';
 import ContestPostDetail from './pages/ContestPostDetail';
+import RegisterContestPost from './pages/RegisterContestPost';
 
 const Router = () => {
   return (
@@ -31,6 +32,7 @@ const Router = () => {
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/checkout-success" element={<CheckoutSuccess />} />
         <Route path="/contest/:postId" element={<ContestPostDetail />} />
+        <Route path="/contest/register" element={<RegisterContestPost />} />
 
         {/*로그인한 사용자만 접근 가능*/}
         {/* <Route path="/list" element={<ProtectedRoute element={<List />} />} /> */}
