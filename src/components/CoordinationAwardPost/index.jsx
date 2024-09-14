@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { axiosInstance } from '../../apis';
+import { useNavigate } from 'react-router-dom';
 import {
   PostContainer,
   CoordinationImage,
@@ -23,7 +23,7 @@ import BronzeMedalIcon from '../../assets/images/bronze-medal.svg';
 import { AddRecommendAPI, RemoveRecommendAPI } from '../../apis/Contest/ContestAPI';
 
 /**
- * 게시글 수상작 카드 컴포넌트
+ * 게시글 수상작 코디 카드 컴포넌트
  * @author 정은찬
  * @since 2024.09.12
  * @version 1.0
@@ -36,6 +36,12 @@ import { AddRecommendAPI, RemoveRecommendAPI } from '../../apis/Contest/ContestA
  */
 
 const CoordinationAwardPost = ({ post, MedalIcon }) => {
+  const navigate = useNavigate(); // useNavigate 훅 사용
+
+  const handleClick = () => {
+    navigate(`/contest/${post.postId}`); // postId를 포함한 경로로 이동
+  };
+
   const [isRecommended, setIsRecommended] = useState(post.isRecommended);
   const [recommendCount, setRecommendCount] = useState(post.recommendCount);
 
@@ -68,7 +74,7 @@ const CoordinationAwardPost = ({ post, MedalIcon }) => {
   };
 
   return (
-    <PostContainer>
+    <PostContainer onClick={handleClick}>
       <CoordinationImage src={post.imageUrl} alt="코디 이미지" />
       <MedalImage src={getMedalIcon(post.rank)} alt="메달 아이콘" /> {/* 메달 이미지 추가 */}
       <Content>

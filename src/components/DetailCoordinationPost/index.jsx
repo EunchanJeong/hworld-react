@@ -5,36 +5,17 @@ import {
   PostContainer,
   CoordinationImage,
   Content,
-  RecommendButton,
   CommentSection,
-  RecommendSection,
-  CommentIcon,
+  RecommendHeart,
   HeartIcon,
+  RecommendSection,
 } from './styled';
-import Comment from '../../assets/images/comment_icon.svg';
 import HeartEmpty from '../../assets/images/heart-empty-icon.svg';
 import HeartFull from '../../assets/images/heart-full-icon.svg';
 import Text from '../../components/Text';
+import RecommendButton from '../../components/RecommendButton';
 
-/**
- * 코디 카드 컴포넌트
- * @author 정은찬
- * @since 2024.09.13
- * @version 1.0
- *
- * <pre>
- * 수정일       수정자        수정내용
- * ----------  --------    ---------------------------
- * 2024.09.13  	정은찬        최초 생성
- * </pre>
- */
-
-const CoordinationPost = ({ post }) => {
-  const navigate = useNavigate(); // useNavigate 훅 사용
-
-  const handleClick = () => {
-    navigate(`/contest/${post.postId}`); // postId를 포함한 경로로 이동
-  };
+const DetailCoordinationPost = ({ post }) => {
   const [isRecommended, setIsRecommended] = useState(post.isRecommended);
   const [recommendCount, setRecommendCount] = useState(post.recommendCount);
 
@@ -59,25 +40,25 @@ const CoordinationPost = ({ post }) => {
   };
 
   return (
-    <PostContainer onClick={handleClick}>
-      {' '}
-      {/* PostContainer에 onClick 이벤트 설정 */}
+    <PostContainer>
       <CoordinationImage src={post.imageUrl} alt="코디 이미지" />
       <Content>
         <RecommendSection>
-          <RecommendButton onClick={handleRecommend}>
+          <RecommendHeart>
             <HeartIcon src={isRecommended ? HeartFull : HeartEmpty} alt="하트 아이콘" />
-          </RecommendButton>
+          </RecommendHeart>
           <Text theme="content">{recommendCount}</Text>
         </RecommendSection>
 
         <CommentSection>
-          <CommentIcon src={Comment} alt="댓글 아이콘" />
-          <Text theme="content">{post.replyCount}</Text>
+          {/* 버튼 클릭 시 부모의 onClick 이벤트가 실행되지 않도록 stopPropagation 추가 */}
+          <RecommendButton fontSize="20px" onClick={handleRecommend}>
+            추천하기
+          </RecommendButton>
         </CommentSection>
       </Content>
     </PostContainer>
   );
 };
 
-export default CoordinationPost;
+export default DetailCoordinationPost;
