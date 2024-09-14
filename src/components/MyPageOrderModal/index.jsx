@@ -27,7 +27,6 @@ import {
 import { useQuery } from 'react-query';
 import MyPageAPI from '../../apis/Member/MyPageAPI';
 import Spinner from '../Spinner';
-import Text from '../Text';
 import CloseButtonImg from '../../assets/images/close_button.svg';
 
 const fetchMemberOrderDetail = async (orderId) => {

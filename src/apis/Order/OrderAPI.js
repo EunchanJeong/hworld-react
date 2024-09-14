@@ -15,5 +15,15 @@ import { axiosInstance } from '..';
 
 // 배송지 목록 조회 API
 export const GetDeliveryAddressAPI = () => {
-  return axiosInstance.get(`/delivery-addresses`);
+  return axiosInstance.get('/delivery-addresses');
+};
+
+// 주문 생성 API
+export const CreateOrderAPI = (request) => {
+  return axiosInstance.post('/payments/order', request);
+};
+
+// 결제 승인 API
+export const ConfirmPayment = (request) => {
+  return axiosInstance.post('/payments/confirm', request);
 };
