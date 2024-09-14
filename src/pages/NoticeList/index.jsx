@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CommonLayout from '../../components/Layout';
 import BreadCrumb from '../../components/BreadCrumb';
 import { useQuery } from 'react-query';
@@ -20,9 +20,14 @@ import {
   NoticeType,
   NoticeTypeBox,
   NumberGuide,
+  PageinationContainer,
+  PageNumber,
+  PaginationImageButton,
   TitleGuide,
 } from './styled';
 import { GetNoticeListAPI } from '../../apis/Notice/NoticeAPI';
+import backButton from '../../assets/images/back-button-icon.svg';
+import nextButton from '../../assets/images/next-button-icon.svg';
 
 /**
  * 공지사항 목록 페이지
@@ -37,25 +42,40 @@ import { GetNoticeListAPI } from '../../apis/Notice/NoticeAPI';
  * </pre>
  */
 
-const fetchNoticeList = async (type) => {
-  const response = await GetNoticeListAPI(1, 10, type);
+const fetchNoticeList = async (page, amount, type) => {
+  const response = await GetNoticeListAPI(page, amount, type);
   return response.data;
 };
 
 const NoticeList = () => {
+  const AMOUNT_PER_PAGE = 10;
+
   const [type, setType] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
 
   const handleTypeChange = (e) => {
     setType(parseInt(e.target.value));
   };
 
+  const handlePageClick = (pageNumber) => {
+    setCurrentPage(pageNumber); // 페이지 번호 클릭 시 현재 페이지 변경
+  };
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [type]);
+
   const {
-    data: noticeList,
+    data: response,
     isLoading,
     isError,
-  } = useQuery(['noticeList', type], () => fetchNoticeList(type), {
-    keepPreviousData: true,
-  });
+  } = useQuery(
+    ['noticeList', currentPage, AMOUNT_PER_PAGE, type],
+    () => fetchNoticeList(currentPage, AMOUNT_PER_PAGE, type),
+    {
+      keepPreviousData: true,
+    },
+  );
 
   if (isLoading) {
     return <Spinner />;
@@ -63,6 +83,10 @@ const NoticeList = () => {
   if (isError) {
     return <div>오류가 발생했습니다.</div>;
   }
+
+  const noticeList = response.noticeList;
+  const totalCount = response.totalCount;
+  const totalPages = Math.ceil(totalCount / AMOUNT_PER_PAGE);
 
   return (
     <CommonLayout>
@@ -105,6 +129,37 @@ const NoticeList = () => {
           ))}
         </NoticeListContainer>
       </ContentContainer>
+
+      {/* 페이지네이션 버튼 */}
+      <PageinationContainer>
+        <PaginationImageButton
+          src={backButton}
+          alt="이전"
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+          disabled={currentPage === 1}
+        />
+
+        {/* 페이지 번호 목록 */}
+        {[...Array(totalPages)].map((_, index) => {
+          const pageNumber = index + 1;
+          return (
+            <PageNumber
+              key={pageNumber}
+              onClick={() => handlePageClick(pageNumber)}
+              active={pageNumber === currentPage}
+            >
+              {pageNumber}
+            </PageNumber>
+          );
+        })}
+
+        <PaginationImageButton
+          src={nextButton}
+          alt="다음"
+          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+          disabled={currentPage === totalPages}
+        />
+      </PageinationContainer>
     </CommonLayout>
   );
 };

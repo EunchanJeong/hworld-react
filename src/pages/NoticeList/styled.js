@@ -170,3 +170,31 @@ export const CustomLink = styled(Link)`
   display: flex;
   align-items: center;
 `;
+
+export const PageinationContainer = styled.div`
+  text-align: center;
+  margin-top: 50px;
+`;
+
+// 페이지 번호 스타일 정의
+export const PageNumber = styled.span`
+  cursor: pointer;
+  margin: 0 20px 0 20px;
+  font-size: 25px;
+  font-weight: ${(props) => (props.active ? 'bold' : 'medium')};
+  color: ${(props) => (props.active ? 'black' : '#A9A9A9')};
+  &:hover {
+    color: #4caf50;
+  }
+`;
+
+// 이미지 버튼 스타일 정의
+export const PaginationImageButton = styled.img`
+  width: 0.7vw;
+  height: auto;
+  cursor: pointer;
+  opacity: ${(props) => (props.disabled ? 0.5 : 1)};
+  &:hover {
+    opacity: ${(props) => (props.disabled ? 0.5 : 0.8)};
+  }
+`;
