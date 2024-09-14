@@ -28,19 +28,23 @@ import {
   PostAuthor,
   PostAuthorDiv,
   PostAuthorContent,
+  PageinationContainer,
+  PageNumber,
+  PaginationImageButton,
 } from './styled';
 import DetailCoordinationPost from '../../components/DetailCoordinationPost';
 import ContestItem from '../../components/ContestItem'; // Item 컴포넌트 추가
+
+import backButton from '../../assets/images/back-button-icon.svg';
+import nextButton from '../../assets/images/next-button-icon.svg';
 
 const ContestPostDetail = () => {
   const { postId } = useParams();
   const queryClient = useQueryClient();
   const [newReply, setNewReply] = useState(''); // 새로운 댓글 입력 상태
+  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태
+  const repliesPerPage = 5; // 페이지당 댓글 수
 
-  // todo todo todo
-  // todo todo todo
-  // todo todo todo
-  // todo todo todo
   // todo todo todo : 로그인 멤버 아이디 가져오는 로직 추가
   const loggedInUserId = 1; // 로그인한 사용자의 ID (임시, 실제 로그인 정보로 대체)
 
@@ -122,6 +126,16 @@ const ContestPostDetail = () => {
     replyCount: data?.replyCount || 0,
   };
 
+  // 페이지네이션을 위한 계산
+  const totalPages = Math.ceil(replyList.length / repliesPerPage);
+  const startIndex = (currentPage - 1) * repliesPerPage;
+  const endIndex = startIndex + repliesPerPage;
+  const currentReplies = replyList.slice(startIndex, endIndex); // 현재 페이지에 해당하는 댓글 슬라이스
+
+  const handlePageClick = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <CommonLayout>
       <ContestDetailBreadCrumb title="코디 대회" />
@@ -173,8 +187,8 @@ const ContestPostDetail = () => {
         </ReplyInputContainer>
         <ReplyContentContainer>
           {/* 댓글 목록 표시 */}
-          {replyList && replyList.length > 0 ? (
-            replyList.map((reply) => (
+          {currentReplies && currentReplies.length > 0 ? (
+            currentReplies.map((reply) => (
               <ReplyItem key={reply.replyId}>
                 <ReplyHeader>
                   <ReplyAuthor>{reply.nickname}</ReplyAuthor>
@@ -190,6 +204,34 @@ const ContestPostDetail = () => {
             <p>댓글이 없습니다.</p>
           )}
         </ReplyContentContainer>
+
+        {/* 페이지네이션 */}
+        <PageinationContainer>
+          <PaginationImageButton
+            src={backButton}
+            alt="이전"
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+          />
+          {[...Array(totalPages)].map((_, index) => {
+            const pageNumber = index + 1;
+            return (
+              <PageNumber
+                key={pageNumber}
+                onClick={() => handlePageClick(pageNumber)}
+                active={pageNumber === currentPage}
+              >
+                {pageNumber}
+              </PageNumber>
+            );
+          })}
+          <PaginationImageButton
+            src={nextButton}
+            alt="다음"
+            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+            disabled={currentPage === totalPages}
+          />
+        </PageinationContainer>
       </ReplyContainer>
     </CommonLayout>
   );
