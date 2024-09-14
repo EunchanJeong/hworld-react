@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import CommonLayout from '../../components/Layout';
-import { Link } from 'react-router-dom';
 import BreadCrumb from '../../components/BreadCrumb';
 import { useQuery } from 'react-query';
 import Spinner from '../../components/Spinner';
 import {
   ContentContainer,
+  CustomLink,
   DateGuide,
   DropboxContainer,
   Dropdown,
@@ -95,9 +95,7 @@ const NoticeList = () => {
                 </NoticeType>
 
                 <NoticeTitle>
-                  <Link to={`/notice/${notice.noticeId}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                    {notice.title}
-                  </Link>
+                  <CustomLink to={`/notice/${notice.noticeId}`}>{notice.title}</CustomLink>
                 </NoticeTitle>
 
                 <NoticeDate>{new Date(notice.createdAt + 'Z').toLocaleDateString('sv')}</NoticeDate>

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 /**
@@ -149,7 +150,6 @@ export const NoticeTitle = styled.div`
   padding-left: 5%;
   font-size: 18px;
   font-weight: bold;
-  cursor: pointer;
 `;
 
 export const NoticeDate = styled.div`
@@ -160,4 +160,13 @@ export const NoticeDate = styled.div`
   align-items: center;
   font-size: 15px;
   font-weight: 300;
+`;
+
+export const CustomLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
 `;
