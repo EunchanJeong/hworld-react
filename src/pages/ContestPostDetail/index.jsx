@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import ContestDetailBreadCrumb from '../../components/ContestDetailBreadCrumb';
 import CommonLayout from '../../components/Layout';
 import { useParams } from 'react-router-dom';
-import { useQuery } from 'react-query';
+import { useQuery, useMutation, useQueryClient } from 'react-query';
 import Spinner from '../../components/Spinner';
-import { GetPostDetailAPI } from '../../apis/Contest/ContestAPI';
+import { GetPostDetailAPI, AddReplyAPI, RemoveReplyAPI } from '../../apis/Contest/ContestAPI';
 import {
   PostDetailContainer,
   PostTitle,
@@ -14,32 +14,95 @@ import {
   TitleNumber,
   ContentDiv,
   ItemDiv,
+  ReplyContainer,
+  ReplyInput,
+  ReplyButton,
+  ReplyItem,
+  ReplyHeader,
+  ReplyContent,
+  DeleteButton,
+  ReplyAuthor,
+  ReplyCreatedAt,
+  ReplyInputContainer,
+  ReplyContentContainer,
+  PostAuthor,
+  PostAuthorDiv,
+  PostAuthorContent,
 } from './styled';
 import DetailCoordinationPost from '../../components/DetailCoordinationPost';
 import ContestItem from '../../components/ContestItem'; // Item 컴포넌트 추가
 
 const ContestPostDetail = () => {
   const { postId } = useParams();
+  const queryClient = useQueryClient();
+  const [newReply, setNewReply] = useState(''); // 새로운 댓글 입력 상태
 
-  // useState 훅은 항상 컴포넌트 최상단에서 호출
-  const [isDragging, setIsDragging] = useState(false);
-  const [startY, setStartY] = useState(0);
-  const [scrollTop, setScrollTop] = useState(0);
+  // todo todo todo
+  // todo todo todo
+  // todo todo todo
+  // todo todo todo
+  // todo todo todo : 로그인 멤버 아이디 가져오는 로직 추가
+  const loggedInUserId = 1; // 로그인한 사용자의 ID (임시, 실제 로그인 정보로 대체)
 
+  // 게시글 상세 조회 함수
   const fetchPostDetail = async () => {
     try {
       const response = await GetPostDetailAPI(postId);
-      console.log(JSON.stringify(response.data));
       return response.data;
     } catch (error) {
       console.error('게시글 상세 조회 오류:', error);
     }
   };
 
+  // 게시글 상세 조회 query
   const { data, isLoading, isError } = useQuery(['postDetail', postId], fetchPostDetail, {
     enabled: !!postId,
   });
 
+  // 댓글 등록 mutation
+  const addReplyMutation = useMutation(
+    async () => {
+      await AddReplyAPI(postId, newReply); // postId와 댓글 내용을 API로 전송
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(['postDetail', postId]); // 댓글 목록을 다시 가져옴
+        setNewReply(''); // 입력 필드 초기화
+      },
+      onError: (error) => {
+        console.error('댓글 등록 중 오류:', error);
+      },
+    },
+  );
+
+  // 댓글 삭제 mutation
+  const deleteReplyMutation = useMutation(
+    async (replyId) => {
+      await RemoveReplyAPI(postId, replyId); // postId와 replyId로 삭제 요청
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(['postDetail', postId]); // 댓글 목록을 다시 가져옴
+      },
+      onError: (error) => {
+        console.error('댓글 삭제 중 오류:', error);
+      },
+    },
+  );
+
+  // 댓글 등록 함수
+  const handleReplySubmit = () => {
+    if (newReply.trim()) {
+      addReplyMutation.mutate(); // 댓글 등록
+    }
+  };
+
+  // 댓글 삭제 함수
+  const handleDeleteReply = (replyId) => {
+    deleteReplyMutation.mutate(replyId); // 댓글 삭제
+  };
+
+  // 로딩 상태 처리
   if (isLoading) {
     return <Spinner />;
   }
@@ -48,74 +111,87 @@ const ContestPostDetail = () => {
     return <div>오류가 발생했습니다.</div>;
   }
 
-  const { title, nickname, createdAt, itemList } = data || {}; // itemList 받아오기
+  // data가 있을 때만 값에 접근
+  const { title, nickname, createdAt, itemList, replyList } = data || {};
 
   const post = {
-    imageUrl: data.imageUrl,
-    isRecommended: data.isRecommended,
+    imageUrl: data?.imageUrl || '', // data가 없을 경우 빈 값
+    isRecommended: data?.isRecommended || false,
     postId: postId,
-    recommendCount: data.recommendCount,
-    replyCount: data.replyCount,
-  };
-
-  const handleMouseDown = (e) => {
-    setIsDragging(true);
-    setStartY(e.pageY - e.currentTarget.offsetTop);
-    setScrollTop(e.currentTarget.scrollTop);
-  };
-
-  const handleMouseMove = (e) => {
-    if (!isDragging) return;
-    const element = e.currentTarget;
-    const y = e.pageY - element.offsetTop;
-    const walk = (y - startY) * 1.5; // 드래그 이동 속도
-    element.scrollTop = scrollTop - walk;
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
+    recommendCount: data?.recommendCount || 0,
+    replyCount: data?.replyCount || 0,
   };
 
   return (
-    <>
-      <CommonLayout>
-        <ContestDetailBreadCrumb title="코디 대회" />
-        <PostDetailContainer>
-          <PostTitle>
-            <TitleNumber>
-              코디 No.{postId}
-              &nbsp;|&nbsp;
-            </TitleNumber>
-            <TitleName>{title}</TitleName>
-          </PostTitle>
-          <PostMeta>
-            <p>작성자: {nickname}</p>
-            <p>작성일: {new Date(createdAt).toLocaleDateString()}</p>
-          </PostMeta>
-          <HorizontalLine />
-        </PostDetailContainer>
+    <CommonLayout>
+      <ContestDetailBreadCrumb title="코디 대회" />
+      <PostDetailContainer>
+        <PostTitle>
+          <TitleNumber>
+            코디 No.{postId}
+            &nbsp;|&nbsp;
+          </TitleNumber>
+          <TitleName>{title}</TitleName>
+        </PostTitle>
+        <PostMeta>
+          <PostAuthorDiv>
+            <PostAuthor fontWeight="bold">작성자: </PostAuthor>
+            <PostAuthorContent fontWeight="100">{nickname}</PostAuthorContent>
+          </PostAuthorDiv>
+          <PostAuthorDiv>
+            <PostAuthor fontWeight="bold">작성일: </PostAuthor>
+            <PostAuthorContent fontWeight="100">{createdAt}</PostAuthorContent>
+          </PostAuthorDiv>
+        </PostMeta>
+        <HorizontalLine />
+      </PostDetailContainer>
 
-        <ContentDiv>
-          <div>
-            <DetailCoordinationPost key={post.postId} post={post} />
-          </div>
+      <ContentDiv>
+        <div>
+          <DetailCoordinationPost key={post.postId} post={post} />
+        </div>
 
-          <ItemDiv
-            onMouseDown={handleMouseDown}
-            onMouseMove={handleMouseMove}
-            onMouseUp={handleMouseUp}
-            onMouseLeave={handleMouseUp} // 마우스가 요소를 벗어날 때 드래그 중지
-          >
-            {/* itemList를 순회하여 Item 컴포넌트를 렌더링 */}
-            {itemList && itemList.length > 0 ? (
-              itemList.map((item) => <ContestItem key={item.itemId} item={item} />)
-            ) : (
-              <p>등록된 아이템이 없습니다.</p>
-            )}
-          </ItemDiv>
-        </ContentDiv>
-      </CommonLayout>
-    </>
+        <ItemDiv>
+          {itemList && itemList.length > 0 ? (
+            itemList.map((item) => <ContestItem key={item.itemId} item={item} />)
+          ) : (
+            <p>등록된 아이템이 없습니다.</p>
+          )}
+        </ItemDiv>
+      </ContentDiv>
+
+      <ReplyContainer>
+        {/* 댓글 입력 창과 등록 버튼 */}
+        <ReplyInputContainer>
+          <ReplyInput
+            type="text"
+            placeholder="댓글을 입력하세요"
+            value={newReply}
+            onChange={(e) => setNewReply(e.target.value)}
+          />
+          <ReplyButton onClick={handleReplySubmit}>등록</ReplyButton>
+        </ReplyInputContainer>
+        <ReplyContentContainer>
+          {/* 댓글 목록 표시 */}
+          {replyList && replyList.length > 0 ? (
+            replyList.map((reply) => (
+              <ReplyItem key={reply.replyId}>
+                <ReplyHeader>
+                  <ReplyAuthor>{reply.nickname}</ReplyAuthor>
+                  <ReplyCreatedAt>{reply.createdAt}</ReplyCreatedAt>
+                  {reply.memberId === loggedInUserId && (
+                    <DeleteButton onClick={() => handleDeleteReply(reply.replyId)}>x</DeleteButton>
+                  )}
+                </ReplyHeader>
+                <ReplyContent>{reply.content}</ReplyContent>
+              </ReplyItem>
+            ))
+          ) : (
+            <p>댓글이 없습니다.</p>
+          )}
+        </ReplyContentContainer>
+      </ReplyContainer>
+    </CommonLayout>
   );
 };
 

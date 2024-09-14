@@ -79,5 +79,6 @@ export const CategoryName = styled.p`
   font-weight: bold;
   text-align: center;
   width: 7vw;
-  height: 5vh;
+  height: 5.5vh;
+  font-size: 20px;
 `;

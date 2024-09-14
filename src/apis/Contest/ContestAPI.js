@@ -11,6 +11,7 @@ import { axiosInstance } from '../../apis';
  * ----------  --------    ---------------------------
  * 2024.09.12  	정은찬        최초 생성
  * 2024.09.13   정은찬        게시글 상세 조회 API 추가
+ * 2024.09.14   정은찬        댓글 등록, 삭제 API 추가
  * </pre>
  */
 
@@ -51,4 +52,30 @@ const GetPostDetailAPI = (postId) => {
   return axiosInstance.get(`/contest/posts/${postId}`);
 };
 
-export { GetContestPostListAPI, GetContestPostAwardListAPI, AddRecommendAPI, RemoveRecommendAPI, GetPostDetailAPI };
+// 댓글 등록 API
+const AddReplyAPI = (postId, content) => {
+  return axiosInstance.post(`/contest/reply`, {
+    postId: postId, // 이 값은 요청 바디에 포함됨
+    content: content, // 이 값도 요청 바디에 포함됨
+  });
+};
+
+// 댓글 삭제 API
+const RemoveReplyAPI = (postId, replyId) => {
+  return axiosInstance.delete(`/contest/reply`, {
+    params: {
+      postId: postId,
+      replyId: replyId,
+    },
+  });
+};
+
+export {
+  GetContestPostListAPI,
+  GetContestPostAwardListAPI,
+  AddRecommendAPI,
+  RemoveRecommendAPI,
+  GetPostDetailAPI,
+  AddReplyAPI,
+  RemoveReplyAPI,
+};
