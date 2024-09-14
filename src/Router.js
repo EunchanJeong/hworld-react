@@ -12,6 +12,8 @@ import Order from './pages/Order';
 import ContestBoard from './pages/ContestBoard';
 import Checkout from './pages/Checkout';
 import CheckoutSuccess from './pages/CheckoutSuccess';
+import NoticeList from './pages/NoticeList';
+import NoticeDetail from './pages/NoticeDetail';
 import ContestPostDetail from './pages/ContestPostDetail';
 
 const Router = () => {
@@ -30,6 +32,8 @@ const Router = () => {
         <Route path="/contest" element={<ContestBoard />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/checkout-success" element={<CheckoutSuccess />} />
+        <Route path="/notice" element={<NoticeList />} />
+        <Route path="/notice/:noticeId" element={<NoticeDetail />} />
         <Route path="/contest/:postId" element={<ContestPostDetail />} />
 
         {/*로그인한 사용자만 접근 가능*/}
