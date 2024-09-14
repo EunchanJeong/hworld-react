@@ -51,7 +51,7 @@ export const BestCoordinationContainer = styled.div`
   position: relative;
 
   .slick-slider {
-    position: static !important;
+    position: relative !important;
     display: flex;
     align-items: center;
     width: 100%;
@@ -70,7 +70,7 @@ export const BannerImage = styled.img`
 
 export const CoordiNoticeContainer = styled.div`
   width: 93vw;
-  height: 50vh;
+  height: 60vh;
   position: relative;
 `;
 
@@ -107,6 +107,7 @@ export const CoordiContainer = styled.div`
 export const Title = styled.div`
   width: 100%;
   height: 17%;
+  box-sizing: border-box;
   background: #284180;
   position: absolute;
   top: 0;
@@ -117,6 +118,32 @@ export const Title = styled.div`
   display: flex;
   font-weight: bold;
   padding-left: 25px;
+  justify-content: space-between;
+`;
+
+export const TitleText = styled.div`
+  width: 80%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  display: flex;
+  font-weight: bold;
+  color: white;
+  font-size: 20px;
+`;
+
+export const CoordiPlus = styled.div`
+  width: 8%;
+  height: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding-right: 6%;
+`;
+
+export const CoordiPlusImage = styled.img`
+  width: 100%;
+  height: auto;
 `;
 
 export const NoticeWrapper = styled.div`
@@ -138,6 +165,11 @@ export const CustomSlider = styled(Slider)`
     position: relative;
     display: flex;
   }
+
+  a {
+    text-decoration: none;
+  }
+
   .slick-list {
     width: 100% !important;
     height: 100% !important;
@@ -171,5 +203,21 @@ export const CustomSlider = styled(Slider)`
 
   .slick-next:before {
     content: '';
+  }
+
+  .slick-slide > div {
+    width: 100%;
+    height: 100%;
+  }
+
+  .slick-slide > div > div > img {
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+  }
+
+  .slick-slide > div > div > div {
+    width: 100%;
+    height: 20%;
   }
 `;
