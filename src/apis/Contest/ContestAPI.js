@@ -55,8 +55,8 @@ const GetPostDetailAPI = (postId) => {
 // 댓글 등록 API
 const AddReplyAPI = (postId, content) => {
   return axiosInstance.post(`/contest/reply`, {
-    postId: postId, // 이 값은 요청 바디에 포함됨
-    content: content, // 이 값도 요청 바디에 포함됨
+    postId: postId,
+    content: content,
   });
 };
 
@@ -70,6 +70,19 @@ const RemoveReplyAPI = (postId, replyId) => {
   });
 };
 
+// 코디 리스트 API
+const GetCoordinationListAPI = () => {
+  return axiosInstance.get(`/contest/coordination`);
+};
+
+// 댓글 등록 API
+const AddContestPostAPI = (coordinationId, title) => {
+  return axiosInstance.post(`/contest/posts`, {
+    coordinationId: coordinationId,
+    title: title,
+  });
+};
+
 export {
   GetContestPostListAPI,
   GetContestPostAwardListAPI,
@@ -78,4 +91,6 @@ export {
   GetPostDetailAPI,
   AddReplyAPI,
   RemoveReplyAPI,
+  GetCoordinationListAPI,
+  AddContestPostAPI,
 };

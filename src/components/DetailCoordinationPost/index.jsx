@@ -15,6 +15,19 @@ import HeartFull from '../../assets/images/heart-full-icon.svg';
 import Text from '../../components/Text';
 import RecommendButton from '../../components/RecommendButton';
 
+/**
+ * 게시글 상세보기용 코디 카드 컴포넌트
+ * @author 정은찬
+ * @since 2024.09.13
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일       수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.13  	정은찬        최초 생성
+ * </pre>
+ */
+
 const DetailCoordinationPost = ({ post }) => {
   const [isRecommended, setIsRecommended] = useState(post.isRecommended);
   const [recommendCount, setRecommendCount] = useState(post.recommendCount);
