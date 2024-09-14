@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 
 /**
- * 게시글 수상작 코디 카드 styled components
+ * 게시글 상세보기용 코디 카드 컴포넌트
  * @author 정은찬
- * @since 2024.09.12
+ * @since 2024.09.11
  * @version 1.0
  *
  * <pre>
- * 수정일       수정자        수정내용
+ * 수정일        수정자        수정내용
  * ----------  --------    ---------------------------
- * 2024.09.12  	정은찬        최초 생성
+ * 2024.09.11  	정은찬        최초 생성
  * </pre>
  */
 
@@ -19,12 +19,12 @@ export const PostContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 18vw;
-  height: 50vh;
+  width: 25vw;
+  height: 60vh;
   overflow: hidden;
   box-sizing: border-box;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
-  position: relative; /* 자식 요소의 절대 위치를 설정하기 위해 relative 추가 */
+  padding: 0;
 `;
 
 export const CoordinationImage = styled.img`
@@ -32,15 +32,6 @@ export const CoordinationImage = styled.img`
   height: 85%;
   border-radius: 10px 10px 0 0;
   box-sizing: border-box;
-`;
-
-/* 새로운 MedalImage 스타일링 추가 */
-export const MedalImage = styled.img`
-  position: absolute; /* 절대 위치를 사용하여 부모(PostContainer) 안에서 배치 */
-  top: 10px; /* 상단에서 10px 떨어진 위치 */
-  right: 10px; /* 우측에서 10px 떨어진 위치 */
-  width: 4vw; /* 원하는 크기로 조정 */
-  height: auto;
 `;
 
 export const Content = styled.div`
@@ -51,6 +42,7 @@ export const Content = styled.div`
   box-sizing: border-box;
   padding-left: 8%;
   padding-right: 8%;
+  margin-top: 5px;
 `;
 
 export const RecommendSection = styled.div`
@@ -60,7 +52,7 @@ export const RecommendSection = styled.div`
   align-items: center;
 `;
 
-export const RecommendButton = styled.button`
+export const RecommendHeart = styled.button`
   display: inline-flex;
   background: none;
   border: none;
@@ -75,7 +67,7 @@ export const RecommendButton = styled.button`
 
 export const HeartIcon = styled.img`
   display: block;
-  width: 2.3vw;
+  width: 10vw;
   height: auto;
   padding: 0;
 `;
@@ -84,7 +76,7 @@ export const CommentSection = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 3.8vw;
+  width: 7vw;
 `;
 
 export const CommentIcon = styled.img`
