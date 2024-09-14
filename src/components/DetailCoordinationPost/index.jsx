@@ -16,12 +16,6 @@ import Text from '../../components/Text';
 import RecommendButton from '../../components/RecommendButton';
 
 const DetailCoordinationPost = ({ post }) => {
-  const navigate = useNavigate(); // useNavigate 훅 사용
-
-  const handleClick = () => {
-    navigate(`/contest/${post.postId}`); // postId를 포함한 경로로 이동
-  };
-
   const [isRecommended, setIsRecommended] = useState(post.isRecommended);
   const [recommendCount, setRecommendCount] = useState(post.recommendCount);
 
@@ -46,7 +40,7 @@ const DetailCoordinationPost = ({ post }) => {
   };
 
   return (
-    <PostContainer onClick={handleClick}>
+    <PostContainer>
       <CoordinationImage src={post.imageUrl} alt="코디 이미지" />
       <Content>
         <RecommendSection>

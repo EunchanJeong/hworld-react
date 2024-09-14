@@ -1,5 +1,18 @@
 import styled from 'styled-components';
 
+/**
+ * 게시글 코디 아이템 styled components
+ * @author 정은찬
+ * @since 2024.09.13
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.13  	정은찬        최초 생성
+ * </pre>
+ */
+
 export const ItemContainer = styled.div`
   display: flex;
   flex-direction: column;

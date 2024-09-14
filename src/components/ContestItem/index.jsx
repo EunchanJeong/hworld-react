@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   ItemContainer,
   ItemImage,
@@ -12,9 +12,35 @@ import {
   ContentContainer,
   DescriptionContainer,
 } from './styled';
-import { DescriptionItem } from '../../pages/MyPageContent/Menu3/styled';
+import ItemDetailModal from '../../components/ItemDetailModal';
+
+/**
+ * 게시글 코디 아이템 컴포넌트
+ * @author 정은찬
+ * @since 2024.09.13
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일       수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.13  	정은찬        최초 생성
+ * </pre>
+ */
 
 const ContestItem = ({ item }) => {
+  const [selectedItemId, setSelectedItemId] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleItemClick = (itemId) => {
+    setSelectedItemId(itemId);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedItemId(null);
+  };
+
   const getCategoryName = (categoryId) => {
     switch (categoryId) {
       case 1:
@@ -34,7 +60,8 @@ const ContestItem = ({ item }) => {
     <ItemContainer>
       <CategoryName>{getCategoryName(item.categoryId)}</CategoryName> {/* 카테고리 이름 */}
       <ContentContainer>
-        <ItemImage src={item.itemImageUrl} alt={item.itemName} /> {/* 상품 이미지 */}
+        <ItemImage src={item.itemImageUrl} alt={item.itemName} onClick={() => handleItemClick(item.itemId)} />
+        {isModalOpen && selectedItemId && <ItemDetailModal itemId={selectedItemId} onClose={handleCloseModal} />}
         <DescriptionContainer>
           <ShopDiv>
             <ShopImage src={item.shopImageUrl} alt={item.itemName} /> {/* 상품 이미지 */}

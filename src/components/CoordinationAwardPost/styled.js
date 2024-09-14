@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 /**
- * 게시글 수상작 카드 styled components
+ * 게시글 수상작 코디 카드 styled components
  * @author 정은찬
  * @since 2024.09.12
  * @version 1.0
