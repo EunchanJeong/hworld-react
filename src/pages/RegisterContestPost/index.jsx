@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import html2canvas from 'html2canvas';
 import { useMutation, useQueryClient } from 'react-query';
 import ContestDetailBreadCrumb from '../../components/ContestDetailBreadCrumb';
 import CommonLayout from '../../components/Layout';
@@ -38,12 +39,11 @@ const RegisterContestPost = () => {
 
   // AddContestPost API 호출을 위한 useMutation 설정
   const addPostMutation = useMutation(
-    ({ coordinationId, title }) => AddContestPostAPI(coordinationId, title), // API 호출
+    (formData) => AddContestPostAPI(formData), // API 호출
     {
       onSuccess: () => {
         console.log('게시글 등록 성공');
-        // 성공 시 데이터 캐시 무효화나 추가 동작 수행
-        queryClient.invalidateQueries('contestPosts'); // 예: 게시글 목록을 다시 불러오기
+        queryClient.invalidateQueries('contestPosts'); // 게시글 목록을 다시 불러오기
       },
       onError: (error) => {
         console.error('게시글 등록 실패:', error);
@@ -84,14 +84,45 @@ const RegisterContestPost = () => {
   };
 
   // 등록 버튼 클릭 핸들러
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (selectedCoordination && title) {
-      addPostMutation.mutate({
-        coordinationId: selectedCoordination.coordinationId,
-        title: title,
-      });
+      // ImagePlaceholder 캡처
+      const capturedImage = await captureImagePlaceholderAsPng();
+      if (capturedImage) {
+        const formData = new FormData();
+
+        // JSON 데이터를 문자열로 변환
+        const jsonRequest = JSON.stringify({
+          coordinationId: selectedCoordination.coordinationId,
+          title: title,
+        });
+        formData.append('request', new Blob([jsonRequest], { type: 'application/json' }));
+
+        // Blob을 File로 변환하고 파일명에 title을 적용
+        const fileName = `${title}.png`; // title을 파일명으로 사용
+        const file = new File([capturedImage], fileName, { type: 'image/png' });
+        formData.append('file', file); // PNG 파일 추가
+
+        // API 호출
+        addPostMutation.mutate(formData);
+      } else {
+        console.error('Image capture failed');
+      }
     } else {
       alert('제목과 코디를 선택해주세요.');
+    }
+  };
+
+  // ImagePlaceholder를 캡처하여 PNG로 변환하는 함수
+  const captureImagePlaceholderAsPng = async () => {
+    try {
+      const imagePlaceholder = document.querySelector('#imagePlaceholder'); // ImagePlaceholder에 대한 참조
+      const canvas = await html2canvas(imagePlaceholder, { useCORS: true }); // CORS 사용
+      const imageBlob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/png')); // Blob으로 변환
+      return imageBlob; // Blob 형태의 PNG 이미지 반환
+    } catch (error) {
+      console.error('Image capture failed:', error);
+      return null;
     }
   };
 
@@ -117,6 +148,7 @@ const RegisterContestPost = () => {
             <ImageLabel>코디</ImageLabel>
             <CanvasDiv>
               <ImagePlaceholder
+                id="imagePlaceholder" // 캡처할 ImagePlaceholder에 id 추가
                 style={{
                   backgroundImage: selectedBackground ? `url(${selectedBackground})` : 'none',
                   backgroundSize: 'cover',
@@ -129,6 +161,7 @@ const RegisterContestPost = () => {
                     alt="선택된 코디 이미지"
                     width="100%"
                     height="100%"
+                    crossOrigin="anonymous" // cross-origin 속성 추가
                   />
                 ) : (
                   '이미지 선택 영역'
@@ -154,7 +187,7 @@ const RegisterContestPost = () => {
               <Item>
                 <img src={item.itemImageUrl} alt={item.itemName} width="100%" height="100%" />
               </Item>
-              <p>{item.categoryName}</p> {/* 카테고리 이름 추가 */}
+              <p>{item.categoryName}</p>
             </ItemContainer>
           ))
         ) : (

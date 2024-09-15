@@ -75,11 +75,12 @@ const GetCoordinationListAPI = () => {
   return axiosInstance.get(`/contest/coordination`);
 };
 
-// 댓글 등록 API
-const AddContestPostAPI = (coordinationId, title) => {
-  return axiosInstance.post(`/contest/posts`, {
-    coordinationId: coordinationId,
-    title: title,
+// 게시글 등록 API
+const AddContestPostAPI = (formData) => {
+  return axiosInstance.post(`/contest/posts`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
   });
 };
 

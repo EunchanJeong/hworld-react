@@ -17,11 +17,12 @@ export const ModalContent = styled.div`
   padding: 20px;
   width: 80%;
   max-width: 50vw;
-  height: 50vh;
+  height: 60vh;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative; /* relative를 추가해서 CloseButton의 위치가 ModalContent를 기준으로 동작하도록 설정 */
 `;
 
 export const CoordinationList = styled.div`
@@ -71,7 +72,7 @@ export const CoordinationTitle = styled.h4`
 
 export const CoordinationImage = styled.img`
   width: 100px;
-  height: 100px;
+  height: 20vh;
   object-fit: cover;
   border-radius: 8px;
   margin-top: 10px;
@@ -87,24 +88,25 @@ export const CloseButton = styled.img`
 `;
 
 export const ModalName = styled.h3`
-  text-align: center;
+  /* text-align: center; */
   margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
 `;
 
 export const HorizonLine = styled.hr`
-  border: 1px solid #ddd;
-  margin-bottom: 20px;
+  /* border: 10px solid #ddd;
+  margin-bottom: 20px; */
 `;
 
 export const ModalActions = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 10px;
 `;
 
 export const Button = styled.button`
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #284180;
   color: white;
   border: none;
   border-radius: 4px;

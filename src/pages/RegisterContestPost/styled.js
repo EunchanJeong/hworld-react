@@ -30,6 +30,7 @@ export const TitleInput = styled.input`
   padding: 10px;
   font-size: 16px;
   height: 7vh;
+  margin-right: 80px;
 
   border: 1px solid #ccc;
   align-items: center;
@@ -131,6 +132,7 @@ export const ItemListTitle = styled.p`
   font-size: 30px;
   font-weight: bold;
   margin-bottom: 5px;
+  margin-top: 120px;
 `;
 
 export const SubmitButton = styled.button`
@@ -152,6 +154,7 @@ export const CanvasDiv = styled.div`
   position: relative; /* 코디 이미지를 배경 위에 겹치기 위한 설정 */
   width: 35vw;
   height: 70vh;
+  margin-right: 80px;
 `;
 
 export const ButtonDiv = styled.div`
