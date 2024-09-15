@@ -73,11 +73,11 @@ const CoordinationPost = ({ post }) => {
   return (
     <PostContainer>
       <CoordinationImage
-        src={post.imageUrl}
+        src={post.postImageUrl}
         alt="코디 이미지"
         onClick={() => {
           if (!isDragging) {
-            navigate(`/contest/${post.postImageUrl}`);
+            navigate(`/contest/${post.postId}`);
           }
         }}
         onMouseDown={handleMouseDown}
