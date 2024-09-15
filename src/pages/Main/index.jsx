@@ -45,7 +45,7 @@ const fetchNoticeList = async () => {
 };
 
 const Main = () => {
-  const { data: noticeList, isLoading, isError } = useQuery('noticeList', fetchNoticeList);
+  const { data: noticeListResponse, isLoading, isError } = useQuery('noticeList', fetchNoticeList);
 
   if (isLoading) {
     return <Spinner />;
@@ -53,6 +53,8 @@ const Main = () => {
   if (isError) {
     return <div>오류가 발생했습니다.</div>;
   }
+
+  const noticeList = noticeListResponse.noticeList;
 
   const postList = [
     {

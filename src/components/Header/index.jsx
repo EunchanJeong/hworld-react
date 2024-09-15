@@ -29,7 +29,7 @@ const Header = () => {
           <NavMenu>CONTEST</NavMenu>
         </NavLink>
         <NavLink to="/cart">
-          <NavMenu>SHOPPING</NavMenu>
+          <NavMenu>CART</NavMenu>
         </NavLink>
         <NavLink to="/notice">
           <NavMenu>NOTICE</NavMenu>
