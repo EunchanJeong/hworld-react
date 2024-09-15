@@ -19,7 +19,7 @@ export const PostMeta = styled.div`
   margin-top: 19px;
   margin-bottom: 0;
   font-size: 14px;
-  width: 20vw;
+  width: 25vw;
   padding: 1px;
 `;
 

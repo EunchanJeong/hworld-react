@@ -54,7 +54,7 @@ const DetailCoordinationPost = ({ post }) => {
 
   return (
     <PostContainer>
-      <CoordinationImage src={post.imageUrl} alt="코디 이미지" />
+      <CoordinationImage src={post.postImageUrl} alt="코디 이미지" />
       <Content>
         <RecommendSection>
           <RecommendHeart>

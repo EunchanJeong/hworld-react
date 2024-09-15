@@ -125,6 +125,7 @@ const ContestPostDetail = () => {
     postId: postId,
     recommendCount: data?.recommendCount || 0,
     replyCount: data?.replyCount || 0,
+    postImageUrl: data?.postImageUrl || '', // data가 없을 경우 빈 값
   };
 
   // 페이지네이션을 위한 계산

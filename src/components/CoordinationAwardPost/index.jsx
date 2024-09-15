@@ -75,7 +75,7 @@ const CoordinationAwardPost = ({ post, MedalIcon }) => {
 
   return (
     <PostContainer onClick={handleClick}>
-      <CoordinationImage src={post.imageUrl} alt="코디 이미지" />
+      <CoordinationImage src={post.postImageUrl} alt="코디 이미지" />
       <MedalImage src={getMedalIcon(post.rank)} alt="메달 아이콘" /> {/* 메달 이미지 추가 */}
       <Content>
         <RecommendSection>
