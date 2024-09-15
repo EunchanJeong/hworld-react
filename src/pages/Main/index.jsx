@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Container,
   GameStartButton,
@@ -18,7 +18,7 @@ import {
 } from './styled';
 import Spinner from '../../components/Spinner';
 import CommonLayout from '../../components/Layout';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -56,6 +56,25 @@ const fetchBestPost = async () => {
 };
 
 const Main = () => {
+  const navigate = useNavigate();
+
+  const [isDragging, setIsDragging] = useState(false);
+  const [mouseDownPos, setMouseDownPos] = useState({ x: 0, y: 0 });
+
+  const handleMouseDown = (e) => {
+    setMouseDownPos({ x: e.clientX, y: e.clientY });
+    setIsDragging(false); // 초기화
+  };
+
+  const handleMouseUp = (e) => {
+    const deltaX = Math.abs(e.clientX - mouseDownPos.x);
+    const deltaY = Math.abs(e.clientY - mouseDownPos.y);
+    // 일정 거리 이상 마우스가 움직이면 드래그로 간주
+    if (deltaX > 5 || deltaY > 5) {
+      setIsDragging(true);
+    }
+  };
+
   const { data: noticeListResponse, isLoading, isError } = useQuery('noticeList', fetchNoticeList);
 
   const {
@@ -171,7 +190,16 @@ const Main = () => {
             <Slider {...bannerSettings}>
               {bannerList.map((banner, index) => (
                 <Banner key={index}>
-                  <BannerImage src={banner.image} />
+                  <BannerImage
+                    src={banner.image}
+                    onClick={() => {
+                      if (!isDragging) {
+                        navigate(`/notice/${banner.id}`);
+                      }
+                    }}
+                    onMouseDown={handleMouseDown}
+                    onMouseUp={handleMouseUp}
+                  />
                 </Banner>
               ))}
             </Slider>
@@ -190,9 +218,7 @@ const Main = () => {
               <BestCoordinationContainer>
                 <CustomSlider {...bestCoordinationSettings}>
                   {postList.map((post, index) => (
-                    <Link to={`/contest/${post.postId}`} style={{ textDecoration: 'none' }}>
-                      <BestCoordination post={post} />
-                    </Link>
+                    <BestCoordination post={post} />
                   ))}
                 </CustomSlider>
               </BestCoordinationContainer>

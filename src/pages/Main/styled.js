@@ -66,6 +66,10 @@ export const Banner = styled.div`
 export const BannerImage = styled.img`
   width: 100%;
   height: 100%;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const CoordiNoticeContainer = styled.div`
