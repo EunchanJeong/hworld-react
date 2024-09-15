@@ -3,6 +3,7 @@ import CommonLayout from '../../components/Layout';
 import BreadCrumb from '../../components/BreadCrumb';
 import { useQuery } from 'react-query';
 import Spinner from '../../components/Spinner';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
   ContentContainer,
   CustomLink,
@@ -49,16 +50,29 @@ const fetchNoticeList = async (page, amount, type) => {
 
 const NoticeList = () => {
   const AMOUNT_PER_PAGE = 10;
+  const navigate = useNavigate(); // useNavigate 훅 사용
 
-  const [type, setType] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1); // 현재 페이지
+  const [searchParams] = useSearchParams();
+
+  const page = searchParams.get('page');
+  const category = searchParams.get('category');
+
+  const [type, setType] = useState(category ?? 0);
+  const [currentPage, setCurrentPage] = useState(page ?? 1); // 현재 페이지
 
   const handleTypeChange = (e) => {
-    setType(parseInt(e.target.value));
+    const newType = parseInt(e.target.value);
+    setType(newType);
+
+    // URL에 쿼리 파라미터를 반영
+    navigate(`?page=1&amount=${AMOUNT_PER_PAGE}&category=${newType}`);
   };
 
   const handlePageClick = (pageNumber) => {
-    setCurrentPage(pageNumber); // 페이지 번호 클릭 시 현재 페이지 변경
+    setCurrentPage(pageNumber);
+
+    // 페이지 번호 변경 시에도 URL 업데이트
+    navigate(`?page=${pageNumber}&amount=${AMOUNT_PER_PAGE}&category=${type}`);
   };
 
   useEffect(() => {
@@ -93,14 +107,12 @@ const NoticeList = () => {
       <BreadCrumb title="공지사항"></BreadCrumb>
       <ContentContainer>
         <DropboxContainer>
-          {/* <DropdownWrapper> */}
           <Dropdown value={type} onChange={handleTypeChange}>
             <option value={0}>전체</option>
             <option value={1}>콘테스트</option>
             <option value={2}>공지</option>
             <option value={3}>이벤트</option>
           </Dropdown>
-          {/* </DropdownWrapper> */}
         </DropboxContainer>
         <NoticeListContainer>
           <GuideContainer>
@@ -117,11 +129,9 @@ const NoticeList = () => {
                 <NoticeType>
                   <NoticeTypeBox>{notice.categoryName}</NoticeTypeBox>
                 </NoticeType>
-
                 <NoticeTitle>
                   <CustomLink to={`/notice/${notice.noticeId}`}>{notice.title}</CustomLink>
                 </NoticeTitle>
-
                 <NoticeDate>{new Date(notice.createdAt + 'Z').toLocaleDateString('sv')}</NoticeDate>
               </NoticeSummary>
               <HorizonLineGray />
@@ -130,7 +140,6 @@ const NoticeList = () => {
         </NoticeListContainer>
       </ContentContainer>
 
-      {/* 페이지네이션 버튼 */}
       <PageinationContainer>
         <PaginationImageButton
           src={backButton}
@@ -139,7 +148,6 @@ const NoticeList = () => {
           disabled={currentPage === 1}
         />
 
-        {/* 페이지 번호 목록 */}
         {[...Array(totalPages)].map((_, index) => {
           const pageNumber = index + 1;
           return (

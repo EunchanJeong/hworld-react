@@ -28,6 +28,10 @@ export const PostContainer = styled.div`
 export const CoordinationImage = styled.img`
   width: 100%;
   height: 85%;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const Content = styled.div`

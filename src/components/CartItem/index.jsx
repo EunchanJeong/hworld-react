@@ -20,6 +20,7 @@ import gray_check from '../../assets/images/gray_check.svg';
 import Text from '../Text';
 import black_x from '../../assets/images/black_x.svg';
 import { DeleteCartItemAPI } from '../../apis/Cart/CartAPI';
+import ItemDetailModal from '../ItemDetailModal';
 
 /**
  * 장바구니 상품 컴포넌트
@@ -39,7 +40,8 @@ const CartItem = ({ cart, onDelete, onItemCountChange, onCheckChange }) => {
   const [isChecked, setIsChecked] = useState(true);
   // 아이템 개수 상태
   const [itemCount, setItemCount] = useState(cart?.itemCount || 1);
-
+  const [selectedItemId, setSelectedItemId] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   // 클릭 시 체크 상태 토글
   const handleCheck = () => {
     const newCheckedState = !isChecked;
@@ -68,9 +70,20 @@ const CartItem = ({ cart, onDelete, onItemCountChange, onCheckChange }) => {
     onDelete(cart.cartId); // 성공하면 부모 컴포넌트에 삭제된 cartId 전달
   };
 
+  const handleItemClick = (itemId) => {
+    setSelectedItemId(itemId);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedItemId(null);
+  };
+
   return (
     <>
       <Container>
+        {isModalOpen && selectedItemId && <ItemDetailModal itemId={selectedItemId} onClose={handleCloseModal} />}
         <CheckButton
           onClick={handleCheck}
           style={{
@@ -79,16 +92,16 @@ const CartItem = ({ cart, onDelete, onItemCountChange, onCheckChange }) => {
         >
           <Image src={isChecked ? white_check : gray_check} />
         </CheckButton>
-        <ItemImageWrapper>
-          <Image src={'https://oasis-hworld.s3.ap-northeast-2.amazonaws.com/PradaBag1.jpg'} />
+        <ItemImageWrapper onClick={() => handleItemClick(cart.itemId)}>
+          <Image src={cart?.itemImageUrl} />
         </ItemImageWrapper>
-        <ItemInfoContainer>
+        <ItemInfoContainer onClick={() => handleItemClick(cart.itemId)}>
           <Text theme="content">{cart?.itemName}</Text>
           <Text theme="graytext">옵션: {cart?.itemOption}</Text>
         </ItemInfoContainer>
 
         <ShopImageWrapper>
-          <Image src={'https://oasis-hworld.s3.ap-northeast-2.amazonaws.com/PradaShopLogo.png'} />
+          <Image src={cart?.shopImageUrl} />
         </ShopImageWrapper>
         <ShopInfoContainer>
           <Text theme="content">{cart?.shopName}</Text>

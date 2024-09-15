@@ -14,6 +14,7 @@ import Comment from '../../assets/images/comment_icon.svg';
 import HeartEmpty from '../../assets/images/heart-empty-icon.svg';
 import HeartFull from '../../assets/images/heart-full-icon.svg';
 import Text from '../../components/Text';
+import { useNavigate } from 'react-router-dom';
 
 /**
  * 베스트 코디 컴포넌트
@@ -29,8 +30,25 @@ import Text from '../../components/Text';
  */
 
 const CoordinationPost = ({ post }) => {
+  const navigate = useNavigate();
   const [isRecommended, setIsRecommended] = useState(post.isRecommended);
   const [recommendCount, setRecommendCount] = useState(post.recommendCount);
+  const [isDragging, setIsDragging] = useState(false);
+  const [mouseDownPos, setMouseDownPos] = useState({ x: 0, y: 0 });
+
+  const handleMouseDown = (e) => {
+    setMouseDownPos({ x: e.clientX, y: e.clientY });
+    setIsDragging(false); // 초기화
+  };
+
+  const handleMouseUp = (e) => {
+    const deltaX = Math.abs(e.clientX - mouseDownPos.x);
+    const deltaY = Math.abs(e.clientY - mouseDownPos.y);
+    // 일정 거리 이상 마우스가 움직이면 드래그로 간주
+    if (deltaX > 5 || deltaY > 5) {
+      setIsDragging(true);
+    }
+  };
 
   // 하트 버튼 클릭 시 API 호출 및 추천수 업데이트
   const handleRecommend = async () => {
@@ -54,7 +72,17 @@ const CoordinationPost = ({ post }) => {
 
   return (
     <PostContainer>
-      <CoordinationImage src={post.imageUrl} alt="코디 이미지" />
+      <CoordinationImage
+        src={post.imageUrl}
+        alt="코디 이미지"
+        onClick={() => {
+          if (!isDragging) {
+            navigate(`/contest/${post.postImageUrl}`);
+          }
+        }}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+      />
       <Content>
         <RecommendSection>
           <RecommendButton onClick={handleRecommend}>

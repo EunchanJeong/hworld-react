@@ -42,10 +42,6 @@ export const ItemImageWrapper = styled.div`
   margin-left: 3%;
   padding: 0px;
   display: flex;
-
-  &:hover {
-    cursor: pointer;
-  }
 `;
 
 export const ItemInfoContainer = styled.div`
@@ -58,10 +54,6 @@ export const ItemInfoContainer = styled.div`
 
   p {
     margin: 2%;
-  }
-
-  &:hover {
-    cursor: pointer;
   }
 `;
 
