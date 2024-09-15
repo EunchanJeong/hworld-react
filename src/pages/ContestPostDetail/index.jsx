@@ -31,6 +31,7 @@ import {
   PageinationContainer,
   PageNumber,
   PaginationImageButton,
+  ReplyTop,
 } from './styled';
 import DetailCoordinationPost from '../../components/DetailCoordinationPost';
 import ContestItem from '../../components/ContestItem'; // Item 컴포넌트 추가
@@ -124,6 +125,7 @@ const ContestPostDetail = () => {
     postId: postId,
     recommendCount: data?.recommendCount || 0,
     replyCount: data?.replyCount || 0,
+    postImageUrl: data?.postImageUrl || '', // data가 없을 경우 빈 값
   };
 
   // 페이지네이션을 위한 계산
@@ -175,6 +177,7 @@ const ContestPostDetail = () => {
       </ContentDiv>
 
       <ReplyContainer>
+        <ReplyTop>댓글</ReplyTop>
         {/* 댓글 입력 창과 등록 버튼 */}
         <ReplyInputContainer>
           <ReplyInput

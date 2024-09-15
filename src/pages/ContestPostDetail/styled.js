@@ -19,7 +19,7 @@ export const PostMeta = styled.div`
   margin-top: 19px;
   margin-bottom: 0;
   font-size: 14px;
-  width: 20vw;
+  width: 25vw;
   padding: 1px;
 `;
 
@@ -187,4 +187,11 @@ export const PageNumber = styled.span`
   &:hover {
     color: #4caf50;
   }
+`;
+
+// 페이지 번호 스타일 정의
+export const ReplyTop = styled.p`
+  font-size: 25px;
+  font-weight: bold;
+  border-bottom: 2px solid #eee;
 `;

@@ -54,7 +54,7 @@ const NoticeDetail = () => {
       <BreadCrumb title="공지사항"></BreadCrumb>
       <ContentContainer>
         <TitleContainer>
-          게임 업데이트 공지
+          {notice.title}
           <ListButton>
             <CustomLink to="/notice">목록</CustomLink>
           </ListButton>
@@ -65,10 +65,14 @@ const NoticeDetail = () => {
         </DateContainer>
         <HorizonLine />
         <NoticeContent>
-          안녕하세요. H-WORLD입니다.
-          <br />
-          2024년 8월 28일부터 새로운 매장들이 들어와요.
-          <br />더 많은 매장을 이용하여 즐거운 쇼핑하세요~!
+          {notice.content.split('\\n').map((str, index) => {
+            return (
+              <React.Fragment key={index}>
+                {str}
+                <br />
+              </React.Fragment>
+            );
+          })}
         </NoticeContent>
         <ImageWrapper>
           <Image src={notice.imageUrl} />
