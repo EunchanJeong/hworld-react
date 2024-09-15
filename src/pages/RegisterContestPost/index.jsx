@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import html2canvas from 'html2canvas';
 import { useMutation, useQueryClient } from 'react-query';
+import { useNavigate } from 'react-router-dom'; // useNavigate 추가
 import ContestDetailBreadCrumb from '../../components/ContestDetailBreadCrumb';
 import CommonLayout from '../../components/Layout';
 import CoordinationListModal from '../../components/CoordinationListModal';
@@ -33,6 +34,9 @@ const RegisterContestPost = () => {
   const [isBackgroundModalOpen, setIsBackgroundModalOpen] = useState(false); // 배경 모달 상태
   const [selectedCoordination, setSelectedCoordination] = useState(null); // 선택된 코디 상태
   const [selectedBackground, setSelectedBackground] = useState(null); // 선택된 배경 이미지 상태
+  const imagePlaceholderRef = useRef(null); // ImagePlaceholder에 대한 ref 사용
+
+  const navigate = useNavigate(); // useNavigate 사용
 
   // React Query Client
   const queryClient = useQueryClient();
@@ -44,9 +48,12 @@ const RegisterContestPost = () => {
       onSuccess: () => {
         console.log('게시글 등록 성공');
         queryClient.invalidateQueries('contestPosts'); // 게시글 목록을 다시 불러오기
+        alert('등록이 완료되었습니다!'); // 등록 완료 메시지
+        navigate('/contest'); // '/contest' 경로로 이동
       },
       onError: (error) => {
         console.error('게시글 등록 실패:', error);
+        alert('등록 중 오류가 발생했습니다. 다시 시도해주세요.');
       },
     },
   );
@@ -79,7 +86,12 @@ const RegisterContestPost = () => {
 
   // 배경에서 선택한 값 처리
   const handleBackgroundSubmit = (background) => {
-    setSelectedBackground(background.image); // 선택한 배경 이미지 URL 저장
+    if (background && background.image) {
+      setSelectedBackground(background.image); // 선택한 배경 이미지 URL 저장
+    } else {
+      console.error('Invalid background data:', background);
+      alert('유효한 배경 이미지를 선택해주세요.');
+    }
     handleCloseBackgroundModal();
   };
 
@@ -116,9 +128,11 @@ const RegisterContestPost = () => {
   // ImagePlaceholder를 캡처하여 PNG로 변환하는 함수
   const captureImagePlaceholderAsPng = async () => {
     try {
-      const imagePlaceholder = document.querySelector('#imagePlaceholder'); // ImagePlaceholder에 대한 참조
-      const canvas = await html2canvas(imagePlaceholder, { useCORS: true }); // CORS 사용
-      const imageBlob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/png')); // Blob으로 변환
+      const canvas = await html2canvas(imagePlaceholderRef.current, {
+        useCORS: true, // CORS 이슈 해결을 위해 설정
+        allowTaint: false, // 이미지가 캔버스에서 오염되지 않도록 설정
+      });
+      const imageBlob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/png'));
       return imageBlob; // Blob 형태의 PNG 이미지 반환
     } catch (error) {
       console.error('Image capture failed:', error);
@@ -148,7 +162,8 @@ const RegisterContestPost = () => {
             <ImageLabel>코디</ImageLabel>
             <CanvasDiv>
               <ImagePlaceholder
-                id="imagePlaceholder" // 캡처할 ImagePlaceholder에 id 추가
+                ref={imagePlaceholderRef} // ref 설정
+                id="imagePlaceholder"
                 style={{
                   backgroundImage: selectedBackground ? `url(${selectedBackground})` : 'none',
                   backgroundSize: 'cover',
@@ -161,7 +176,7 @@ const RegisterContestPost = () => {
                     alt="선택된 코디 이미지"
                     width="100%"
                     height="100%"
-                    crossOrigin="anonymous" // cross-origin 속성 추가
+                    crossOrigin="anonymous" // 외부 이미지에 대해 CORS 해결을 위해 설정
                   />
                 ) : (
                   '이미지 선택 영역'

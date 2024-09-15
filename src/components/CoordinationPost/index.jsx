@@ -62,7 +62,7 @@ const CoordinationPost = ({ post }) => {
     <PostContainer onClick={handleClick}>
       {' '}
       {/* PostContainer에 onClick 이벤트 설정 */}
-      <CoordinationImage src={post.imageUrl} alt="코디 이미지" />
+      <CoordinationImage src={post.postImageUrl} alt="코디 이미지" />
       <Content>
         <RecommendSection>
           <RecommendButton onClick={handleRecommend}>
