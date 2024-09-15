@@ -32,7 +32,7 @@ const OrderItem = ({ cart }) => {
     <>
       <Container>
         <ItemImageWrapper>
-          <Image src={'https://oasis-hworld.s3.ap-northeast-2.amazonaws.com/PradaBag1.jpg'} />
+          <Image src={cart?.itemImageUrl} />
         </ItemImageWrapper>
         <ItemInfoContainer>
           <Text theme="content">{cart?.itemName}</Text>
@@ -40,7 +40,7 @@ const OrderItem = ({ cart }) => {
         </ItemInfoContainer>
 
         <ShopImageWrapper>
-          <Image src={'https://oasis-hworld.s3.ap-northeast-2.amazonaws.com/PradaShopLogo.png'} />
+          <Image src={cart?.shopImageUrl} />
         </ShopImageWrapper>
         <ShopInfoContainer>
           <Text theme="content">{cart?.shopName}</Text>

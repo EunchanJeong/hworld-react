@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Container,
   GameStartButton,
@@ -12,10 +12,13 @@ import {
   BestCoordinationContainer,
   CustomSlider,
   NoticeWrapper,
+  CoordiPlus,
+  TitleText,
+  CoordiPlusImage,
 } from './styled';
 import Spinner from '../../components/Spinner';
 import CommonLayout from '../../components/Layout';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -25,6 +28,9 @@ import BestCoordination from '../../components/BestCoordination';
 import NoticeSummary from '../../components/NoticeSummary';
 import { GetNoticeListAPI } from '../../apis/Notice/NoticeAPI';
 import { useQuery } from 'react-query';
+import { GetBestPostAPI } from '../../apis/Contest/ContestAPI';
+import white_plus from '../../assets/images/white_plus.svg';
+import { CustomLink } from '../NoticeList/styled';
 
 /**
  * 메인 페이지
@@ -44,44 +50,49 @@ const fetchNoticeList = async () => {
   return response.data;
 };
 
+const fetchBestPost = async () => {
+  const response = await GetBestPostAPI();
+  return response.data;
+};
+
 const Main = () => {
+  const navigate = useNavigate();
+
+  const [isDragging, setIsDragging] = useState(false);
+  const [mouseDownPos, setMouseDownPos] = useState({ x: 0, y: 0 });
+
+  const handleMouseDown = (e) => {
+    setMouseDownPos({ x: e.clientX, y: e.clientY });
+    setIsDragging(false); // 초기화
+  };
+
+  const handleMouseUp = (e) => {
+    const deltaX = Math.abs(e.clientX - mouseDownPos.x);
+    const deltaY = Math.abs(e.clientY - mouseDownPos.y);
+    // 일정 거리 이상 마우스가 움직이면 드래그로 간주
+    if (deltaX > 5 || deltaY > 5) {
+      setIsDragging(true);
+    }
+  };
+
   const { data: noticeListResponse, isLoading, isError } = useQuery('noticeList', fetchNoticeList);
 
-  if (isLoading) {
+  const {
+    data: bestPostResponse,
+    isLoading: isLoadingPost,
+    isError: isErrorPost,
+  } = useQuery('bestPost', fetchBestPost);
+
+  if (isLoading || isLoadingPost) {
     return <Spinner />;
   }
-  if (isError) {
+  if (isError || isErrorPost) {
     return <div>오류가 발생했습니다.</div>;
   }
 
   const noticeList = noticeListResponse.noticeList;
 
-  const postList = [
-    {
-      postId: 4,
-      imageUrl:
-        'http://thumbnail.10x10.co.kr/webimage/image/basic600/515/B005159997.jpg?cmd=thumb&w=500&h=500&fit=true&ws=false', // 코디 이미지 URL (대체 이미지)
-      recommendCount: 10, // 추천 수
-      replyCount: 5, // 댓글 수
-      isRecommended: true, // 추천 여부
-    },
-    {
-      postId: 5,
-      imageUrl:
-        'http://thumbnail.10x10.co.kr/webimage/image/basic600/515/B005159997.jpg?cmd=thumb&w=500&h=500&fit=true&ws=false', // 코디 이미지 URL (대체 이미지)
-      recommendCount: 20, // 추천 수
-      replyCount: 23, // 댓글 수
-      isRecommended: false, // 추천 여부
-    },
-    {
-      postId: 6,
-      imageUrl:
-        'http://thumbnail.10x10.co.kr/webimage/image/basic600/515/B005159997.jpg?cmd=thumb&w=500&h=500&fit=true&ws=false', // 코디 이미지 URL (대체 이미지)
-      recommendCount: 15, // 추천 수
-      replyCount: 17, // 댓글 수
-      isRecommended: true, // 추천 여부
-    },
-  ];
+  const postList = bestPostResponse.postList;
   const bannerList = [
     { title: 'H-WORLD X PRADA', image: BannerPrada, id: 1 },
     { title: '출석 이벤트', image: BannerPrada, id: 2 },
@@ -179,14 +190,31 @@ const Main = () => {
             <Slider {...bannerSettings}>
               {bannerList.map((banner, index) => (
                 <Banner key={index}>
-                  <BannerImage src={banner.image} />
+                  <BannerImage
+                    src={banner.image}
+                    onClick={() => {
+                      if (!isDragging) {
+                        navigate(`/notice/${banner.id}`);
+                      }
+                    }}
+                    onMouseDown={handleMouseDown}
+                    onMouseUp={handleMouseUp}
+                  />
                 </Banner>
               ))}
             </Slider>
           </BannerContainer>
           <CoordiNoticeContainer>
             <CoordiContainer>
-              <Title>베스트 코디</Title>
+              <Title>
+                <TitleText>베스트 코디</TitleText>
+
+                <CoordiPlus>
+                  <CustomLink to="/contest">
+                    <CoordiPlusImage src={white_plus} />
+                  </CustomLink>
+                </CoordiPlus>
+              </Title>
               <BestCoordinationContainer>
                 <CustomSlider {...bestCoordinationSettings}>
                   {postList.map((post, index) => (

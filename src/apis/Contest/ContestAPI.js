@@ -70,6 +70,11 @@ const RemoveReplyAPI = (postId, replyId) => {
   });
 };
 
+// 베스트 코디 조회 API
+const GetBestPostAPI = () => {
+  return axiosInstance.get(`/contest/posts/best`);
+};
+
 export {
   GetContestPostListAPI,
   GetContestPostAwardListAPI,
@@ -78,4 +83,5 @@ export {
   GetPostDetailAPI,
   AddReplyAPI,
   RemoveReplyAPI,
+  GetBestPostAPI,
 };
