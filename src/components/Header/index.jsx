@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavGroup, Image, TopNavGroup, LogoWrapper, WhiteBox, NavMenu, NavLink } from './styled';
 import { Link } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { isLoggedInState } from '../../state';
 import logo from '../../assets/images/logo.svg';
 
 /**
@@ -13,10 +15,17 @@ import logo from '../../assets/images/logo.svg';
  * 수정일        	수정자        수정내용
  * ----------  --------    ---------------------------
  * 2024.09.11  	조영욱        최초 생성
+ * 2024.09.16   김지현        로그인 여부에 따라 헤더 변경
  * </pre>
  */
 
 const Header = () => {
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
+
+  useEffect(() => {
+    console.log(isLoggedIn);
+  }, [isLoggedIn]);
+
   return (
     <WhiteBox>
       <LogoWrapper>
@@ -36,12 +45,25 @@ const Header = () => {
         </NavLink>
       </NavGroup>
       <TopNavGroup>
-        <NavLink to="/log-in">
-          <NavMenu>LOG-IN</NavMenu>
-        </NavLink>
-        <NavLink to="/sign-up">
-          <NavMenu>SIGN-UP</NavMenu>
-        </NavLink>
+        {isLoggedIn ? (
+          <>
+            <NavLink to="/log-out">
+              <NavMenu>LOG-OUT</NavMenu>
+            </NavLink>
+            <NavLink to="/mypage">
+              <NavMenu>MYPAGE</NavMenu>
+            </NavLink>
+          </>
+        ) : (
+          <>
+            <NavLink to="/log-in">
+              <NavMenu>LOG-IN</NavMenu>
+            </NavLink>
+            <NavLink to="/sign-up">
+              <NavMenu>SIGN-UP</NavMenu>
+            </NavLink>
+          </>
+        )}
       </TopNavGroup>
     </WhiteBox>
   );

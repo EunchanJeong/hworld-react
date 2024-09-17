@@ -28,8 +28,8 @@ export const GameStartButton = styled(StyledButton)`
   width: 250px;
   height: 80px;
   position: absolute;
-  top: 20%;
-  right: 3%;
+  top: 27%;
+  right: 9%;
   z-index: 11;
 `;
 
