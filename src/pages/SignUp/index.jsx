@@ -7,6 +7,8 @@ import Text from '../../components/Text';
 import Button from '../../components/Button';
 import AlertModal from '../../components/AlertModal';
 
+import AuthAPI from '../../apis/Member/AuthAPI';
+
 import {
   SignUpLayout,
   StyledHr,
@@ -119,15 +121,14 @@ const SignUp = () => {
     console.log(loginId, password, passwordValidation);
     console.log(nickname, gender, birthdate);
 
-    axiosInstance
-      .post('/members/sign-up', {
-        loginId: loginId,
-        password: password,
-        passwordValidation: passwordValidation,
-        nickname: nickname,
-        gender: gender,
-        birthdate: birthdate,
-      })
+    AuthAPI.SignUp({
+      loginId: loginId,
+      password: password,
+      passwordValidation: passwordValidation,
+      nickname: nickname,
+      gender: gender,
+      birthdate: birthdate,
+    })
       .then((response) => {
         console.log(response.data);
         toast.success('회원가입이 완료되었습니다!');
