@@ -23,6 +23,8 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import BannerPrada from '../../assets/images/BannerPrada.png';
+import BannerHeendy from '../../assets/images/BannerHeendy.png';
+import BannerAutumn from '../../assets/images/BannerAutumn.png';
 import './dots.css';
 import BestCoordination from '../../components/BestCoordination';
 import NoticeSummary from '../../components/NoticeSummary';
@@ -95,9 +97,9 @@ const Main = () => {
   const postList = bestPostResponse.postList;
   const bannerList = [
     { title: 'H-WORLD X PRADA', image: BannerPrada, id: 1 },
-    { title: '출석 이벤트', image: BannerPrada, id: 2 },
-    { title: '8월 코디 우수작', image: BannerPrada, id: 3 },
-    { title: '썸머 포인트 SHOP', image: BannerPrada, id: 4 },
+    { title: '흰디를 찾아라', image: BannerHeendy, id: 2 },
+    { title: '썸머 포인트 SHOP', image: BannerPrada, id: 3 },
+    { title: '가을 신상품 판매 시작', image: BannerAutumn, id: 4 },
     { title: '신규 이벤트', image: BannerPrada, id: 5 },
   ];
   const bannerSettings = {
