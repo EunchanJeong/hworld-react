@@ -15,12 +15,12 @@ export const PostTitle = styled.h1`
 
 export const PostMeta = styled.div`
   display: flex;
-  justify-content: space-between;
-  margin-top: 19px;
+  margin-top: 10px;
   margin-bottom: 0;
   font-size: 14px;
-  width: 25vw;
+  width: wrap-content;
   padding: 1px;
+  gap: 30px;
 `;
 
 export const PostAuthorDiv = styled.div`
@@ -45,7 +45,7 @@ export const HorizontalLine = styled.hr`
   border: 0;
   height: 1px;
   background-color: #ccc;
-  margin: 0;
+  margin-bottom: 10px;
 `;
 
 export const TitleNumber = styled.span`
