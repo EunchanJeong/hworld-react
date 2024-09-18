@@ -38,15 +38,20 @@ const Cart = () => {
   useEffect(() => {
     if (getCartResponse) {
       setCartList(getCartResponse.cartList);
-      setTotalPrice(getCartResponse.totalPrice);
     }
   }, [getCartResponse]);
+
+  // 체크된 아이템으로만 총 금액 계산
+  useEffect(() => {
+    const checkedItems = cartList.filter((cart) => !(cart.cartId in uncheckedItems));
+    const totalCheckedPrice = checkedItems.reduce((acc, cart) => acc + cart.itemPrice * cart.itemCount, 0);
+    setTotalPrice(totalCheckedPrice);
+  }, [cartList, uncheckedItems]);
 
   const handleDelete = (cartId) => {
     setCartList((prevCartList) => prevCartList.filter((cart) => cart.cartId !== cartId));
   };
 
-  // 아이템 체크 상태 변경 시 호출될 함수
   const handleCheckChange = (cartId, isChecked) => {
     if (isChecked) {
       setUncheckedItems((prevUncheckedItems) => {
@@ -62,8 +67,6 @@ const Cart = () => {
   };
 
   const handleItemCountChange = async (cartId, newItemCount) => {
-    console.log(newItemCount);
-    // 먼저 itemCount 변경 API 호출
     const requestBody = {
       cartId: cartId,
       itemCount: newItemCount,
@@ -71,20 +74,16 @@ const Cart = () => {
 
     await ChangeCartItemCountAPI(requestBody);
 
-    // API 호출 후 데이터를 다시 불러옴
     const { data: updatedCartResponse } = await refetch();
 
-    // 받아온 데이터를 통해 장바구니 목록과 총 가격 업데이트
     if (updatedCartResponse) {
       setCartList(updatedCartResponse.cartList);
-      setTotalPrice(updatedCartResponse.totalPrice);
     }
   };
 
-  // 구매 버튼 클릭 시 호출
   const handlePurchase = () => {
     const checkedItems = cartList.map((cart) => cart.cartId).filter((cartId) => !(cartId in uncheckedItems));
-    navigate('/order', { state: { checkedItems } }); // 체크된 아이템만 주문서 페이지로 이동
+    navigate('/order', { state: { checkedItems } });
   };
 
   if (isLoading) {
@@ -107,7 +106,7 @@ const Cart = () => {
                 cart={cart}
                 onDelete={handleDelete}
                 onItemCountChange={(cartId, newItemCount) => handleItemCountChange(cartId, newItemCount)}
-                onCheckChange={handleCheckChange}
+                onCheckChange={(cartId, isChecked) => handleCheckChange(cartId, isChecked)}
               />
             ))}
             <PurchaseContainer>
