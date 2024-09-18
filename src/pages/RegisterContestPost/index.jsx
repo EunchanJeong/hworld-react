@@ -172,10 +172,10 @@ const RegisterContestPost = () => {
               >
                 {selectedCoordination ? (
                   <img
-                    src={selectedCoordination.coordinationImageUrl}
+                    src={`${selectedCoordination.coordinationImageUrl}?timestamp=${Date.now()}`}
                     alt="선택된 코디 이미지"
-                    width="100%"
-                    height="100%"
+                    width="50%"
+                    aspect-ratio="1"
                     crossOrigin="anonymous" // 외부 이미지에 대해 CORS 해결을 위해 설정
                   />
                 ) : (
