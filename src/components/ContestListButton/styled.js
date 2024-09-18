@@ -23,8 +23,8 @@ export const StyledButton = styled.button`
   padding: 0.5px 7px 0.5px 7px;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
   transition: background-color 0.3s, transform 0.3s;
-  height: 6vh;
-  width: 8vw;
+  height: 5vh;
+  width: 6vw;
 
   &:active,
   &:focus {

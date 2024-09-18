@@ -7,6 +7,7 @@ import CommonLayout from '../../components/Layout';
 import CoordinationListModal from '../../components/CoordinationListModal';
 import ContestBackgroundModal from '../../components/ContestBackgroundModal';
 import { AddContestPostAPI } from '../../apis/Contest/ContestAPI';
+import Text from '../../components/Text';
 import {
   PostFormContainer,
   TitleLabel,
@@ -159,7 +160,6 @@ const RegisterContestPost = () => {
         {/* 코디 이미지 및 배경 */}
         <ImageContainer>
           <CoordinationContainer>
-            <ImageLabel>코디</ImageLabel>
             <CanvasDiv>
               <ImagePlaceholder
                 ref={imagePlaceholderRef} // ref 설정
@@ -179,7 +179,7 @@ const RegisterContestPost = () => {
                     crossOrigin="anonymous" // 외부 이미지에 대해 CORS 해결을 위해 설정
                   />
                 ) : (
-                  '이미지 선택 영역'
+                  '코디를 선택해주세요.'
                 )}
               </ImagePlaceholder>
               <ButtonContainer>
@@ -206,7 +206,7 @@ const RegisterContestPost = () => {
             </ItemContainer>
           ))
         ) : (
-          <Item>상품 아이템이 없습니다.</Item>
+          <Text theme="subtext">상품 아이템이 없습니다.</Text>
         )}
       </ItemList>
       <ButtonDiv>

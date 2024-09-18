@@ -12,7 +12,7 @@ export const TitleContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80vw;
+  width: wrap-content;
   flex-direction: row;
   gap: 30px;
   margin-top: 40px;
@@ -20,22 +20,24 @@ export const TitleContainer = styled.div`
 
 export const TitleLabel = styled.label`
   font-size: 25px;
-  margin-bottom: 8px;
   font-weight: bold;
 `;
 
 export const TitleInput = styled.input`
   display: flex;
-  width: 33vw;
+  width: 30vw;
   padding: 10px;
-  font-size: 16px;
-  height: 7vh;
-  margin-right: 80px;
-
-  border: 1px solid #ccc;
+  font-size: 20px;
+  height: 5vh;
+  background-color: #f8f8f8;
   align-items: center;
   justify-items: center;
-  border-radius: 4px;
+  border: none;
+
+  &:focus {
+    outline: none;
+    border: 1px solid #b0b0b0;
+  }
 `;
 
 export const ImageContainer = styled.div`
@@ -71,7 +73,7 @@ export const ImagePlaceholder = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
-  font-size: 16px;
+  font-size: 20px;
   color: #888;
 `;
 
@@ -80,17 +82,32 @@ export const ButtonContainer = styled.div`
   justify-content: center;
   margin-bottom: 20px;
   width: 100%;
-  gap: 10px;
+  gap: 30px;
 `;
 
 export const Button = styled.button`
-  padding: 10px 20px;
+  border-radius: 5px;
   background-color: #284180;
-  color: white;
   border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  width: 10vw;
+  color: white;
+  font-size: 20px;
+  font-weight: normal;
+  padding: 10px 15px 10px 15px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s, transform 0.3s;
+  height: wrap-content;
+  width: wrap-content;
+
+  &:active,
+  &:focus {
+    transform: scale(0.95);
+  }
+
+  &:hover {
+    background-color: rgba(40, 65, 128, 0.9);
+    transform: scale(1);
+    cursor: pointer;
+  }
 `;
 
 export const HorizontalLine = styled.hr`
@@ -141,9 +158,21 @@ export const SubmitButton = styled.button`
   color: white;
   font-size: 25px;
   border: none;
-  border-radius: 4px;
+  border-radius: 50px;
   cursor: pointer;
   width: 9vw;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+
+  &:active,
+  &:focus {
+    transform: scale(0.95);
+  }
+
+  &:hover {
+    background-color: rgba(40, 65, 128, 0.9);
+    transform: scale(1);
+    cursor: pointer;
+  }
 `;
 
 export const CanvasDiv = styled.div`
@@ -154,7 +183,6 @@ export const CanvasDiv = styled.div`
   position: relative; /* 코디 이미지를 배경 위에 겹치기 위한 설정 */
   width: 35vw;
   height: 70vh;
-  margin-right: 80px;
 `;
 
 export const ButtonDiv = styled.div`

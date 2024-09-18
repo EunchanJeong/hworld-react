@@ -144,19 +144,19 @@ const ContestPostDetail = () => {
       <PostDetailContainer>
         <PostTitle>
           <TitleNumber>
-            코디 No.{postId}
-            &nbsp;|&nbsp;
+            No.{postId}
+            &nbsp;&nbsp;
           </TitleNumber>
           <TitleName>{title}</TitleName>
         </PostTitle>
         <PostMeta>
           <PostAuthorDiv>
-            <PostAuthor fontWeight="bold">작성자: </PostAuthor>
-            <PostAuthorContent fontWeight="100">{nickname}</PostAuthorContent>
+            <PostAuthor fontWeight="bold">작성자 </PostAuthor>
+            <PostAuthorContent fontWeight="300">| {nickname}</PostAuthorContent>
           </PostAuthorDiv>
           <PostAuthorDiv>
-            <PostAuthor fontWeight="bold">작성일: </PostAuthor>
-            <PostAuthorContent fontWeight="100">{createdAt}</PostAuthorContent>
+            <PostAuthor fontWeight="bold">작성일 </PostAuthor>
+            <PostAuthorContent fontWeight="300">| {createdAt}</PostAuthorContent>
           </PostAuthorDiv>
         </PostMeta>
         <HorizontalLine />
