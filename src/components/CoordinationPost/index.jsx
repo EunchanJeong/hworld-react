@@ -54,7 +54,10 @@ const CoordinationPost = ({ post }) => {
         console.log(response);
       }
     } catch (error) {
-      console.error('추천 처리 중 오류 발생:', error);
+      // 로그인 안 돼있을 시 로그인 페이지로 이동
+      if (error.response?.status === 403) {
+        navigate('/log-in');
+      }
     }
   };
 
