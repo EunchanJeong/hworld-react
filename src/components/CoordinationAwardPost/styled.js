@@ -24,7 +24,7 @@ export const PostContainer = styled.div`
   overflow: hidden;
   box-sizing: border-box;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
-  position: relative; /* 자식 요소의 절대 위치를 설정하기 위해 relative 추가 */
+  position: relative;
 `;
 
 export const CoordinationImage = styled.img`

@@ -1,5 +1,18 @@
 import styled from 'styled-components';
 
+/**
+ * 콘테스트 게시글 상세조회 페이지 styled components
+ * @author 정은찬
+ * @since 2024.09.11
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.11  	정은찬        최초 생성
+ * </pre>
+ */
+
 export const PostDetailContainer = styled.div`
   padding: 0;
   width: 80vw;
@@ -24,21 +37,21 @@ export const PostMeta = styled.div`
 `;
 
 export const PostAuthorDiv = styled.div`
-  display: inline-flex; /* 자식 요소의 width에 맞춰 부모 div의 크기를 조정 */
-  align-items: center; /* 자식들이 세로 가운데 정렬되도록 */
+  display: inline-flex;
+  align-items: center;
 `;
 
 export const PostAuthor = styled.p`
   font-size: 18px;
   margin: 0;
-  font-weight: ${(props) => props.fontWeight || 'normal'}; /* props로 font-weight를 동적으로 설정 */
+  font-weight: ${(props) => props.fontWeight || 'normal'};
 `;
 
 export const PostAuthorContent = styled.p`
   font-size: 18px;
   margin: 0;
   margin-left: 3px;
-  font-weight: ${(props) => props.fontWeight || 'normal'}; /* props로 font-weight를 동적으로 설정 */
+  font-weight: ${(props) => props.fontWeight || 'normal'};
 `;
 
 export const HorizontalLine = styled.hr`
@@ -68,22 +81,21 @@ export const ItemDiv = styled.div`
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  align-items: center; /* 자식 요소를 부모의 왼쪽에 정렬 */
-  justify-content: center-start; /* 자식 요소를 부모의 위쪽에 정렬 */
+  align-items: center;
+  justify-content: center-start;
   height: 100%;
   width: 47vw;
-  overflow-y: auto; /* 세로 스크롤 활성화 */
-  overflow-x: hidden; /* 가로 스크롤을 막음 */
+  overflow-y: auto;
+  overflow-x: hidden;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
 
-  /* 스크롤바 숨김 */
-  scrollbar-width: none; /* Firefox용 */
-  -ms-overflow-style: none; /* IE 및 Edge용 */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   &::-webkit-scrollbar {
-    display: none; /* Chrome, Safari 및 Opera용 */
+    display: none;
   }
 
-  cursor: grab; /* 드래그 가능 커서 */
+  cursor: grab;
 `;
 
 export const ReplyContainer = styled.div`

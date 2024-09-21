@@ -39,6 +39,18 @@ import ContestItem from '../../components/ContestItem'; // Item 컴포넌트 추
 import backButton from '../../assets/images/back-button-icon.svg';
 import nextButton from '../../assets/images/next-button-icon.svg';
 
+/**
+ * 콘테스트 게시글 상세조회 페이지
+ * @author 정은찬
+ * @since 2024.09.13
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.13  	정은찬        최초 생성
+ * </pre>
+ */
 const ContestPostDetail = () => {
   const { postId } = useParams();
   const queryClient = useQueryClient();

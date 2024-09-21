@@ -31,6 +31,19 @@ import {
   ButtonDiv,
 } from './styled';
 
+/**
+ * 콘테스트 게시글 등록 페이지
+ * @author 정은찬
+ * @since 2024.09.13
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.13  	정은찬        최초 생성
+ * </pre>
+ */
+
 const RegisterContestPost = () => {
   const [title, setTitle] = useState(''); // 제목 상태
   const [isCoordinationModalOpen, setIsCoordinationModalOpen] = useState(false); // 코디 모달 상태
@@ -151,7 +164,6 @@ const RegisterContestPost = () => {
     <CommonLayout>
       <ContestDetailBreadCrumb title={'게시글 작성'} />
       <PostFormContainer>
-        {/* 제목 */}
         <TitleContainer>
           <TitleLabel>제목</TitleLabel>
           <TitleInput
@@ -162,7 +174,6 @@ const RegisterContestPost = () => {
           />
         </TitleContainer>
 
-        {/* 코디 이미지 및 배경 */}
         <ImageContainer>
           <CoordinationContainer>
             <CanvasDiv>
@@ -196,7 +207,7 @@ const RegisterContestPost = () => {
         </ImageContainer>
       </PostFormContainer>
       <ItemListTitle>상품</ItemListTitle>
-      {/* 상품 목록 */}
+
       <HorizontalLine />
       <ItemList>
         {selectedCoordination && selectedCoordination.itemList.length > 0 ? (
@@ -213,16 +224,15 @@ const RegisterContestPost = () => {
         )}
       </ItemList>
       <ButtonDiv>
-        {/* 등록 버튼 */}
         <SubmitButton onClick={handleSubmit} disabled={addPostMutation.isLoading}>
           {addPostMutation.isLoading ? '등록 중' : '등록'}
         </SubmitButton>
       </ButtonDiv>
-      {/* 코디 모달 */}
+
       {isCoordinationModalOpen && (
         <CoordinationListModal onClose={handleCloseCoordinationModal} onSubmit={handleCoordinationSubmit} />
       )}
-      {/* 배경 모달 */}
+
       {isBackgroundModalOpen && (
         <ContestBackgroundModal onClose={handleCloseBackgroundModal} onSubmit={handleBackgroundSubmit} />
       )}
