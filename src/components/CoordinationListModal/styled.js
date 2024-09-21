@@ -13,12 +13,12 @@ export const ModalContainer = styled.div`
 `;
 
 export const ModalContent = styled.div`
-  position: relative; /* CloseButton의 위치를 설정하기 위해 relative 사용 */
+  position: relative;
   background: white;
   padding: 20px;
-  width: 55vw;
+  width: 35vw;
   max-width: 70vw;
-  height: 70vh; /* 모달 높이 제한 */
+  height: 60vh; /* 모달 높이 제한 */
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -105,22 +105,27 @@ export const CategoryName = styled.p`
   font-weight: 400;
   padding-bottom: 0;
   margin-bottom: 0;
+  margin-top: 0;
 `;
 
 export const Items = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: column;
 `;
 
 export const ItemContainer = styled.div`
-  width: 13vw;
+  width: 20vw;
   display: flex;
+  margin-top: 1px;
+  margin-bottom: 1px;
 `;
 export const ItemName = styled.p`
   font-size: 13px;
   font-weight: 300;
   padding-bottom: 0;
   margin-bottom: 0;
+  margin-top: 0;
   margin-left: 5px;
 `;
 
@@ -132,7 +137,7 @@ export const CoordinationDetails = styled.div`
 `;
 
 export const CoordinationImage = styled.img`
-  width: 10vw;
+  width: 8vw;
   height: 10vw;
 `;
 export const ModalActions = styled.div`

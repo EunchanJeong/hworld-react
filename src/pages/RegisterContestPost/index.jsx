@@ -215,7 +215,7 @@ const RegisterContestPost = () => {
       <ButtonDiv>
         {/* 등록 버튼 */}
         <SubmitButton onClick={handleSubmit} disabled={addPostMutation.isLoading}>
-          {addPostMutation.isLoading ? '등록 중...' : '등록'}
+          {addPostMutation.isLoading ? '등록 중' : '등록'}
         </SubmitButton>
       </ButtonDiv>
       {/* 코디 모달 */}
