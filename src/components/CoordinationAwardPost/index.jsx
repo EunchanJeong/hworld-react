@@ -10,6 +10,9 @@ import {
   CommentIcon,
   HeartIcon,
   MedalImage,
+  Title,
+  TextTitle,
+  TextNickname,
 } from './styled';
 import Comment from '../../assets/images/comment_icon.svg';
 import HeartEmpty from '../../assets/images/heart-empty-icon.svg';
@@ -78,8 +81,12 @@ const CoordinationAwardPost = ({ post, MedalIcon }) => {
 
   return (
     <PostContainer onClick={handleClick}>
+      <Title>
+        <TextTitle>{post.title}</TextTitle>
+        <TextNickname>{post.nickname}</TextNickname>
+      </Title>
       <CoordinationImage src={post.postImageUrl} alt="코디 이미지" />
-      <MedalImage src={getMedalIcon(post.rank)} alt="메달 아이콘" /> {/* 메달 이미지 추가 */}
+      <MedalImage src={getMedalIcon(post.rank)} alt="메달 아이콘" />
       <Content>
         <RecommendSection>
           <RecommendButton onClick={handleRecommend}>

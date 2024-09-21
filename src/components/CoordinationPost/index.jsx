@@ -66,8 +66,6 @@ const CoordinationPost = ({ post }) => {
 
   return (
     <PostContainer onClick={handleClick}>
-      {' '}
-      {/* PostContainer에 onClick 이벤트 설정 */}
       <Title>
         <TextTitle>{post.title}</TextTitle>
         <TextNickname>{post.nickname}</TextNickname>
