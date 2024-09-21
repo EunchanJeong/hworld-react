@@ -83,3 +83,8 @@ export const CommentIcon = styled.img`
   width: 2vw;
   height: auto;
 `;
+
+export const Title = styled.dviv`
+  display: flex;
+  justify-content: space-between;
+`;

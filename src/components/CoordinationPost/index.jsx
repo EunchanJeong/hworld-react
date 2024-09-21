@@ -10,6 +10,7 @@ import {
   RecommendSection,
   CommentIcon,
   HeartIcon,
+  Title,
 } from './styled';
 import Comment from '../../assets/images/comment_icon.svg';
 import HeartEmpty from '../../assets/images/heart-empty-icon.svg';
@@ -62,6 +63,10 @@ const CoordinationPost = ({ post }) => {
     <PostContainer onClick={handleClick}>
       {' '}
       {/* PostContainer에 onClick 이벤트 설정 */}
+      <Title>
+        <Text>{post.title}</Text>
+        <Text>{post.nickname}</Text>
+      </Title>
       <CoordinationImage src={post.postImageUrl} alt="코디 이미지" />
       <Content>
         <RecommendSection>

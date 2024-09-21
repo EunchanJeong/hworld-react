@@ -16,9 +16,9 @@ import {
 } from './styled';
 
 import CloseButtonImg from '../../assets/images/close_button.svg';
-import SummerImg from '../../assets/images/summer.jpg';
-import FallImg from '../../assets/images/fall.jpg';
-import WinterImg from '../../assets/images/winter.jpg';
+import SummerImg from '../../assets/images/pastel-pink-bokeh-lights.jpg';
+import FallImg from '../../assets/images/new_background.jpg';
+import WinterImg from '../../assets/images/blue-wall-background.jpg';
 
 const backgrounds = [
   { id: 1, name: 'Summer', image: SummerImg },
