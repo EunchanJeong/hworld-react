@@ -47,7 +47,14 @@ const Header = () => {
       <TopNavGroup>
         {isLoggedIn ? (
           <>
-            <NavLink to="/log-out">
+            <NavLink
+              onClick={() => {
+                localStorage.removeItem('accessToken');
+                localStorage.removeItem('refreshToken');
+                setIsLoggedIn(false);
+                window.location.reload();
+              }}
+            >
               <NavMenu>LOG-OUT</NavMenu>
             </NavLink>
             <NavLink to="/mypage">

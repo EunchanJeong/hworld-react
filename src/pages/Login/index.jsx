@@ -79,6 +79,7 @@ const Login = () => {
           });
 
           setIsLoggedIn(true);
+          window.location.reload();
 
           console.log(isLoggedIn);
 
