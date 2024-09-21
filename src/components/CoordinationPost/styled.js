@@ -29,7 +29,6 @@ export const PostContainer = styled.div`
 export const CoordinationImage = styled.img`
   width: 100%;
   height: 85%;
-  border-radius: 10px 10px 0 0;
   box-sizing: border-box;
 `;
 
@@ -84,7 +83,29 @@ export const CommentIcon = styled.img`
   height: auto;
 `;
 
-export const Title = styled.dviv`
+export const Title = styled.div`
   display: flex;
+  width: 100%;
+  height: 80px;
   justify-content: space-between;
+  align-items: center;
+`;
+
+export const TextTitle = styled.p`
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 2;
+`;
+
+export const TextNickname = styled.p`
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-right: 12px;
+  font-size: 14px;
+  color: #aaa;
+  align-items: center;
+  line-height: 2;
 `;
