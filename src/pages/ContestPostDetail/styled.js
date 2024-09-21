@@ -3,13 +3,13 @@ import styled from 'styled-components';
 /**
  * 콘테스트 게시글 상세조회 페이지 styled components
  * @author 정은찬
- * @since 2024.09.11
+ * @since 2024.09.13
  * @version 1.0
  *
  * <pre>
  * 수정일        수정자        수정내용
  * ----------  --------    ---------------------------
- * 2024.09.11  	정은찬        최초 생성
+ * 2024.09.13  	정은찬        최초 생성
  * </pre>
  */
 

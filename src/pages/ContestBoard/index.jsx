@@ -31,7 +31,7 @@ const POSTS_PER_PAGE = 8; // 한 페이지에 8개의 게시글 표시
 /**
  * 콘테스트 게시글 목록 페이지
  * @author 정은찬
- * @since 2024.09.12
+ * @since 2024.09.11
  * @version 1.0
  *
  * <pre>
