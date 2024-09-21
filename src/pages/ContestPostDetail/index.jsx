@@ -46,9 +46,6 @@ const ContestPostDetail = () => {
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태
   const repliesPerPage = 5; // 페이지당 댓글 수
 
-  // todo todo todo : 로그인 멤버 아이디 가져오는 로직 추가
-  const loggedInUserId = 1; // 로그인한 사용자의 ID (임시, 실제 로그인 정보로 대체)
-
   // 게시글 상세 조회 함수
   const fetchPostDetail = async () => {
     try {
@@ -196,9 +193,6 @@ const ContestPostDetail = () => {
                 <ReplyHeader>
                   <ReplyAuthor>{reply.nickname}</ReplyAuthor>
                   <ReplyCreatedAt>{reply.createdAt}</ReplyCreatedAt>
-                  {reply.memberId === loggedInUserId && (
-                    <DeleteButton onClick={() => handleDeleteReply(reply.replyId)}>x</DeleteButton>
-                  )}
                 </ReplyHeader>
                 <ReplyContent>{reply.content}</ReplyContent>
               </ReplyItem>
