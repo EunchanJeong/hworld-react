@@ -35,8 +35,8 @@ export const DescriptionContainer = styled.div`
 `;
 
 export const ItemImage = styled.img`
-  width: 12vw;
-  height: 12vw;
+  width: 6vw;
+  height: 6vw;
   object-fit: cover;
   border: 0.3px solid black;
   margin-right: 10px;
@@ -55,7 +55,7 @@ export const ShopImage = styled.img`
 `;
 
 export const ShopName = styled.p`
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
   color: black;
   padding: 0;
@@ -63,12 +63,12 @@ export const ShopName = styled.p`
 `;
 
 export const ItemName = styled.p`
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
 `;
 
 export const OptionText = styled.p`
-  font-size: 18px;
+  font-size: 16px;
   color: #999;
   margin-top: 0;
 `;
@@ -88,10 +88,9 @@ export const CategoryName = styled.p`
   border-radius: 20px;
   background-color: #ededed;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
-  font-size: 14px; /* 텍스트 크기 조정 */
   font-weight: bold;
   text-align: center;
-  width: 7vw;
-  height: 5.5vh;
-  font-size: 20px;
+  width: 5vw;
+  height: 4vh;
+  font-size: 16px;
 `;
