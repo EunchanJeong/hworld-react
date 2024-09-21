@@ -16,14 +16,14 @@ import {
 } from './styled';
 
 import CloseButtonImg from '../../assets/images/close_button.svg';
-import SummerImg from '../../assets/images/pastel-pink-bokeh-lights.jpg';
-import FallImg from '../../assets/images/new_background.jpg';
-import WinterImg from '../../assets/images/blue-wall-background.jpg';
+import PastelPinkImg from '../../assets/images/pastel-pink-bokeh-lights.jpg';
+import WaveImg from '../../assets/images/new_background.jpg';
+import BuleWallImg from '../../assets/images/blue-wall-background.jpg';
 
 const backgrounds = [
-  { id: 1, name: 'Summer', image: SummerImg },
-  { id: 2, name: 'Fall', image: FallImg },
-  { id: 3, name: 'Winter', image: WinterImg },
+  { id: 1, name: 'Pastel Pink', image: PastelPinkImg },
+  { id: 2, name: 'Wave', image: WaveImg },
+  { id: 3, name: 'Bule Wall', image: BuleWallImg },
 ];
 
 const ContestBackgroundModal = ({ onClose, onSubmit }) => {
@@ -53,7 +53,6 @@ const ContestBackgroundModal = ({ onClose, onSubmit }) => {
         {/* 오른쪽 위 닫기 버튼 */}
         <CloseButton src={CloseButtonImg} onClick={onClose} />
         <ModalName>배경 선택</ModalName>
-        <HorizonLine />
 
         {/* 배경 리스트 */}
         <CoordinationList>
@@ -66,8 +65,8 @@ const ContestBackgroundModal = ({ onClose, onSubmit }) => {
 
               <Checkbox
                 type="checkbox"
-                checked={selectedBackground?.id === background.id} // 단일 선택 비교
-                onChange={() => handleBackgroundSelect(background)} // 배경 선택
+                checked={selectedBackground?.id === background.id}
+                onChange={() => handleBackgroundSelect(background)}
               />
             </CoordinationItem>
           ))}
