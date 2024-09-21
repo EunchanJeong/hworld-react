@@ -1,7 +1,9 @@
 import React, { useState, useRef } from 'react';
 import html2canvas from 'html2canvas';
 import { useMutation, useQueryClient } from 'react-query';
-import { useNavigate } from 'react-router-dom'; // useNavigate 추가
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import ContestDetailBreadCrumb from '../../components/ContestDetailBreadCrumb';
 import CommonLayout from '../../components/Layout';
 import CoordinationListModal from '../../components/CoordinationListModal';
@@ -49,12 +51,16 @@ const RegisterContestPost = () => {
       onSuccess: () => {
         console.log('게시글 등록 성공');
         queryClient.invalidateQueries('contestPosts'); // 게시글 목록을 다시 불러오기
-        alert('등록이 완료되었습니다!'); // 등록 완료 메시지
-        navigate('/contest'); // '/contest' 경로로 이동
+
+        // 토스트를 띄우고, 닫히면 navigate 실행
+        toast.success('게시글 등록이 완료되었습니다.', {
+          onClose: () => {
+            navigate('/contest'); // '/contest' 경로로 이동
+          },
+        });
       },
       onError: (error) => {
-        console.error('게시글 등록 실패:', error);
-        alert('등록 중 오류가 발생했습니다. 다시 시도해주세요.');
+        toast.error('게시글 등록에 실패했습니다.');
       },
     },
   );
@@ -144,7 +150,6 @@ const RegisterContestPost = () => {
   return (
     <CommonLayout>
       <ContestDetailBreadCrumb title={'게시글 작성'} />
-
       <PostFormContainer>
         {/* 제목 */}
         <TitleContainer>
@@ -190,11 +195,9 @@ const RegisterContestPost = () => {
           </CoordinationContainer>
         </ImageContainer>
       </PostFormContainer>
-
       <ItemListTitle>상품</ItemListTitle>
       {/* 상품 목록 */}
       <HorizontalLine />
-
       <ItemList>
         {selectedCoordination && selectedCoordination.itemList.length > 0 ? (
           selectedCoordination.itemList.map((item, index) => (
@@ -215,16 +218,23 @@ const RegisterContestPost = () => {
           {addPostMutation.isLoading ? '등록 중...' : '등록'}
         </SubmitButton>
       </ButtonDiv>
-
       {/* 코디 모달 */}
       {isCoordinationModalOpen && (
         <CoordinationListModal onClose={handleCloseCoordinationModal} onSubmit={handleCoordinationSubmit} />
       )}
-
       {/* 배경 모달 */}
       {isBackgroundModalOpen && (
         <ContestBackgroundModal onClose={handleCloseBackgroundModal} onSubmit={handleBackgroundSubmit} />
       )}
+      <ToastContainer
+        position="bottom-center"
+        autoClose={1000}
+        hideProgressBar={true}
+        closeOnClick={true}
+        pauseOnHover={false}
+        limit={1}
+        style={{ fontSize: '20px', textAlign: 'center' }}
+      />
     </CommonLayout>
   );
 };
