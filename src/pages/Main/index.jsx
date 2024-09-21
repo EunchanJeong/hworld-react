@@ -117,7 +117,7 @@ const Main = () => {
     fade: false, // 사라졌다 나타나는 효과
     arrows: true, // 좌,우 버튼
     vertical: false, // 세로 캐러셀
-    initialSlide: 1, // 첫 컨텐츠 번호
+    initialSlide: 0, // 첫 컨텐츠 번호
     pauseOnFocus: false, // focus시 정지
     pauseOnHover: false, // hover시 정지
     appendDots: (dots) => (
@@ -179,6 +179,7 @@ const Main = () => {
     arrows: true, // 좌,우 버튼
     pauseOnFocus: false, // focus시 정지
     pauseOnHover: false, // hover시 정지
+    initialSlide: 0, // 첫 컨텐츠 번호
   };
 
   return (
