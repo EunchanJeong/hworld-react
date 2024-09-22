@@ -35,6 +35,7 @@ import { useQuery } from 'react-query';
 import { GetBestPostAPI } from '../../apis/Contest/ContestAPI';
 import white_plus from '../../assets/images/white_plus.svg';
 import { CustomLink } from '../NoticeList/styled';
+import DownloadModal from '../../components/DownloadModal';
 
 /**
  * 메인 페이지
@@ -64,6 +65,7 @@ const Main = () => {
 
   const [isDragging, setIsDragging] = useState(false);
   const [mouseDownPos, setMouseDownPos] = useState({ x: 0, y: 0 });
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleMouseDown = (e) => {
     setMouseDownPos({ x: e.clientX, y: e.clientY });
@@ -187,9 +189,16 @@ const Main = () => {
   return (
     <>
       <CommonLayout>
-        <Link to="/download">
-          <GameStartButton fontSize="24px">PLAY GAME</GameStartButton>
-        </Link>
+        {/* <a
+          href="https://oasis-hworld.s3.ap-northeast-2.amazonaws.com/H-WORLD_MacOS.zip"
+          target="_blank"
+          rel="noopner noreferrer"
+        > */}
+        {isModalOpen && <DownloadModal onClose={() => setIsModalOpen(false)} />}
+        <GameStartButton onClick={() => setIsModalOpen(true)} fontSize="24px">
+          PLAY GAME
+        </GameStartButton>
+        {/* </a> */}
         <Container>
           <BannerContainer>
             <Slider {...bannerSettings}>
