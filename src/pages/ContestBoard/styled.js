@@ -43,23 +43,22 @@ export const StatusText = styled.p`
 
 export const PostListContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 한 줄에 4개씩 배치 */
-  grid-gap: 80px; /* 게시글 간의 간격 */
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 80px;
   margin-top: 20px;
-  justify-items: center; /* 수평 가운데 정렬 */
-  align-items: center; /* 수직 가운데 정렬 */
+  justify-items: center;
+  align-items: center;
 `;
 
 export const PostListAwardContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 한 줄에 3개씩 배치 */
-  grid-gap: 20px; /* 게시글 간의 간격 */
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
   margin-top: 20px;
-  justify-items: center; /* 수평 가운데 정렬 */
-  align-items: center; /* 수직 가운데 정렬 */
+  justify-items: center;
+  align-items: center;
 `;
 
-// 이미지 버튼 스타일 정의
 export const PaginationImageButton = styled.img`
   width: 0.7vw;
   height: auto;
@@ -75,7 +74,6 @@ export const PageinationContainer = styled.div`
   margin-top: 50px;
 `;
 
-// 페이지 번호 스타일 정의
 export const PageNumber = styled.span`
   cursor: pointer;
   margin: 0 20px 0 20px;
@@ -87,7 +85,6 @@ export const PageNumber = styled.span`
   }
 `;
 
-// 드롭다운 스타일 정의
 export const DropdownWrapper = styled.div`
   align-items: center;
 `;

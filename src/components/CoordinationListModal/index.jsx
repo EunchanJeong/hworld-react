@@ -24,6 +24,19 @@ import {
 import { GetCoordinationListAPI } from '../../apis/Contest/ContestAPI';
 import CloseButtonImg from '../../assets/images/close_button.svg';
 
+/**
+ * 콘테스트 게시글 코디 리스트 모달 컴포넌트
+ * @author 정은찬
+ * @since 2024.09.15
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일       수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.15  	정은찬        최초 생성
+ * </pre>
+ */
+
 // 코디 리스트를 받아오는 API 함수
 const fetchCoordinationList = async () => {
   const response = await GetCoordinationListAPI();

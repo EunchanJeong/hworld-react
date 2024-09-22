@@ -189,11 +189,9 @@ export const SubmitButton = styled.button`
 `;
 
 export const CanvasDiv = styled.div`
-  width: fit-content; /* 자식 요소의 너비에 맞춰 부모 요소의 너비 설정 */
-
-  position: relative; /* 코디 이미지를 배경 위에 겹치게 하기 위한 설정 */
-
-  position: relative; /* 코디 이미지를 배경 위에 겹치기 위한 설정 */
+  width: fit-content;
+  position: relative;
+  position: relative;
   width: 35vw;
   height: 70vh;
 `;

@@ -68,7 +68,6 @@ const DetailCoordinationPost = ({ post }) => {
         </RecommendSection>
 
         <CommentSection>
-          {/* 버튼 클릭 시 부모의 onClick 이벤트가 실행되지 않도록 stopPropagation 추가 */}
           <RecommendButton fontSize="20px" onClick={handleRecommend}>
             추천하기
           </RecommendButton>

@@ -74,16 +74,16 @@ export const OptionText = styled.p`
 `;
 
 export const HorizontalLine = styled.hr`
-  width: 100%; /* 수평선이 부모 컨테이너의 전체 너비를 차지하도록 설정 */
-  border: none; /* 기본 border 제거 */
-  border-top: 1px solid #eee; /* 상단에만 선을 표시 */
-  margin: 10px 0; /* 수평선 위아래 간격을 조정 */
+  width: 100%;
+  border: none;
+  border-top: 1px solid #eee;
+  margin: 10px 0;
 `;
 
 export const CategoryName = styled.p`
-  display: flex; /* Flexbox로 변경 */
-  justify-content: center; /* 가로 방향 중앙 정렬 */
-  align-items: center; /* 세로 방향 중앙 정렬 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 0;
   border-radius: 20px;
   background-color: #ededed;

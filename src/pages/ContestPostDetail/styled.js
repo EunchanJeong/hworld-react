@@ -147,7 +147,7 @@ export const ReplyItem = styled.div`
 
 export const ReplyHeader = styled.div`
   display: flex;
-  justify-content: flex-start; /* 자식들이 왼쪽에 정렬 */
+  justify-content: flex-start;
   align-items: baseline;
 `;
 
@@ -173,7 +173,6 @@ export const DeleteButton = styled.button`
   cursor: pointer;
 `;
 
-// 이미지 버튼 스타일 정의
 export const PaginationImageButton = styled.img`
   width: 0.7vw;
   height: auto;
@@ -189,7 +188,6 @@ export const PageinationContainer = styled.div`
   margin-top: 50px;
 `;
 
-// 페이지 번호 스타일 정의
 export const PageNumber = styled.span`
   cursor: pointer;
   margin: 0 20px 0 20px;
@@ -201,7 +199,6 @@ export const PageNumber = styled.span`
   }
 `;
 
-// 페이지 번호 스타일 정의
 export const ReplyTop = styled.p`
   font-size: 25px;
   font-weight: bold;
