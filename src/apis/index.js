@@ -1,5 +1,18 @@
 import axios from 'axios';
 
+/**
+ * axios 인스턴스
+ * @author 조영욱
+ * @since 2024.09.10
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        	수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.10  	조영욱        최초 생성
+ * </pre>
+ */
+
 export const axiosInstance = axios.create({
   baseURL: `${process.env.REACT_APP_API_URL}`,
   timeout: 10000,
