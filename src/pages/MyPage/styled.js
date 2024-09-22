@@ -1,5 +1,18 @@
 import styled from 'styled-components';
 
+/**
+ * 마이페이지 styled components
+ * @author 김지현
+ * @since 2024.09.12
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.12  	김지현        최초 생성
+ * </pre>
+ */
+
 export const MyInfoLayout = styled.div`
   width: 80vw;
   height: 25vh;
