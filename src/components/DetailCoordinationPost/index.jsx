@@ -35,7 +35,7 @@ const DetailCoordinationPost = ({ post }) => {
 
   // 하트 버튼 클릭 시 API 호출 및 추천수 업데이트
   const handleRecommend = async (e) => {
-    e.stopPropagation(); // 클릭 이벤트가 부모 요소로 전파되지 않도록 설정
+    e.stopPropagation();
     try {
       const newRecommendState = !isRecommended;
       setIsRecommended(newRecommendState);

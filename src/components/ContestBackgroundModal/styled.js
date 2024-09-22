@@ -17,18 +17,18 @@ export const ModalContent = styled.div`
   padding: 20px;
   width: 80%;
   max-width: 50vw;
-  height: 60vh;
+  height: 55vh;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: relative; /* relative를 추가해서 CloseButton의 위치가 ModalContent를 기준으로 동작하도록 설정 */
+  position: relative;
 `;
 
 export const CoordinationList = styled.div`
   display: flex;
   justify-content: space-around;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 
 export const CoordinationItem = styled.div`
@@ -71,8 +71,8 @@ export const CoordinationTitle = styled.h4`
 `;
 
 export const CoordinationImage = styled.img`
-  width: 100px;
-  height: 20vh;
+  width: 10vw;
+  height: 30vh;
   object-fit: cover;
   border-radius: 8px;
   margin-top: 10px;

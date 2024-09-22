@@ -24,22 +24,20 @@ export const PostContainer = styled.div`
   overflow: hidden;
   box-sizing: border-box;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
-  position: relative; /* 자식 요소의 절대 위치를 설정하기 위해 relative 추가 */
+  position: relative;
 `;
 
 export const CoordinationImage = styled.img`
   width: 100%;
   height: 85%;
-  border-radius: 10px 10px 0 0;
   box-sizing: border-box;
 `;
 
-/* 새로운 MedalImage 스타일링 추가 */
 export const MedalImage = styled.img`
-  position: absolute; /* 절대 위치를 사용하여 부모(PostContainer) 안에서 배치 */
-  top: 10px; /* 상단에서 10px 떨어진 위치 */
-  right: 10px; /* 우측에서 10px 떨어진 위치 */
-  width: 4vw; /* 원하는 크기로 조정 */
+  position: absolute;
+  top: 40px;
+  right: 10px;
+  width: 4vw;
   height: auto;
 `;
 
@@ -91,4 +89,29 @@ export const CommentIcon = styled.img`
   display: flex;
   width: 2vw;
   height: auto;
+`;
+export const Title = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const TextTitle = styled.p`
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 2;
+`;
+
+export const TextNickname = styled.p`
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-right: 12px;
+  font-size: 14px;
+  color: #aaa;
+  align-items: center;
+  line-height: 2;
 `;

@@ -1,7 +1,9 @@
 import React, { useState, useRef } from 'react';
 import html2canvas from 'html2canvas';
 import { useMutation, useQueryClient } from 'react-query';
-import { useNavigate } from 'react-router-dom'; // useNavigate 추가
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import ContestDetailBreadCrumb from '../../components/ContestDetailBreadCrumb';
 import CommonLayout from '../../components/Layout';
 import CoordinationListModal from '../../components/CoordinationListModal';
@@ -29,6 +31,19 @@ import {
   ButtonDiv,
 } from './styled';
 
+/**
+ * 콘테스트 게시글 등록 페이지
+ * @author 정은찬
+ * @since 2024.09.13
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.13  	정은찬        최초 생성
+ * </pre>
+ */
+
 const RegisterContestPost = () => {
   const [title, setTitle] = useState(''); // 제목 상태
   const [isCoordinationModalOpen, setIsCoordinationModalOpen] = useState(false); // 코디 모달 상태
@@ -49,12 +64,16 @@ const RegisterContestPost = () => {
       onSuccess: () => {
         console.log('게시글 등록 성공');
         queryClient.invalidateQueries('contestPosts'); // 게시글 목록을 다시 불러오기
-        alert('등록이 완료되었습니다!'); // 등록 완료 메시지
-        navigate('/contest'); // '/contest' 경로로 이동
+
+        // 토스트를 띄우고, 닫히면 navigate 실행
+        toast.success('게시글 등록이 완료되었습니다.', {
+          onClose: () => {
+            navigate('/contest'); // '/contest' 경로로 이동
+          },
+        });
       },
       onError: (error) => {
-        console.error('게시글 등록 실패:', error);
-        alert('등록 중 오류가 발생했습니다. 다시 시도해주세요.');
+        toast.error('게시글 등록에 실패했습니다.');
       },
     },
   );
@@ -144,9 +163,7 @@ const RegisterContestPost = () => {
   return (
     <CommonLayout>
       <ContestDetailBreadCrumb title={'게시글 작성'} />
-
       <PostFormContainer>
-        {/* 제목 */}
         <TitleContainer>
           <TitleLabel>제목</TitleLabel>
           <TitleInput
@@ -157,7 +174,6 @@ const RegisterContestPost = () => {
           />
         </TitleContainer>
 
-        {/* 코디 이미지 및 배경 */}
         <ImageContainer>
           <CoordinationContainer>
             <CanvasDiv>
@@ -190,11 +206,9 @@ const RegisterContestPost = () => {
           </CoordinationContainer>
         </ImageContainer>
       </PostFormContainer>
-
       <ItemListTitle>상품</ItemListTitle>
-      {/* 상품 목록 */}
-      <HorizontalLine />
 
+      <HorizontalLine />
       <ItemList>
         {selectedCoordination && selectedCoordination.itemList.length > 0 ? (
           selectedCoordination.itemList.map((item, index) => (
@@ -210,21 +224,27 @@ const RegisterContestPost = () => {
         )}
       </ItemList>
       <ButtonDiv>
-        {/* 등록 버튼 */}
         <SubmitButton onClick={handleSubmit} disabled={addPostMutation.isLoading}>
-          {addPostMutation.isLoading ? '등록 중...' : '등록'}
+          {addPostMutation.isLoading ? '등록중' : '등록'}
         </SubmitButton>
       </ButtonDiv>
 
-      {/* 코디 모달 */}
       {isCoordinationModalOpen && (
         <CoordinationListModal onClose={handleCloseCoordinationModal} onSubmit={handleCoordinationSubmit} />
       )}
 
-      {/* 배경 모달 */}
       {isBackgroundModalOpen && (
         <ContestBackgroundModal onClose={handleCloseBackgroundModal} onSubmit={handleBackgroundSubmit} />
       )}
+      <ToastContainer
+        position="bottom-center"
+        autoClose={1000}
+        hideProgressBar={true}
+        closeOnClick={true}
+        pauseOnHover={false}
+        limit={1}
+        style={{ fontSize: '20px', textAlign: 'center' }}
+      />
     </CommonLayout>
   );
 };
