@@ -29,6 +29,19 @@ import MyPageAPI from '../../apis/Member/MyPageAPI';
 import Spinner from '../Spinner';
 import CloseButtonImg from '../../assets/images/close_button.svg';
 
+/**
+ * 마이페이지 주문 상세내역 모달 컴포넌트
+ * @author 김지현
+ * @since 2024.09.13
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        	수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.13  	김지현        최초 생성
+ * </pre>
+ */
+
 const fetchMemberOrderDetail = async (orderId) => {
   const response = await MyPageAPI.getMemberOrderDetail(orderId);
   console.log(response.data);

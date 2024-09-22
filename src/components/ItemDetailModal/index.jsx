@@ -37,6 +37,19 @@ import {
   ItemDetailImage,
 } from './styled';
 
+/**
+ * 아이템 상세 모달 컴포넌트
+ * @author 김지현
+ * @since 2024.09.14
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        	수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.14  	김지현        최초 생성
+ * </pre>
+ */
+
 const fetchItemDetail = async (itemId) => {
   const response = await ItemAPI.getItemDetail(itemId);
   console.log(response.data);

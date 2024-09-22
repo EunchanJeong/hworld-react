@@ -25,6 +25,19 @@ import MyPageOrderModal from '../../../components/MyPageOrderModal';
 import backButton from '../../../assets/images/back-button-icon.svg';
 import nextButton from '../../../assets/images/next-button-icon.svg';
 
+/**
+ * 마이페이지 내 구매 내역 조회 페이지
+ * @author 김지현
+ * @since 2024.09.13
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.13  	김지현        최초 생성
+ * </pre>
+ */
+
 const fetchMemberOrder = async (page, size) => {
   const response = await MyPageAPI.getMemberOrder(page, size);
   return response.data;

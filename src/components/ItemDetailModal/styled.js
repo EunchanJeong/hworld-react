@@ -1,5 +1,18 @@
 import styled from 'styled-components';
 
+/**
+ * 아이템 상세 모달 styled components
+ * @author 김지현
+ * @since 2024.09.14
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        	수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.14  	김지현        최초 생성
+ * </pre>
+ */
+
 export const ModalOverlay = styled.div`
   position: fixed;
   top: 0;

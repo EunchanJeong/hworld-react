@@ -1,6 +1,19 @@
 import React from 'react';
 import { FooterContainer, FooterThinText, FooterLightText, FooterMediumText } from './styled';
 
+/**
+ * 푸터 컴포넌트
+ * @author 김지현
+ * @since 2024.09.10
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        	수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.10  	김지현        최초 생성
+ * </pre>
+ */
+
 const Footer = () => {
   return (
     <FooterContainer>

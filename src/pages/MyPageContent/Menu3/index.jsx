@@ -27,6 +27,19 @@ import nextButton from '../../../assets/images/next-button-icon.svg';
 import Plus from '../../../assets/images/plus.svg';
 import Minus from '../../../assets/images/minus.svg';
 
+/**
+ * 마이페이지 내 포인트 사용 내역 조회 페이지
+ * @author 김지현
+ * @since 2024.09.12
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.12  	김지현        최초 생성
+ * </pre>
+ */
+
 const fetchMemberPointHistory = async (page, size) => {
   const response = await MyPageAPI.getMemberPointHistory(page, size);
   return response.data;

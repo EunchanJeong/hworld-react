@@ -1,5 +1,18 @@
 import styled from 'styled-components';
 
+/**
+ * 로그인 페이지 styled components
+ * @author 김지현
+ * @since 2024.09.17
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.17  	김지현        최초 생성
+ * </pre>
+ */
+
 export const SignUpLayout = styled.div`
   width: 60vw;
   height: 65vh;

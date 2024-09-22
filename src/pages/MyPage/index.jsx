@@ -36,6 +36,19 @@ import Menu2 from '../MyPageContent/Menu2';
 import Menu3 from '../MyPageContent/Menu3';
 import Menu4 from '../MyPageContent/Menu4';
 
+/**
+ * 마이페이지
+ * @author 김지현
+ * @since 2024.09.12
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.12  	김지현        최초 생성
+ * </pre>
+ */
+
 const fetchMemberInfo = async () => {
   const response = await MyPageAPI.getMemberInfo();
   return response.data;
