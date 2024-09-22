@@ -19,6 +19,19 @@ import { SignUpLayout, StyledHr, InputLayout, InputDetailLayout, StyledInput, In
 import AuthAPI from '../../apis/Member/AuthAPI';
 import { axiosInstance } from '../../apis';
 
+/**
+ * 로그인 페이지
+ * @author 김지현
+ * @since 2024.09.17
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.17  	김지현        최초 생성
+ * </pre>
+ */
+
 const Login = () => {
   const [loginId, setLoginId] = useState('');
   const [password, setPassword] = useState('');

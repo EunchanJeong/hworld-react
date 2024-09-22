@@ -1,5 +1,18 @@
 import styled from 'styled-components';
 
+/**
+ * 버튼 styled components
+ * @author 김지현
+ * @since 2024.09.10
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        	수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.10  	김지현        최초 생성
+ * </pre>
+ */
+
 export const StyledButton = styled.button`
   border-radius: 50px;
   background-color: #284180;

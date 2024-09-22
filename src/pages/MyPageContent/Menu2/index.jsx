@@ -22,6 +22,19 @@ import Spinner from '../../../components/Spinner';
 import Text from '../../../components/Text';
 import ItemDetailModal from '../../../components/ItemDetailModal';
 
+/**
+ * 마이페이지 내 코디 조회 페이지
+ * @author 김지현
+ * @since 2024.09.12
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.12  	김지현        최초 생성
+ * </pre>
+ */
+
 const fetchMemberCoordination = async () => {
   const response = await MyPageAPI.getMemberCoordination();
   return response.data;

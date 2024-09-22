@@ -1,5 +1,18 @@
 import styled from 'styled-components';
 
+/**
+ * 텍스트 styled components
+ * @author 김지현
+ * @since 2024.09.11
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일        	수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.11  	김지현        최초 생성
+ * </pre>
+ */
+
 const textStyles = {
   title: {
     fontWeight: 'bold',
