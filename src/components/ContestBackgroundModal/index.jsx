@@ -26,6 +26,19 @@ const backgrounds = [
   { id: 3, name: 'Bule Wall', image: BuleWallImg },
 ];
 
+/**
+ * 콘테스트 게시글 배경 선택 모달 컴포넌트
+ * @author 정은찬
+ * @since 2024.09.15
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일       수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.15  	정은찬        최초 생성
+ * </pre>
+ */
+
 const ContestBackgroundModal = ({ onClose, onSubmit }) => {
   const [selectedBackground, setSelectedBackground] = useState(null); // 단일 값으로 변경
 
@@ -50,11 +63,9 @@ const ContestBackgroundModal = ({ onClose, onSubmit }) => {
   return (
     <ModalContainer onClick={handleOutsideClick}>
       <ModalContent>
-        {/* 오른쪽 위 닫기 버튼 */}
         <CloseButton src={CloseButtonImg} onClick={onClose} />
         <ModalName>배경 선택</ModalName>
 
-        {/* 배경 리스트 */}
         <CoordinationList>
           {backgrounds.map((background) => (
             <CoordinationItem key={background.id}>

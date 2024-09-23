@@ -1,5 +1,18 @@
 import styled from 'styled-components';
 
+/**
+ * 콘테스트 게시글 배경 선택 모달 styled components
+ * @author 정은찬
+ * @since 2024.09.15
+ * @version 1.0
+ *
+ * <pre>
+ * 수정일       수정자        수정내용
+ * ----------  --------    ---------------------------
+ * 2024.09.15  	정은찬        최초 생성
+ * </pre>
+ */
+
 export const ModalContainer = styled.div`
   position: fixed;
   top: 0;
@@ -44,7 +57,7 @@ export const Checkbox = styled.input.attrs({ type: 'checkbox' })`
   border: 2px solid black;
   border-radius: 4px;
   cursor: pointer;
-  position: relative; /* 부모 요소에 상대적인 배치 추가 */
+  position: relative;
 
   &:checked {
     background-color: #284180;
@@ -58,7 +71,7 @@ export const Checkbox = styled.input.attrs({ type: 'checkbox' })`
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* 중앙에 배치 */
+    transform: translate(-50%, -50%);
   }
 `;
 
@@ -88,7 +101,6 @@ export const CloseButton = styled.img`
 `;
 
 export const ModalName = styled.h3`
-  /* text-align: center; */
   margin-bottom: 10px;
   border-bottom: 1px solid #eee;
 `;

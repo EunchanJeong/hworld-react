@@ -74,7 +74,6 @@ export const CommentSection = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 3.8vw;
-  /* border: 1px solid red; */
 `;
 
 export const CommentIcon = styled.img`

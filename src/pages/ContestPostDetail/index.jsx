@@ -187,7 +187,7 @@ const ContestPostDetail = () => {
 
       <ReplyContainer>
         <ReplyTop>댓글</ReplyTop>
-        {/* 댓글 입력 창과 등록 버튼 */}
+
         <ReplyInputContainer>
           <ReplyInput
             type="text"
@@ -198,7 +198,6 @@ const ContestPostDetail = () => {
           <ReplyButton onClick={handleReplySubmit}>등록</ReplyButton>
         </ReplyInputContainer>
         <ReplyContentContainer>
-          {/* 댓글 목록 표시 */}
           {currentReplies && currentReplies.length > 0 ? (
             currentReplies.map((reply) => (
               <ReplyItem key={reply.replyId}>
@@ -214,7 +213,6 @@ const ContestPostDetail = () => {
           )}
         </ReplyContentContainer>
 
-        {/* 페이지네이션 */}
         <PageinationContainer>
           <PaginationImageButton
             src={backButton}
