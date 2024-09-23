@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 
 /**
- * 헤더 styled components
+ * 장바구니 상품 styled components
  * @author 조영욱
- * @since 2024.09.11
+ * @since 2024.09.12
  * @version 1.0
  *
  * <pre>
  * 수정일        	수정자        수정내용
  * ----------  --------    ---------------------------
- * 2024.09.11  	조영욱        최초 생성
+ * 2024.09.12  	조영욱        최초 생성
  * </pre>
  */
 
