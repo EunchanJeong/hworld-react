@@ -52,7 +52,6 @@ import {
 
 const fetchItemDetail = async (itemId) => {
   const response = await ItemAPI.getItemDetail(itemId);
-  console.log(response.data);
   return response.data;
 };
 
@@ -91,17 +90,14 @@ const ItemDetailModal = ({ itemId, onClose }) => {
         .then((response) => {
           const { success, message } = response.data;
           if (success) {
-            console.log(message);
             toast.success(message);
           }
         })
         .catch((error) => {
           if (error.response) {
             const { message } = error.response.data;
-            console.error(message);
             toast.error(message);
           } else {
-            console.error(error);
             toast.error(error);
           }
         });

@@ -38,8 +38,7 @@ export function CheckoutSuccess() {
       };
 
       try {
-        const response = await fetchConfirmPayment(requestData);
-        console.log(response);
+        await fetchConfirmPayment(requestData);
       } catch (e) {
         navigate('/');
       }

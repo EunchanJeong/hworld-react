@@ -42,12 +42,10 @@ const Login = () => {
 
   const handleLoginIdChange = (loginId) => {
     setLoginId(loginId);
-    console.log('아이디 입력 -> ' + loginId);
   };
 
   const handlePasswordChange = (password) => {
     setPassword(password);
-    console.log('패스워드 입력 -> ' + password);
   };
 
   const onLogInSuccess = (accessToken, refreshToken) => {
@@ -63,9 +61,7 @@ const Login = () => {
     localStorage.setItem('accessToken', accessToken);
     localStorage.setItem('refreshToken', refreshToken);
 
-    console.log('remainingTime: ', remainingTime);
     setTimeout(() => {
-      console.log('토큰 생성', refreshToken);
       // onSilentRefresh(refreshToken);
     }, remainingTime * 1000);
 
@@ -77,13 +73,8 @@ const Login = () => {
       .then((response) => {
         const { success, message } = response.data;
         if (success) {
-          console.log(message);
-
           const authToken = response.headers['auth'];
           const refreshToken = response.headers['refresh'];
-
-          console.log('authToken -> ' + authToken);
-          console.log('refreshToken -> ' + refreshToken);
 
           onLogInSuccess(authToken, refreshToken);
 
@@ -94,18 +85,14 @@ const Login = () => {
           setIsLoggedIn(true);
           window.location.reload();
 
-          console.log(isLoggedIn);
-
           toast.success(message);
         }
       })
       .catch((error) => {
         if (error.response) {
           const { message } = error.response.data;
-          console.error(message);
           toast.error(message);
         } else {
-          console.error(error);
           toast.error(error);
         }
       });

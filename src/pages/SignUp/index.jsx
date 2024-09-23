@@ -55,17 +55,14 @@ const SignUp = () => {
 
   const handleLoginIdChange = (loginId) => {
     setLoginId(loginId);
-    console.log('아이디 입력 -> ' + loginId);
   };
 
   const handlePasswordChange = (password) => {
     setPassword(password);
-    console.log('패스워드 입력 -> ' + password);
   };
 
   const handlePasswordValidationChange = (passwordValidation) => {
     setPasswordValidation(passwordValidation);
-    console.log('패스워드 확인 입력 -> ' + passwordValidation);
 
     if (password === passwordValidation) setIsPasswordAvailable(true);
     else setIsPasswordAvailable(false);
@@ -73,18 +70,14 @@ const SignUp = () => {
 
   const handleNicknameChange = (nickname) => {
     setNickname(nickname);
-    console.log('닉네임 입력 -> ' + nickname);
   };
 
   const handleGenderChange = (gender) => {
     setGender(gender);
     setClickedGender(gender);
-    console.log('성별 입력 -> ' + gender);
   };
 
   const handleBirthdateChange = (birthdate) => {
-    console.log('생일 입력 -> ' + birthdate);
-
     if (birthdate.length === 8) {
       birthdate = birthdate.slice(0, 4) + '-' + birthdate.slice(4, 6) + '-' + birthdate.slice(6, 8);
     }
@@ -93,8 +86,6 @@ const SignUp = () => {
   };
 
   const checkLoginIdValidation = () => {
-    console.log('아이디 중복 확인 -> ' + loginId);
-
     axiosInstance
       .get('/members/check-id', {
         params: {
@@ -102,18 +93,14 @@ const SignUp = () => {
         },
       })
       .then((response) => {
-        console.log(response.data);
         setIsIdAvailable(response.data.success);
       })
       .catch((error) => {
-        console.error('Error: ' + error);
         setIsIdAvailable(false);
       });
   };
 
   const checkNicknameValidation = () => {
-    console.log('닉네임 중복 확인 -> ' + nickname);
-
     axiosInstance
       .get('/members/check-nickname', {
         params: {
@@ -121,19 +108,14 @@ const SignUp = () => {
         },
       })
       .then((response) => {
-        console.log(response.data);
         setIsNicknameAvailable(response.data.success);
       })
       .catch((error) => {
-        console.error('Error: ' + error);
         setIsNicknameAvailable(false);
       });
   };
 
   const handleSignUp = () => {
-    console.log(loginId, password, passwordValidation);
-    console.log(nickname, gender, birthdate);
-
     AuthAPI.SignUp({
       loginId: loginId,
       password: password,
@@ -143,11 +125,9 @@ const SignUp = () => {
       birthdate: birthdate,
     })
       .then((response) => {
-        console.log(response.data);
         toast.success('회원가입이 완료되었습니다!');
       })
       .catch((error) => {
-        console.log(error);
         toast.error('회원가입에 실패했습니다.');
       });
   };

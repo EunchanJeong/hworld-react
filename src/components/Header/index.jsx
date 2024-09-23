@@ -22,10 +22,6 @@ import logo from '../../assets/images/logo.svg';
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
 
-  useEffect(() => {
-    console.log(isLoggedIn);
-  }, [isLoggedIn]);
-
   return (
     <WhiteBox>
       <LogoWrapper>

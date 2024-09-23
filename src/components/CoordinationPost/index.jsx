@@ -50,11 +50,9 @@ const CoordinationPost = ({ post }) => {
       setRecommendCount((prevCount) => (newRecommendState ? prevCount + 1 : prevCount - 1));
 
       if (newRecommendState === false) {
-        const response = await axiosInstance.delete(`/contest/recommend/${post.postId}`);
-        console.log(response);
+        await axiosInstance.delete(`/contest/recommend/${post.postId}`);
       } else {
-        const response = await axiosInstance.post(`/contest/recommend/${post.postId}`);
-        console.log(response);
+        await axiosInstance.post(`/contest/recommend/${post.postId}`);
       }
     } catch (error) {
       // 로그인 안 돼있을 시 로그인 페이지로 이동

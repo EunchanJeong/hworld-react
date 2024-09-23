@@ -44,7 +44,6 @@ import CloseButtonImg from '../../assets/images/close_button.svg';
 
 const fetchMemberOrderDetail = async (orderId) => {
   const response = await MyPageAPI.getMemberOrderDetail(orderId);
-  console.log(response.data);
   return response.data;
 };
 

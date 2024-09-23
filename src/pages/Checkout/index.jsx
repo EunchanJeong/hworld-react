@@ -22,8 +22,6 @@ export function Checkout() {
   const location = useLocation();
   const { order, deliveryAddress } = location.state || {};
 
-  console.log(`order: ${JSON.stringify(order, null, 2)}\ndeliveryAddress: ${JSON.stringify(deliveryAddress, null, 2)}`);
-
   const [amount, setAmount] = useState({
     currency: 'KRW',
     value: order.amount, // 파라미터로 받기 (order.amount)
@@ -116,23 +114,18 @@ export function Checkout() {
               padding: '1% 3%',
             }}
             onClick={async () => {
-              try {
-                // ------ '결제하기' 버튼 누르면 결제창 띄우기 ------
-                // 결제를 요청하기 전에 orderId, amount를 서버에 저장하세요.
-                // 결제 과정에서 악의적으로 결제 금액이 바뀌는 것을 확인하는 용도입니다.
-                await widgets.requestPayment({
-                  orderId: order.orderId, // 파라미터로 받기 (order.orderId)
-                  orderName: order.orderName, // 파라미터로 받기 (order.orderName)
-                  successUrl: window.location.origin + '/checkout-success',
-                  failUrl: window.location.origin + '/',
-                  customerEmail: deliveryAddress.email, // 파라미터로 받기 (deliveryAddress.email)
-                  customerName: deliveryAddress.name, // 파라미터로 받기 (deliveryAddress.name)
-                  customerMobilePhone: deliveryAddress.phone, // 파라미터로 받기 (deliveryAddress.phone)
-                });
-              } catch (error) {
-                // 에러 처리하기
-                console.error(error);
-              }
+              // ------ '결제하기' 버튼 누르면 결제창 띄우기 ------
+              // 결제를 요청하기 전에 orderId, amount를 서버에 저장하세요.
+              // 결제 과정에서 악의적으로 결제 금액이 바뀌는 것을 확인하는 용도입니다.
+              await widgets.requestPayment({
+                orderId: order.orderId, // 파라미터로 받기 (order.orderId)
+                orderName: order.orderName, // 파라미터로 받기 (order.orderName)
+                successUrl: window.location.origin + '/checkout-success',
+                failUrl: window.location.origin + '/',
+                customerEmail: deliveryAddress.email, // 파라미터로 받기 (deliveryAddress.email)
+                customerName: deliveryAddress.name, // 파라미터로 받기 (deliveryAddress.name)
+                customerMobilePhone: deliveryAddress.phone, // 파라미터로 받기 (deliveryAddress.phone)
+              });
             }}
           >
             결제하기

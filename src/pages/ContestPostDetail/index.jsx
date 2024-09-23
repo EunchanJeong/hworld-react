@@ -60,12 +60,8 @@ const ContestPostDetail = () => {
 
   // 게시글 상세 조회 함수
   const fetchPostDetail = async () => {
-    try {
-      const response = await GetPostDetailAPI(postId);
-      return response.data;
-    } catch (error) {
-      console.error('게시글 상세 조회 오류:', error);
-    }
+    const response = await GetPostDetailAPI(postId);
+    return response.data;
   };
 
   // 게시글 상세 조회 query
@@ -83,9 +79,6 @@ const ContestPostDetail = () => {
         queryClient.invalidateQueries(['postDetail', postId]); // 댓글 목록을 다시 가져옴
         setNewReply(''); // 입력 필드 초기화
       },
-      onError: (error) => {
-        console.error('댓글 등록 중 오류:', error);
-      },
     },
   );
 
@@ -97,9 +90,6 @@ const ContestPostDetail = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(['postDetail', postId]); // 댓글 목록을 다시 가져옴
-      },
-      onError: (error) => {
-        console.error('댓글 삭제 중 오류:', error);
       },
     },
   );

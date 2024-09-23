@@ -46,7 +46,6 @@ const CartItem = ({ cart, onDelete, onItemCountChange, onCheckChange }) => {
   const handleCheck = () => {
     const newCheckedState = !isChecked;
     setIsChecked(newCheckedState);
-    console.log(newCheckedState);
     onCheckChange(cart.cartId, newCheckedState); // Cart로 전달
   };
 

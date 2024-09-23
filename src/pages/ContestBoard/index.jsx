@@ -50,29 +50,13 @@ const ContestBoard = () => {
   const navigate = useNavigate(); // useNavigate 선언
 
   const fetchPosts = async () => {
-    try {
-      const response = await GetContestPostListAPI(
-        currentPage,
-        POSTS_PER_PAGE,
-        contestStatus,
-        activeTab,
-        selectedMonth,
-      );
-      console.log(response.data);
-      return response.data;
-    } catch (error) {
-      console.error('게시글 목록 가져오기 오류:', error);
-    }
+    const response = await GetContestPostListAPI(currentPage, POSTS_PER_PAGE, contestStatus, activeTab, selectedMonth);
+    return response.data;
   };
 
   const fetchPostAwards = async () => {
-    try {
-      const response = await GetContestPostAwardListAPI(selectedMonth);
-      console.log(response.data);
-      return response.data;
-    } catch (error) {
-      console.error('게시글 목록 가져오기 오류:', error);
-    }
+    const response = await GetContestPostAwardListAPI(selectedMonth);
+    return response.data;
   };
 
   const {

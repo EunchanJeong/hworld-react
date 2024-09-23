@@ -57,11 +57,9 @@ const CoordinationAwardPost = ({ post, MedalIcon }) => {
       setRecommendCount((prevCount) => (newRecommendState ? prevCount + 1 : prevCount - 1));
 
       if (newRecommendState == false) {
-        const response = await RemoveRecommendAPI(post.postId);
-        console.log(response);
+        await RemoveRecommendAPI(post.postId);
       } else {
-        const response = await AddRecommendAPI(post.postId);
-        console.log(response);
+        await AddRecommendAPI(post.postId);
       }
     } catch (error) {
       // 로그인 안 돼있을 시 로그인 페이지로 이동

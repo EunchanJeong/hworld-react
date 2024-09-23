@@ -62,7 +62,6 @@ const RegisterContestPost = () => {
     (formData) => AddContestPostAPI(formData), // API 호출
     {
       onSuccess: () => {
-        console.log('게시글 등록 성공');
         queryClient.invalidateQueries('contestPosts'); // 게시글 목록을 다시 불러오기
 
         // 토스트를 띄우고, 닫히면 navigate 실행
@@ -109,7 +108,6 @@ const RegisterContestPost = () => {
     if (background && background.image) {
       setSelectedBackground(background.image); // 선택한 배경 이미지 URL 저장
     } else {
-      console.error('Invalid background data:', background);
       alert('유효한 배경 이미지를 선택해주세요.');
     }
     handleCloseBackgroundModal();
@@ -137,8 +135,6 @@ const RegisterContestPost = () => {
 
         // API 호출
         addPostMutation.mutate(formData);
-      } else {
-        console.error('Image capture failed');
       }
     } else {
       alert('제목과 코디를 선택해주세요.');
@@ -155,7 +151,6 @@ const RegisterContestPost = () => {
       const imageBlob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/png'));
       return imageBlob; // Blob 형태의 PNG 이미지 반환
     } catch (error) {
-      console.error('Image capture failed:', error);
       return null;
     }
   };
